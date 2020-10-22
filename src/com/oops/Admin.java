@@ -3,7 +3,7 @@ package com.oops;
 public class Admin {
     public void editStudentAccess(){
 
-        System.out.println("THere there");
+        System.out.println("lol there");
 
     }
     public void addStudent(Student S){
