@@ -1,6 +1,6 @@
 package com.oops;
 
-public class Staff {
+public class Admin {
     public void editStudentAccess(){
 
     }

@@ -1,10 +1,21 @@
 package com.oops;
 
 public class User {
-    protected String name;
-    protected String id;
-    private String password; //if we are using the login function here
-    public static void main(String[] args) {
-        System.out.print("Hey Guys");
-    } //test
+    protected static String name;
+    protected static String id;
+    private static String password; //if we are using the login function here
+
+    public static String getId() {
+        return id;
+    }
+
+    public static String getName() {
+        return name;
+    }
+
+    public static String getPassword() {
+        return password;
+    }
+
+
 }
