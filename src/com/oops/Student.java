@@ -2,39 +2,27 @@ package com.oops;
 
 public class Student extends User{
 
-    private String gender;
-    private String nationality;
-    private Timetable timeTable;
+    private String school;
+    private String timetable;
 
-    public String getName(User U){
-        return U.name;
+    public Student(String name,String id,String password,char gender,String nationality,String school,String timetable) {
+        super(name,id,password,gender,nationality);
+        this.school=school;
+        this.timetable=timetable; // need to change to type timetable
+    }
+    public String getSchool() {
+        return school;
+    }
+    public void setSchool(String school) {
+        this.school = school;
+    }
+    public String getTimetable() {
+        return timetable;
+    }
+    public void setTimetable(String timetable) {
+        this.timetable = timetable;
     }
 
-    public String getId(User U){
-        return U.id;
-    }
 
-    public String getGender() {
-        return gender;
-    }
-
-    public String getNationality() {
-        return nationality;
-    }
-
-    public Timetable getTimeTable() {
-        return timeTable;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public void setNationality(String nationality) {
-        this.nationality = nationality;
-    }
-
-    public void setTimeTable(Timetable timeTable) {
-        this.timeTable = timeTable;
-    }
 }
+
