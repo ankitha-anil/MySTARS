@@ -6,8 +6,7 @@ public class Index {
     private int index_no;
     private int vacancy;
     private Session lesson[];
-    private Queue waitList;
-
+    private Queue<Index> waitingList;
     public void Index(boolean hasLab, boolean hasTut){
 
     }
@@ -17,7 +16,7 @@ public class Index {
         return wait_no;
     }
 
-    public void getVacancy(){
-
+    public int getVacancy(){
+        return vacancy;
     }
 }
