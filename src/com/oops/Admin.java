@@ -3,6 +3,8 @@ package com.oops;
 public class Admin {
     public void editStudentAccess(){
 
+        System.out.println("Hello");
+
     }
     public void addStudent(Student S){
 
