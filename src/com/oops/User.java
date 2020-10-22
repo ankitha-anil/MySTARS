@@ -1,9 +1,10 @@
 package com.oops;
 
 public class User {
-    protected String name;
     protected String id;
     private String password; //if we are using the login function here
+    protected String name;
+    
 
     public User(String name,String id,String password){
         this.name = name;
