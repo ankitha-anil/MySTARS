@@ -9,9 +9,6 @@ public class UserController{
     User U;
     FileHandler fileHandler;
 
-
-
-
     public static String generateHash(String input) {
         StringBuilder hash = new StringBuilder();
 
@@ -33,7 +30,7 @@ public class UserController{
         return hash.toString();
     }
 
-    protected static boolean loginCheck(String userName, String passWord)
+    protected static boolean loginCheck(String userName, String passWord, Integer user)
     {
 
         Boolean isAuthenticated = false;
@@ -43,6 +40,8 @@ public class UserController{
         // for the first time.
         String saltedPassword = SALT+passWord;
         String hashedPassword = generateHash(saltedPassword);
+
+
 
        /* storedPasswordHash = the stored password
 

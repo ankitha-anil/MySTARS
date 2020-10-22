@@ -4,17 +4,22 @@ import java.util.Scanner;
 
 public class UserInterface {
 
-    String userName, passWord;
-    int user;
+    String userName, passWord; //for login
+    int user; //for login
     UserController U;
     Scanner sc= new Scanner(System.in);
 
     //4 files required: 1. Students, 2. Admin, 3. Courses, 4. School **yet to be finalized
 
+    private final static String student = "./source/Student.dat";
+    private final static String admin = "./source/Admin.dat";
+    private final static String course = "./source/Course.dat";
+    private final static String school = "./source/School.dat";
+
     public void main(String[] args) {
        // while(1) {
             login();
-            if ((U.loginCheck(userName, passWord))) {
+            if ((U.loginCheck(userName, passWord, user))) {
 
 
                // break;
@@ -25,6 +30,8 @@ public class UserInterface {
        // }
 
     }
+
+
     public void login(){
         System.out.println("Enter username: ");
         userName= sc.next();
