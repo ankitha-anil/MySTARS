@@ -17,6 +17,7 @@ public class Index {
     }
 
     public int getVacancy(){
+
         return vacancy;
     }
 }

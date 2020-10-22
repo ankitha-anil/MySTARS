@@ -1,7 +1,8 @@
 package com.oops;
 
 public class Admin {
-    public void editStudentAccess(){
+
+    public void editStudentAccessTime(){
 
         System.out.println("THere there");
 

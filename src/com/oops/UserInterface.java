@@ -9,13 +9,15 @@ public class UserInterface {
     UserController U;
     Scanner sc= new Scanner(System.in);
 
+    //4 files required: 1. Students, 2. Admin, 3. Courses, 4. School **yet to be finalized
+
     public void main(String[] args) {
        // while(1) {
             login();
-            if ((U.loginCheck(userName, passWord)) == 1) {
+            if ((U.loginCheck(userName, passWord))) {
 
 
-                break;
+               // break;
             }
             else {
                 System.out.println("The username or password you entered is incorrect, PLease try again");
