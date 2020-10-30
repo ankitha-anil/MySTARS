@@ -12,10 +12,9 @@ public class UserInterface {
     public void main(String[] args) {
        // while(1) {
             login();
-            if ((U.loginCheck(userName, passWord)) == 1) {
+            if (U.loginCheck(userName, passWord,user)) {
 
 
-                break;
             }
             else {
                 System.out.println("The username or password you entered is incorrect, PLease try again");
