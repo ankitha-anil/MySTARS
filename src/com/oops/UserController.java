@@ -2,17 +2,18 @@ package com.oops;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.logging.FileHandler;
 
 public class UserController {
 
     User U;
     FileHandler fileHandler;
+    ArrayList <Course> courseList = new ArrayList <Course> ()
 
     public static String generateHash(String input) {
         StringBuilder hash = new StringBuilder();
 
-        try {
             MessageDigest sha = MessageDigest.getInstance("SHA-1");
             byte[] hashedBytes = sha.digest(input.getBytes());
             char[] digits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
@@ -52,4 +53,13 @@ public class UserController {
         return isAuthenticated;
     }
 
-}
+    public void getCourseFromIndex(int indexNo){
+        for (int course = 0; course<courseList.length; course++)
+        {
+            for (int i = 0; i<courseList[course].getIndexList().length); i++)
+        }
+    
+
+
+
+
