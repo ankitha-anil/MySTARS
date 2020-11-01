@@ -7,7 +7,9 @@ public class Index {
     private int vacancy;
     private Session lesson[];
     private Queue<Index> waitingList;
-    public void Index(boolean hasLab, boolean hasTut){
+    private int courseId;
+    public Index(int courseId, boolean hasLab, boolean hasTut){
+        this.courseId = courseId;
 
     }
 
