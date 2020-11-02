@@ -7,4 +7,10 @@ public class Course {
     private Index indexList;
     private int studentNumber;
 
+    public Index getIndexList()
+    {
+        return indexList;
+    }
+    
+
 }
