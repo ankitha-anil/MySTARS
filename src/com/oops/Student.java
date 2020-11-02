@@ -6,7 +6,7 @@ public class Student extends User{
     private String timetable;
 
     public Student(String name,String id,String password,char gender,String nationality,String school,String timetable) {
-        super(name,id,password,gender,nationality);
+        super(name,id,password,gender,nationality,school);
         this.school=school;
         this.timetable=timetable; // need to change to type timetable
     }

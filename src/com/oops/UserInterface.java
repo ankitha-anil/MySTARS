@@ -1,27 +1,31 @@
 package com.oops;
 
+import java.io.*;
 import java.util.Scanner;
 
 public class UserInterface {
 
-    String userName, passWord;
-    int user;
-    UserController U;
+    public static String userName;
+    public static String passWord;
+    public static int user;
     Scanner sc= new Scanner(System.in);
 
-    public void main(String[] args) {
-       // while(1) {
-            login();
-            if (U.loginCheck(userName, passWord,user)) {
+    public static void main(String[] args) throws IOException {
+       while(true) {
 
+           UserInterface demo= new UserInterface();
+           demo.login();
+            if (UserController.loginCheck(userName, passWord,user)) {
+                System.out.println("Login successful!");
+            }
+            else if(!(UserController.loginCheck(userName, passWord,user))){
+               System.out.println("BOO!");
 
-            }
-            else {
-                System.out.println("The username or password you entered is incorrect, PLease try again");
-            }
-       // }
+           }
+       }
 
     }
+
     public void login(){
         System.out.println("Enter username: ");
         userName= sc.next();
@@ -32,8 +36,10 @@ public class UserInterface {
         System.out.println("1: Staff ");
         System.out.println("2: Student ");
         user= sc.nextInt();
-
     }
 
-
 }
+
+
+
+
