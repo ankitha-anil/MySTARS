@@ -1,17 +1,22 @@
 package com.oops;
 
-public class Student extends User{
+import java.util.ArrayList;
+import java.util.List;
+
+public class Student extends User {
 
     private String gender;
     private String nationality;
-    private Timetable timeTable;
+    private ArrayList<Index> indexRegistered;
+    private ArrayList<Index> indexOnWaitList;
+    private int registeredAU = 0;
 
-    public String getName(User U){
-        return U.name;
-    }
-
-    public String getId(User U){
-        return U.id;
+    public Student(String name, String userID, String password, String emailID, String gender, String nationality) {
+        super(name, userID, password, emailID);
+        this.gender = gender;
+        this.nationality = nationality;
+        this.indexRegistered = new ArrayList<>();
+        this.indexOnWaitList = new ArrayList<>();
     }
 
     public String getGender() {
@@ -22,19 +27,44 @@ public class Student extends User{
         return nationality;
     }
 
-    public Timetable getTimeTable() {
-        return timeTable;
+    public int getRegisteredAU() {
+        return registeredAU;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setRegisteredAU(int registeredAU) {
+        this.registeredAU = registeredAU;
+    }
+
+    public ArrayList<Index> getIndexRegistered() {
+        return indexRegistered;
+    }
+
+    public void setIndexRegistered(ArrayList<Index> indexRegistered) {
+        this.indexRegistered = indexRegistered;
     }
 
     public void setNationality(String nationality) {
         this.nationality = nationality;
     }
 
-    public void setTimeTable(Timetable timeTable) {
-        this.timeTable = timeTable;
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void addIndexRegistered(Index index) {
+        this.indexRegistered.add(index);
+        index.addStudent(this);
+    }
+
+    public void addIndexOnWaitList(Index index) {
+        this.indexOnWaitList.add(index);
+    }
+
+    public ArrayList<Index> getIndexOnWaitList() {
+        return indexOnWaitList;
+    }
+
+    public void setIndexOnWaitList(ArrayList<Index> indexOnWaitList) {
+        this.indexOnWaitList = indexOnWaitList;
     }
 }
