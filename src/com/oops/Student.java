@@ -5,26 +5,20 @@ import java.util.List;
 
 public class Student extends User {
 
-    private String gender;
-    private String nationality;
+    private String matriculationNumber;
+    private String school;
+    private int maxAU = 21;
+    private int studyYear;
     private ArrayList<Index> indexRegistered;
     private ArrayList<Index> indexOnWaitList;
     private int registeredAU = 0;
 
-    public Student(String name, String userID, String password, String emailID, String gender, String nationality) {
-        super(name, userID, password, emailID);
-        this.gender = gender;
-        this.nationality = nationality;
+    public Student(String name, String userID, String password, String emailID, String gender, String nationality, String school, int studyYear) {
+        super(name, userID, password, emailID, gender, nationality);
+        this.school = school;
+        this.studyYear = studyYear;
         this.indexRegistered = new ArrayList<>();
         this.indexOnWaitList = new ArrayList<>();
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public String getNationality() {
-        return nationality;
     }
 
     public int getRegisteredAU() {
@@ -43,17 +37,14 @@ public class Student extends User {
         this.indexRegistered = indexRegistered;
     }
 
-    public void setNationality(String nationality) {
-        this.nationality = nationality;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
     public void addIndexRegistered(Index index) {
         this.indexRegistered.add(index);
+        this.increaseRegisteredAU(index.getAcademicUnits());
         index.addStudent(this);
+    }
+
+    public void removeIndex(Index index) {
+        // Remove the particular index number from the registered courses
     }
 
     public void addIndexOnWaitList(Index index) {
@@ -66,5 +57,9 @@ public class Student extends User {
 
     public void setIndexOnWaitList(ArrayList<Index> indexOnWaitList) {
         this.indexOnWaitList = indexOnWaitList;
+    }
+
+    public void increaseRegisteredAU(int academicUnits) {
+        this.registeredAU += academicUnits;
     }
 }
