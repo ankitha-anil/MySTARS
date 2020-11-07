@@ -4,17 +4,17 @@ public class User {
     protected String name;
     protected String userID;
     private String password;
-    private String emailID;
-    //if we are using the login function here
-    //public static void main(String[] args) {
-    // System.out.print("Hey Guys");
-    //} //test
+    protected String emailID;
+    private String gender;
+    private String nationality;
 
-    public User(String name, String userID, String password, String emailID) {
+    public User(String name, String userID, String password, String emailID, String gender, String nationality) {
         this.name = name;
         this.userID = userID;
         this.password = password;
         this.emailID = emailID;
+        this.gender = gender;
+        this.nationality = nationality;
     }
 
     public String getName() {
@@ -39,5 +39,29 @@ public class User {
 
     public void setUserID(String userID) {
         this.userID = userID;
+    }
+
+    public String getEmailID() {
+        return emailID;
+    }
+
+    public void setEmailID(String emailID) {
+        this.emailID = emailID;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
     }
 }
