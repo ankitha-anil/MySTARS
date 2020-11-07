@@ -5,9 +5,6 @@ import java.util.Date;
 
 public class Session {
 
-    /*
-        Make startTime and endTime as a DateTime object
-     */
     private String venue;
     private int day;
     private String lessonType;
