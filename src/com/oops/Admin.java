@@ -1,16 +1,19 @@
 package com.oops;
 
-public class Admin {
-    public void editStudentAccess(){
+public class Admin extends User {
+    private String admin;
 
+    Admin(String name, String userID, String password, String emailID, String gender, String nationality, String admin) {
+        super(name, userID, password, emailID, gender, nationality);
+        this.admin = admin;
     }
-    public void addStudent(Student S){
 
+    public String getAdmin() {
+        return admin;
     }
-    public void addCourse(int course_no){
 
-    }
-    public void updateCourse(int course_no){
-
+    public void setAdmin(String admin) {
+        this.admin = admin;
     }
 }
+
