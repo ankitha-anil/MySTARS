@@ -1,4 +1,3 @@
-
 package com.oops;
 
 import java.util.ArrayList;
@@ -9,12 +8,11 @@ public class Course {
     private int academicUnits;
     private String schoolName;
     private ArrayList<Index> indexNumberList;
-    private int studentNumber;
 
     public Course(String courseCode, int academicUnits, String schoolName) {
         this.courseCode = courseCode;
-        this.schoolName = schoolName;
         this.academicUnits = academicUnits;
+        this.schoolName = schoolName;
 
         this.indexNumberList = new ArrayList<>();
     }
