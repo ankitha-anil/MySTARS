@@ -5,10 +5,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
-/*
-    Must implement the waitingList as well as studentsRegistered
-
- */
 
 public class Index {
     private int indexNumber;
@@ -27,6 +23,34 @@ public class Index {
         lesson = new ArrayList<>();
         waitingList = new LinkedList<>();
         studentsRegistered = new ArrayList<>();
+    }
+
+    public int getAcademicUnits() {
+        return academicUnits;
+    }
+
+    public void setAcademicUnits(int academicUnits) {
+        this.academicUnits = academicUnits;
+    }
+
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
+    }
+
+    public Queue<Student> getWaitingList() {
+        return waitingList;
+    }
+
+    public void setWaitingList(Queue<Student> waitingList) {
+        this.waitingList = waitingList;
+    }
+
+    public ArrayList<Student> getStudentsRegistered() {
+        return studentsRegistered;
+    }
+
+    public void setStudentsRegistered(ArrayList<Student> studentsRegistered) {
+        this.studentsRegistered = studentsRegistered;
     }
 
     public int getVacancy() {
@@ -49,6 +73,14 @@ public class Index {
         return courseCode;
     }
 
+    public ArrayList<Session> getLesson() {
+        return lesson;
+    }
+
+    public void setLesson(ArrayList<Session> lesson) {
+        this.lesson = lesson;
+    }
+
     public void addLesson(int day, String venue, String lessonType, LocalTime startTime, LocalTime endTime) {
         Session session = new Session(day, venue, lessonType, startTime, endTime);
         if (startTime.compareTo(endTime) >= 0) {
@@ -59,35 +91,37 @@ public class Index {
             this.lesson.add(session);
     }
 
+    public void addLesson(int day, String venue, String lessonType, String labWeek, LocalTime startTime, LocalTime endTime) {
+        Session session = new Session(day, venue, lessonType, labWeek, startTime, endTime);
+        if (startTime.compareTo(endTime) >= 0) {
+            System.out.println("Error... Start time must be earlier than end time");
+            return;
+        }
+        if (checkLessonValidity(session))
+            this.lesson.add(session);
+    }
+
     private boolean checkLessonValidity(Session session) {
         String lessonType = session.getLessonType();
-        if (lessonType == "Lecture")
+        if (lessonType.equals("lecture"))
             return true;
         boolean isTutorial = false;
         boolean isLab = false;
-        if (lessonType == "Tutorial")
+        if (lessonType.equals("tutorial"))
             isTutorial = true;
-        else if (lessonType == "Lab")
+        else if (lessonType.equals("lab"))
             isLab = true;
         boolean hasLecture = false;
         boolean hasTutorial = false;
         for (Session s : lesson
         ) {
             String availableLesson = s.getLessonType();
-            if (availableLesson == "Lecture")
+            if (availableLesson.equals("lecture"))
                 hasLecture = true;
-            else if (availableLesson == "Tutorial")
+            else if (availableLesson.equals("tutorial"))
                 hasTutorial = true;
         }
         return (hasLecture && isTutorial) || (hasLecture && hasTutorial && isLab);
-    }
-
-    public ArrayList<Session> getLesson() {
-        return lesson;
-    }
-
-    public void setLesson(ArrayList<Session> lesson) {
-        this.lesson = lesson;
     }
 
 
@@ -102,9 +136,7 @@ public class Index {
     }
 
     public boolean isFilled() {
-        if (this.vacancy == 0)
-            return true;
-        return false;
+        return this.vacancy == 0;
     }
 
 
@@ -112,9 +144,10 @@ public class Index {
         System.out.println(this.getIndexNumber());
         System.out.println(this.getVacancy());
 
-        for (int i = 0; i < this.lesson.size(); ++i) {
-            lesson.get(i).print();
+        for (Session session :
+                lesson
+        ) {
+            session.print();
         }
     }
-
 }
