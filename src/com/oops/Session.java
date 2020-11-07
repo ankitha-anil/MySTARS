@@ -1,7 +1,6 @@
 package com.oops;
 
 import java.time.LocalTime;
-import java.util.Date;
 
 public class Session {
 
@@ -12,18 +11,10 @@ public class Session {
     private LocalTime endTime;
     private String labWeek = "both";
 
-    public String getLabWeek() {
-        return labWeek;
-    }
-
-    public int getDay() {
-        return day;
-    }
-
     public Session(int day, String venue, String lessonType, LocalTime startTime, LocalTime endTime) {
         this.day = day;
         this.venue = venue;
-        this.lessonType = lessonType;
+        this.lessonType = lessonType.toLowerCase();
         this.startTime = startTime;
         this.endTime = endTime;
     }
@@ -31,13 +22,29 @@ public class Session {
     public Session(int day, String venue, String lessonType, String labWeek, LocalTime startTime, LocalTime endTime) {
         this.day = day;
         this.venue = venue;
-        this.lessonType = lessonType;
-        this.labWeek = labWeek;
+        this.lessonType = lessonType.toLowerCase();
+        this.labWeek = labWeek.toLowerCase();
         this.startTime = startTime;
         this.endTime = endTime;
     }
 
 
+    public String getLabWeek() {
+        return labWeek;
+    }
+
+    public void setLabWeek(String labWeek) {
+        this.labWeek = labWeek;
+    }
+
+
+    public int getDay() {
+        return day;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
 
     public String getVenue() {
         return venue;
@@ -78,3 +85,4 @@ public class Session {
         System.out.println(this.getEndTime());
     }
 }
+
