@@ -12,10 +12,10 @@ import java.lang.String;
 import java.util.ArrayList;
 
 public class FileMgr {
-    public ArrayList<Course> loadCourses("courseFile.dat")
+    public ArrayList<Course> loadCourses(String courseFileName)
     {
         ArrayList<Course> c = new ArrayList<Course>();
-        FileInputStream fi = new FileInputStream(new File("courseFile.dat"));
+        FileInputStream fi = new FileInputStream(new File(courseFileName));
         ObjectInputStream oi = new ObjectInputStream(fi);
 
         // Read objects
@@ -35,10 +35,10 @@ public class FileMgr {
 
     }
 
-    public void saveCourses(ArrayList<Course> c )
+    public void saveCourses(ArrayList<Course> c , String courseFileName)
     {
         
-            FileOutputStream f = new FileOutputStream(new File("courseFile.dat",true));
+            FileOutputStream f = new FileOutputStream(new File(courseFileName,true));
             ObjectOutputStream o = new ObjectOutputStream(f);
 
             // Write objects to file
@@ -55,10 +55,10 @@ public class FileMgr {
             f.close();
     }
 
-    public void saveUserList(ArrayList<User> u)
+    public void saveUserList(ArrayList<User> u,String userFileName)
     {
         
-            FileOutputStream f = new FileOutputStream(new File("courseFile.dat",true));
+            FileOutputStream f = new FileOutputStream(new File(userFileName,true));
             ObjectOutputStream o = new ObjectOutputStream(f);
 
             // Write objects to file
@@ -75,10 +75,10 @@ public class FileMgr {
             f.close();
     }
 
-    public ArrayList<User> loadUSer("userFile.dat")
+    public ArrayList<User> loadUSerList(String userFileName)
     {
         ArrayList<User> u = new ArrayList<User>();
-        FileInputStream fi = new FileInputStream(new File("userFile.dat"));
+        FileInputStream fi = new FileInputStream(new File(userFileName));
         ObjectInputStream oi = new ObjectInputStream(fi);
 
         // Read objects
@@ -97,4 +97,47 @@ public class FileMgr {
         return u;
     }
 
+    public void SaveAdminList(ArrayList<Admin> a, String courseFileName) {
+        FileOutputStream f = new FileOutputStream(new File(courseFileName, true));
+        ObjectOutputStream o = new ObjectOutputStream(f);
+
+        // Write objects to file
+        try {
+            while (true) {
+                for (int i = 0; i < a.size(); i++)
+                    o.writeObject(a[i]);
+            }
+
+        } finally {
+            // do nothing
+        }
+
+        o.close();
+        f.close();
+    }
+
+    public ArrayList<Admin> loadAdminList(String adminFileName)
+    {
+        ArrayList<Course> a = new ArrayList<Admin>();
+        FileInputStream fi = new FileInputStream(new File(adminFileName));
+        ObjectInputStream oi = new ObjectInputStream(fi);
+
+        // Read objects
+        try{
+            while(true)
+            {
+                a.add( (Admin) oi.readObject());
+            }
+        catch(EOFException e){
+            //do nothing
+        }
+        }
+        finally{
+            //do nothing
+        }
+
+        oi.close();
+        fi.close();
+        return c;
+    }
 }
