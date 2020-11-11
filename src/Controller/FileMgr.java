@@ -1,6 +1,6 @@
 package Controller;
 
-import com.oops.*;
+import Entity.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -35,44 +35,36 @@ public class FileMgr {
 
     }
 
-    public void saveCourses(ArrayList<Course> c , String courseFileName)
-    {
-        
-            FileOutputStream f = new FileOutputStream(new File(courseFileName,true));
-            ObjectOutputStream o = new ObjectOutputStream(f);
+    public void saveCourses(ArrayList<Course> c, String courseFileName) {
 
-            // Write objects to file
-        try{
-            while(true)
-            {
-                for (int i = 0; i<c.size(); i++)
-                    o.writeObject(c[i]);
-            }
-           
-            }
+        FileOutputStream f = new FileOutputStream(new File(courseFileName));
+        ObjectOutputStream o = new ObjectOutputStream(f);
 
-            o.close();
-            f.close();
-    }
+        // Write objects to file
 
-    public void saveUserList(ArrayList<User> u,String userFileName)
-    {
-        
-            FileOutputStream f = new FileOutputStream(new File(userFileName,true));
-            ObjectOutputStream o = new ObjectOutputStream(f);
+        while (true) {
+            for (int i = 0; i < c.size(); i++)
+                o.writeObject(c[i]);
+        }
 
-            // Write objects to file
-        try {   
-            while(true)
-            {
-                for (int i = 0; i<u.size(); i++)
-                    o.writeObject(u[i]);
-            }
-           
-            }
+        o.close();
+        f.close();
+    
 
-            o.close();
-            f.close();
+    public void saveUserList(ArrayList<User> u, String userFileName) {
+
+        FileOutputStream f = new FileOutputStream(new File(userFileName));
+        ObjectOutputStream o = new ObjectOutputStream(f);
+
+        // Write objects to file
+
+        while (true) {
+            for (int i = 0; i < u.size(); i++)
+                o.writeObject(u[i]);
+        }
+
+        o.close();
+        f.close();
     }
 
     public ArrayList<User> loadUSerList(String userFileName)
@@ -98,18 +90,14 @@ public class FileMgr {
     }
 
     public void SaveAdminList(ArrayList<Admin> a, String courseFileName) {
-        FileOutputStream f = new FileOutputStream(new File(courseFileName, true));
+        FileOutputStream f = new FileOutputStream(new File(courseFileName));
         ObjectOutputStream o = new ObjectOutputStream(f);
 
         // Write objects to file
-        try {
-            while (true) {
-                for (int i = 0; i < a.size(); i++)
-                    o.writeObject(a[i]);
-            }
 
-        } finally {
-            // do nothing
+        while (true) {
+            for (int i = 0; i < a.size(); i++)
+                o.writeObject(a[i]);
         }
 
         o.close();
@@ -123,7 +111,7 @@ public class FileMgr {
         ObjectInputStream oi = new ObjectInputStream(fi);
 
         // Read objects
-        try{
+        
             while(true)
             {
                 a.add( (Admin) oi.readObject());
@@ -131,13 +119,10 @@ public class FileMgr {
         catch(EOFException e){
             //do nothing
         }
-        }
-        finally{
-            //do nothing
-        }
+        
+        
 
         oi.close();
         fi.close();
         return c;
     }
-}
