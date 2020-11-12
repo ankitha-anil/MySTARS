@@ -12,21 +12,18 @@ import java.lang.String;
 import java.util.ArrayList;
 
 public class FileMgr {
-    public ArrayList<Course> loadCourses(String courseFileName)
-    {
+    public ArrayList<Course> loadCourses(String courseFileName) {
         ArrayList<Course> c = new ArrayList<Course>();
         FileInputStream fi = new FileInputStream(new File(courseFileName));
         ObjectInputStream oi = new ObjectInputStream(fi);
 
         // Read objects
-        try{
-            while(true)
-            {
-                c.add( (Course) oi.readObject());
+        try {
+            while (true) {
+                c.add((Course) oi.readObject());
             }
-        catch(EOFException e){
-            //do nothing
-        }
+        } catch (EOFException e) {
+            // do nothing
         }
 
         oi.close();
@@ -49,7 +46,7 @@ public class FileMgr {
 
         o.close();
         f.close();
-    
+    }
 
     public void saveUserList(ArrayList<User> u, String userFileName) {
 
@@ -67,21 +64,18 @@ public class FileMgr {
         f.close();
     }
 
-    public ArrayList<User> loadUSerList(String userFileName)
-    {
+    public ArrayList<User> loadUSerList(String userFileName) {
         ArrayList<User> u = new ArrayList<User>();
         FileInputStream fi = new FileInputStream(new File(userFileName));
         ObjectInputStream oi = new ObjectInputStream(fi);
 
         // Read objects
-        try{
-            while(true)
-            {
-                u.add( (User) oi.readObject());
+        try {
+            while (true) {
+                u.add((User) oi.readObject());
             }
-        catch(EOFException e){
-            //do nothing
-        }
+        } catch (EOFException e) {
+            // do nothing
         }
 
         oi.close();
@@ -111,11 +105,11 @@ public class FileMgr {
         ObjectInputStream oi = new ObjectInputStream(fi);
 
         // Read objects
-        
+        try{
             while(true)
             {
                 a.add( (Admin) oi.readObject());
-            }
+            }}
         catch(EOFException e){
             //do nothing
         }
