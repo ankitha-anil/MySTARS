@@ -8,17 +8,10 @@ import java.util.Queue;
 public class Index {
     private int indexNumber;
     private int vacancy;
-    private Session lesson[];
-    private Queue<Index> waitingList;
-    private int courseId;
-
-    public Index(int courseId, boolean hasLab, boolean hasTut){
-        this.courseId = courseId;
-
+    private Queue<Student> waitingList;
     private int academicUnits;
     private String courseCode;
     private ArrayList<Session> lesson;
-    private Queue<Student> waitingList;
     private ArrayList<Student> studentsRegistered;
 
     public Index(int indexNumber, int vacancy, int academicUnits, String courseCode) {
