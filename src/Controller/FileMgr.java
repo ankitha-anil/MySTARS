@@ -30,13 +30,13 @@ public class FileMgr {
         return objects;
     }
 
-    public void saveObjects(ArrayList<Object> objects, String courseFileName) {
+    public void saveObjects(ArrayList<Object> objects, String fileName) {
 
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream = null;
         // Write objects to file
         try {
-            fileOutputStream = new FileOutputStream(new File(courseFileName));
+            fileOutputStream = new FileOutputStream(new File(fileName));
             objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(objects);
             objectOutputStream.close();
