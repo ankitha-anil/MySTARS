@@ -8,9 +8,9 @@ import java.util.ArrayList;
 
 public class FileMgr {
     public ArrayList<Object> loadObjects(String fileName) {
-        ArrayList<Object> objects = new ArrayList<Object>();
-        FileInputStream fileInputStream = null;
-        ObjectInputStream objectInputStream = null;
+        ArrayList<Object> objects = new ArrayList<>();
+        FileInputStream fileInputStream;
+        ObjectInputStream objectInputStream;
         // Read objects
         try {
             fileInputStream = new FileInputStream(new File(fileName));
@@ -32,8 +32,8 @@ public class FileMgr {
 
     public void saveObjects(ArrayList<Object> objects, String fileName) {
 
-        FileOutputStream fileOutputStream = null;
-        ObjectOutputStream objectOutputStream = null;
+        FileOutputStream fileOutputStream;
+        ObjectOutputStream objectOutputStream;
         // Write objects to file
         try {
             fileOutputStream = new FileOutputStream(new File(fileName));
