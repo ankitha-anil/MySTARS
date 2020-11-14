@@ -1,12 +1,21 @@
 package Entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Course {
+public class Course implements Serializable {
     private String courseCode;
     private int academicUnits;
     private String schoolName;
-    private ArrayList<Index> indexNumberList;
+    private ArrayList<Object> indexNumberList;
+
+    public ArrayList<Object> getIndexNumberList() {
+        return indexNumberList;
+    }
+
+    public void setIndexNumberList(ArrayList<Object> indexNumberList) {
+        this.indexNumberList = indexNumberList;
+    }
 
     public Course(String courseCode, int academicUnits, String schoolName) {
         this.courseCode = courseCode;
@@ -14,6 +23,10 @@ public class Course {
         this.schoolName = schoolName;
 
         this.indexNumberList = new ArrayList<>();
+    }
+
+    public Course(String courseCode) {
+        this.courseCode = courseCode;
     }
 
     public int getAcademicUnits() {
@@ -44,5 +57,10 @@ public class Course {
         Index index = new Index(indexNumber, vacancy, this.academicUnits, this.courseCode);
         this.indexNumberList.add(index);
     }
+
+    public boolean equals(Object object) {
+        return (courseCode.equals(((Course) object).getCourseCode()));
+    }
+
 
 }

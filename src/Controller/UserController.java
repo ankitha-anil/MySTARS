@@ -5,10 +5,11 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.logging.FileHandler;
+
 import Entity.*;
 
 public class UserController {
-
+/*
     final static String SALT = "oops_project";
 
     public static String generateHash(String input) {
@@ -64,7 +65,7 @@ public class UserController {
 
             else if(!hashedPassword.equals(s.getPassword()))
             { System.out.println("Wrong password");
-                isAuthenticated= false;}*/
+                isAuthenticated= false;}
 
             isAuthenticated = hashedPassword.equals(s.getPassword()) && userName.equals(s.getUsername()) && user == 2;
 
@@ -77,3 +78,7 @@ public class UserController {
         {
             for (int i = 0; i<courseList[course].getIndexList().length); i++)
         }
+        }
+    }
+        */
+}

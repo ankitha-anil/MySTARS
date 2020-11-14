@@ -2,6 +2,7 @@ package Controller;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+
 import Entity.*;
 
 
@@ -12,8 +13,7 @@ Must change some methods depending on the Boundary Class
  */
 
 
-public class timetableMgr {
-
+class TimeTableMgr {
 
     // Add an index into student's indexRegistered
     public void addCourse(Student student, Index index) {
@@ -34,10 +34,10 @@ public class timetableMgr {
                     if (session.getDay() != registeredSession.getDay())
                         continue;
 
-                    if (session.getLessonType() == registeredSession.getLessonType() && session.getLessonType() == "Lab") {
-                        if (session.getLabWeek() == "odd" && registeredSession.getLabWeek() == "even")
+                    if (session.getLessonType().equals(registeredSession.getLessonType()) && session.getLessonType().equals("Lab")) {
+                        if (session.getLabWeek().equals("odd") && registeredSession.getLabWeek().equals("even"))
                             continue;
-                        else if (session.getLabWeek() == "even" && registeredSession.getLabWeek() == "odd")
+                        else if (session.getLabWeek().equals("even") && registeredSession.getLabWeek().equals("odd"))
                             continue;
                     }
 
@@ -47,9 +47,9 @@ public class timetableMgr {
                     time3 = registeredSession.getStartTime();
                     time4 = registeredSession.getEndTime();
 
-                    if ((time1.compareTo(time3) == -1 && time2.compareTo(time3) == 1) || time1.compareTo(time3) == 0)
+                    if ((time1.isBefore(time3) && time2.isAfter(time3)) || time1.compareTo(time3) == 0)
                         return true;
-                    else if ((time1.compareTo(time3) == 1 && time1.compareTo(time4) == -1))
+                    else if ((time1.isAfter(time3) && time1.isBefore(time4)))
                         return true;
                 }
 
@@ -64,7 +64,7 @@ public class timetableMgr {
     private boolean checkExistingCourse(ArrayList<Index> studentIndex, Index index) {
         for (Index registeredIndex : studentIndex
         ) {
-            if (index.getCourseCode() == registeredIndex.getCourseCode())
+            if (index.getCourseCode().equals(registeredIndex.getCourseCode()))
                 return true;
         }
         return false;

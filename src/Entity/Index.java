@@ -1,11 +1,12 @@
 package Entity;
 
+import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Index {
+public class Index implements Serializable {
     private int indexNumber;
     private int vacancy;
     private Queue<Student> waitingList;
@@ -22,6 +23,10 @@ public class Index {
         lesson = new ArrayList<>();
         waitingList = new LinkedList<>();
         studentsRegistered = new ArrayList<>();
+    }
+
+    public Index(int indexNumber) {
+        this.indexNumber = indexNumber;
     }
 
     public int getAcademicUnits() {
@@ -90,10 +95,10 @@ public class Index {
             this.lesson.add(session);
     }
 
-    public void addLesson(int day, String venue, String lessonType, String labWeek, LocalTime startTime,
-            LocalTime endTime) {
+    public void addLesson(int day, String venue, String lessonType, LocalTime startTime,
+                          LocalTime endTime, String labWeek) {
         Session session = new Session(day, venue, lessonType, labWeek, startTime, endTime);
-        if (startTime.compareTo(endTime) >= 0) {
+        if (startTime.isAfter(endTime)) {
             System.out.println("Error... Start time must be earlier than end time");
             return;
         }
@@ -145,4 +150,9 @@ public class Index {
             session.print();
         }
     }
+
+    public boolean equals(Object object) {
+        return (indexNumber == ((Index) object).getIndexNumber());
+    }
+
 }

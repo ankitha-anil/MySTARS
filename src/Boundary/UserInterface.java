@@ -1,9 +1,18 @@
 package Boundary;
 
+import Controller.AdminController;
+import Controller.FileMgr;
+import Controller.SystemMgr;
+import Entity.Course;
+import Entity.Student;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
-
+/*
     String userName, passWord;
     int user;
     UserController U;
@@ -34,5 +43,9 @@ public class UserInterface {
         user = sc.nextInt();
 
     }
+ */
 
+    public static void main(String[] args) {
+
+    }
 }

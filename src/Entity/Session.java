@@ -1,8 +1,9 @@
 package Entity;
 
+import java.io.Serializable;
 import java.time.LocalTime;
 
-public class Session {
+public class Session implements Serializable {
 
     private String venue;
     private int day;

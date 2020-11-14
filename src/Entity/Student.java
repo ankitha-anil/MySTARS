@@ -1,9 +1,18 @@
 package Entity;
 
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Student extends User {
+public class Student extends User implements Serializable {
+
+    // Registration Period
+    private static LocalTime startTime = LocalTime.of(0, 0);
+    private static LocalTime endTime = LocalTime.of(23, 59);
+    private static LocalDate startDate = LocalDate.of(2020, 1, 1);
+    private static LocalDate endDate = LocalDate.of(2020, 12, 31);
 
     private String matriculationNumber;
     private String school;
@@ -13,13 +22,18 @@ public class Student extends User {
     private ArrayList<Index> indexOnWaitList;
     private int registeredAU = 0;
 
-    public Student(String name, String userID, String password, String emailID, String gender, String nationality,
-            String school, int studyYear) {
+    public Student(String name, String userID, String matriculationNumber, String password, String emailID, String gender, String nationality,
+                   String school, int studyYear) {
         super(name, userID, password, emailID, gender, nationality);
         this.school = school;
         this.studyYear = studyYear;
         this.indexRegistered = new ArrayList<>();
         this.indexOnWaitList = new ArrayList<>();
+        this.matriculationNumber = matriculationNumber;
+    }
+
+    public Student(String matriculationNumber) {
+        this.matriculationNumber = matriculationNumber;
     }
 
     public int getRegisteredAU() {
@@ -32,6 +46,38 @@ public class Student extends User {
 
     public ArrayList<Index> getIndexRegistered() {
         return indexRegistered;
+    }
+
+    public String getMatriculationNumber() {
+        return matriculationNumber;
+    }
+
+    public void setMatriculationNumber(String matriculationNumber) {
+        this.matriculationNumber = matriculationNumber;
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public int getMaxAU() {
+        return maxAU;
+    }
+
+    public void setMaxAU(int maxAU) {
+        this.maxAU = maxAU;
+    }
+
+    public int getStudyYear() {
+        return studyYear;
+    }
+
+    public void setStudyYear(int studyYear) {
+        this.studyYear = studyYear;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
     }
 
     public void setIndexRegistered(ArrayList<Index> indexRegistered) {
@@ -62,5 +108,36 @@ public class Student extends User {
 
     public void increaseRegisteredAU(int academicUnits) {
         this.registeredAU += academicUnits;
+    }
+
+    public boolean equals(Object object) {
+        return (matriculationNumber.equals(((Student) object).getMatriculationNumber()));
+    }
+
+    public void print() {
+        System.out.println(getName() + ", " + getGender() + ", " + getNationality());
+    }
+
+    public static void setAccessPeriod(LocalTime regStartTime, LocalTime regEndTime, LocalDate regStartDate, LocalDate regEndDate) {
+        startTime = regStartTime;
+        endTime = regEndTime;
+        startDate = regStartDate;
+        endDate = regEndDate;
+    }
+
+    public static LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public static LocalTime getEndTime() {
+        return endTime;
+    }
+
+    public static LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public static LocalDate getEndDate() {
+        return endDate;
     }
 }
