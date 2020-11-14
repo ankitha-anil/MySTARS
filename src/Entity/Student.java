@@ -22,9 +22,9 @@ public class Student extends User implements Serializable {
     private ArrayList<Index> indexOnWaitList;
     private int registeredAU = 0;
 
-    public Student(String name, String userID, String matriculationNumber, String password, String emailID, String gender, String nationality,
+    public Student(String name, String networkName, String matriculationNumber, String password, String emailID, String gender, String nationality,
                    String school, int studyYear) {
-        super(name, userID, password, emailID, gender, nationality);
+        super(name, networkName, gender, nationality);
         this.school = school;
         this.studyYear = studyYear;
         this.indexRegistered = new ArrayList<>();
@@ -32,7 +32,17 @@ public class Student extends User implements Serializable {
         this.matriculationNumber = matriculationNumber;
     }
 
-    public Student(String matriculationNumber) {
+    // Dummy Constructor
+    public Student(String networkName, String matriculationNumber) {
+        super(networkName);
+        this.matriculationNumber = matriculationNumber;
+    }
+
+    public String getMatriculationNumber() {
+        return matriculationNumber;
+    }
+
+    public void setMatriculationNumber(String matriculationNumber) {
         this.matriculationNumber = matriculationNumber;
     }
 
@@ -44,20 +54,12 @@ public class Student extends User implements Serializable {
         this.registeredAU = registeredAU;
     }
 
-    public ArrayList<Index> getIndexRegistered() {
-        return indexRegistered;
-    }
-
-    public String getMatriculationNumber() {
-        return matriculationNumber;
-    }
-
-    public void setMatriculationNumber(String matriculationNumber) {
-        this.matriculationNumber = matriculationNumber;
-    }
-
     public String getSchool() {
         return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
     }
 
     public int getMaxAU() {
@@ -76,12 +78,20 @@ public class Student extends User implements Serializable {
         this.studyYear = studyYear;
     }
 
-    public void setSchool(String school) {
-        this.school = school;
+    public ArrayList<Index> getIndexRegistered() {
+        return indexRegistered;
     }
 
     public void setIndexRegistered(ArrayList<Index> indexRegistered) {
         this.indexRegistered = indexRegistered;
+    }
+
+    public ArrayList<Index> getIndexOnWaitList() {
+        return indexOnWaitList;
+    }
+
+    public void setIndexOnWaitList(ArrayList<Index> indexOnWaitList) {
+        this.indexOnWaitList = indexOnWaitList;
     }
 
     public void addIndexRegistered(Index index) {
@@ -91,19 +101,17 @@ public class Student extends User implements Serializable {
     }
 
     public void removeIndex(Index index) {
-        // Remove the particular index number from the registered courses
+        this.indexRegistered.remove(index);
+        index.removeStudent(this);
     }
 
     public void addIndexOnWaitList(Index index) {
         this.indexOnWaitList.add(index);
     }
 
-    public ArrayList<Index> getIndexOnWaitList() {
-        return indexOnWaitList;
-    }
-
-    public void setIndexOnWaitList(ArrayList<Index> indexOnWaitList) {
-        this.indexOnWaitList = indexOnWaitList;
+    public void removeIndexFromWaitList(Index index) {
+        this.indexOnWaitList.remove(index);
+        index.removeFromWaitingList(this);
     }
 
     public void increaseRegisteredAU(int academicUnits) {

@@ -25,16 +25,16 @@ public class TimeTableMgr {
     // Check clash between an index and a List of Indexes
     // This method can be used to check clash with registered courses as well as courses on waitList
     private boolean checkClash(ArrayList<Index> studentIndex, Index index) {
-        for (Session session : index.getLesson()
+        for (Session session : index.getLessons()
         ) {
             for (Index indexRegistered : studentIndex
             ) {
-                for (Session registeredSession : indexRegistered.getLesson()
+                for (Session registeredSession : indexRegistered.getLessons()
                 ) {
                     if (session.getDay() != registeredSession.getDay())
                         continue;
 
-                    if (session.getLessonType().equals(registeredSession.getLessonType()) && session.getLessonType().equals("Lab")) {
+                    if (session.getLessonType().equals(registeredSession.getLessonType()) && session.getLessonType().equals("lab")) {
                         if (session.getLabWeek().equals("odd") && registeredSession.getLabWeek().equals("even"))
                             continue;
                         else if (session.getLabWeek().equals("even") && registeredSession.getLabWeek().equals("odd"))
@@ -71,10 +71,7 @@ public class TimeTableMgr {
     }
 
     public boolean checkVacancy(Index index) {
-        if (index.getVacancy() == 0) {
-            return true;
-        }
-        return false;
+        return index.getVacancy() == 0;
     }
 }
 

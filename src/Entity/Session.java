@@ -78,9 +78,34 @@ public class Session implements Serializable {
     }
 
     public void print() {
-        System.out.println(this.getVenue());
-        System.out.println(this.getLessonType());
-        System.out.println(this.getStartTime());
-        System.out.println(this.getEndTime());
+        String lesson = lessonType.toUpperCase().charAt(0) + lessonType.toLowerCase().substring(1);
+        System.out.print(lesson + " ");
+        if (lessonType.equals("lab"))
+            System.out.print("Weeks: " + labWeek);
+        System.out.println("\nVenue: " + venue);
+        System.out.println(startTime + " to " + endTime);
+    }
+
+    public boolean checkCLash(Session session) {
+        if (session.getDay() != this.getDay())
+            return false;
+
+        if (session.getLessonType().equals(this.getLessonType()) && session.getLessonType().equals("lab")) {
+            if (session.getLabWeek().equals("odd") && this.getLabWeek().equals("even"))
+                return false;
+            else if (session.getLabWeek().equals("even") && this.getLabWeek().equals("odd"))
+                return false;
+        }
+
+        LocalTime time1, time2, time3, time4;
+        time1 = session.getStartTime();
+        time2 = session.getEndTime();
+        time3 = this.getStartTime();
+        time4 = this.getEndTime();
+
+        if ((time1.isBefore(time3) && time2.isAfter(time3)) || time1.compareTo(time3) == 0)
+            return true;
+        else return time1.isAfter(time3) && time1.isBefore(time4);
+
     }
 }

@@ -2,25 +2,25 @@ package Entity;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public abstract class User implements Serializable {
     protected String name;
-    protected String userID;
-    private String password;
-    protected String emailID;
+    protected String networkName; // Unique Value
+    //private String password;
+    //protected String emailID;
     private String gender;
     private String nationality;
 
-    public User(String name, String userID, String password, String emailID, String gender, String nationality) {
+    // dummy Constructor for checking if Student/Admin exist in database
+    public User(String networkName) {
+        this.networkName = networkName;
+    }
+
+    public User(String name, String userID, String gender, String nationality) {
         this.name = name;
-        this.userID = userID;
-        this.password = password;
-        this.emailID = emailID;
         this.gender = gender;
         this.nationality = nationality;
     }
 
-    public User() {
-    }
 
     public String getName() {
         return name;
@@ -30,28 +30,12 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    public String getPassword() {
-        return password;
+    public String getNetworkName() {
+        return networkName;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getUserID() {
-        return userID;
-    }
-
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
-
-    public String getEmailID() {
-        return emailID;
-    }
-
-    public void setEmailID(String emailID) {
-        this.emailID = emailID;
+    public void setNetworkName(String networkName) {
+        this.networkName = networkName;
     }
 
     public String getGender() {

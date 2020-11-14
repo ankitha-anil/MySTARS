@@ -1,5 +1,7 @@
 package Entity;
 
+import Controller.TimeTableMgr;
+
 import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -9,10 +11,10 @@ import java.util.Queue;
 public class Index implements Serializable {
     private int indexNumber;
     private int vacancy;
-    private Queue<Student> waitingList;
     private int academicUnits;
     private String courseCode;
-    private ArrayList<Session> lesson;
+    private ArrayList<Session> lessons;
+    private Queue<Student> waitingList;
     private ArrayList<Student> studentsRegistered;
 
     public Index(int indexNumber, int vacancy, int academicUnits, String courseCode) {
@@ -20,7 +22,7 @@ public class Index implements Serializable {
         this.vacancy = vacancy;
         this.academicUnits = academicUnits;
         this.courseCode = courseCode;
-        lesson = new ArrayList<>();
+        lessons = new ArrayList<>();
         waitingList = new LinkedList<>();
         studentsRegistered = new ArrayList<>();
     }
@@ -77,33 +79,53 @@ public class Index implements Serializable {
         return courseCode;
     }
 
-    public ArrayList<Session> getLesson() {
-        return lesson;
+    public ArrayList<Session> getLessons() {
+        return lessons;
     }
 
-    public void setLesson(ArrayList<Session> lesson) {
-        this.lesson = lesson;
+    public void setLessons(ArrayList<Session> lessons) {
+        this.lessons = lessons;
     }
 
     public void addLesson(int day, String venue, String lessonType, LocalTime startTime, LocalTime endTime) {
-        Session session = new Session(day, venue, lessonType, startTime, endTime);
         if (startTime.compareTo(endTime) >= 0) {
             System.out.println("Error... Start time must be earlier than end time");
+            System.out.println("System will not add this lesson");
             return;
         }
+        // Check for clash with existing sessions
+        Session session = new Session(day, venue, lessonType, startTime, endTime);
+        for (Session lesson : lessons
+        ) {
+            if (session.checkCLash(lesson)) {
+                System.out.println("Lesson clashes with an existing leeson in this index number");
+                System.out.println("System will not add this lesson");
+                return;
+            }
+        }
         if (checkLessonValidity(session))
-            this.lesson.add(session);
+            this.lessons.add(session);
     }
 
     public void addLesson(int day, String venue, String lessonType, LocalTime startTime,
                           LocalTime endTime, String labWeek) {
-        Session session = new Session(day, venue, lessonType, labWeek, startTime, endTime);
         if (startTime.isAfter(endTime)) {
             System.out.println("Error... Start time must be earlier than end time");
+            System.out.println("System will not add this lesson");
             return;
         }
+        // Check for clash with existing sessions
+        Session session = new Session(day, venue, lessonType, labWeek, startTime, endTime);
+        for (Session lesson : lessons
+        ) {
+            if (session.checkCLash(lesson)) {
+                System.out.println("Lesson clashes with an existing leeson in this index number");
+                System.out.println("System will not add this lesson");
+                return;
+            }
+        }
         if (checkLessonValidity(session))
-            this.lesson.add(session);
+            this.lessons.add(session);
     }
 
     private boolean checkLessonValidity(Session session) {
@@ -118,7 +140,7 @@ public class Index implements Serializable {
             isLab = true;
         boolean hasLecture = false;
         boolean hasTutorial = false;
-        for (Session s : lesson) {
+        for (Session s : lessons) {
             String availableLesson = s.getLessonType();
             if (availableLesson.equals("lecture"))
                 hasLecture = true;
@@ -131,11 +153,18 @@ public class Index implements Serializable {
     public void addToWaitingList(Student student) {
         waitingList.add(student);
         student.addIndexOnWaitList(this);
+    }
 
+    public void removeFromWaitingList(Student student) {
+        waitingList.remove(student);
     }
 
     public void addStudent(Student student) {
         this.studentsRegistered.add(student);
+    }
+
+    public void removeStudent(Student student) {
+        this.studentsRegistered.remove(student);
     }
 
     public boolean isFilled() {
@@ -146,7 +175,7 @@ public class Index implements Serializable {
         System.out.println(this.getIndexNumber());
         System.out.println(this.getVacancy());
 
-        for (Session session : lesson) {
+        for (Session session : lessons) {
             session.print();
         }
     }
