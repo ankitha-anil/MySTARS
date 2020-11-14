@@ -13,7 +13,7 @@ Must change some methods depending on the Boundary Class
  */
 
 
-class TimeTableMgr {
+public class TimeTableMgr {
 
     // Add an index into student's indexRegistered
     public void addCourse(Student student, Index index) {
