@@ -4,9 +4,11 @@ import Entity.*;
 
 import java.io.*;
 import java.lang.String;
+import java.sql.Array;
 import java.util.ArrayList;
 
 public class FileMgr {
+
     public ArrayList<Object> loadObjects(String fileName) {
         ArrayList<Object> objects = new ArrayList<>();
         FileInputStream fileInputStream;
@@ -49,4 +51,5 @@ public class FileMgr {
             // do nothing
         }
     }
+
 }
