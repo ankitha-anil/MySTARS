@@ -22,9 +22,9 @@ public class Student extends User implements Serializable {
     private ArrayList<Index> indexOnWaitList;
     private int registeredAU = 0;
 
-    public Student(String name, String networkName, String matriculationNumber, String password, String emailID, String gender, String nationality,
+    public Student(String name, String networkName, String matriculationNumber, String password,String emailID, String gender, String nationality,
                    String school, int studyYear) {
-        super(name, networkName, gender, nationality);
+        super(name, networkName,password, emailID, gender, nationality);
         this.school = school;
         this.studyYear = studyYear;
         this.indexRegistered = new ArrayList<>();

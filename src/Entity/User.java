@@ -5,8 +5,8 @@ import java.io.Serializable;
 public abstract class User implements Serializable {
     protected String name;
     protected String networkName; // Unique Value
-    //private String password;
-    //protected String emailID;
+    private String password;
+    protected String emailID;
     private String gender;
     private String nationality;
 
@@ -15,8 +15,12 @@ public abstract class User implements Serializable {
         this.networkName = networkName;
     }
 
-    public User(String name, String userID, String gender, String nationality) {
+    public User(String name, String networkName, String password, String emailID,
+                String gender, String nationality) {
         this.name = name;
+        this.networkName = networkName;
+        this.password=password;
+        this.emailID=emailID;
         this.gender = gender;
         this.nationality = nationality;
     }
@@ -24,6 +28,10 @@ public abstract class User implements Serializable {
 
     public String getName() {
         return name;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public void setName(String name) {
