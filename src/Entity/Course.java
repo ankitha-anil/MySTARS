@@ -10,14 +10,6 @@ public class Course implements Serializable {
     private String schoolName;
     private ArrayList<Object> indexNumberList;
 
-    public ArrayList<Object> getIndexNumberList() {
-        return indexNumberList;
-    }
-
-    public void setIndexNumberList(ArrayList<Object> indexNumberList) {
-        this.indexNumberList = indexNumberList;
-    }
-
     public Course(String courseCode, String courseName, int academicUnits, String schoolName) {
         this.courseCode = courseCode;
         this.courseName = courseName;
@@ -77,6 +69,15 @@ public class Course implements Serializable {
         Index index = new Index(indexNumber, vacancy, this.academicUnits, this.courseCode);
         this.indexNumberList.add(index);
     }
+
+    public ArrayList<Object> getIndexNumberList() {
+        return indexNumberList;
+    }
+
+    public void setIndexNumberList(ArrayList<Object> indexNumberList) {
+        this.indexNumberList = indexNumberList;
+    }
+
 
     public boolean equals(Object object) {
         return (courseCode.equals(((Course) object).getCourseCode()));
