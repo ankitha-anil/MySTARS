@@ -3,17 +3,18 @@ package Entity;
 import java.io.Serializable;
 
 public abstract class User implements Serializable {
-    protected String name;
+      protected String name;
     protected String networkName; // Unique Value
     private String password;
     protected String emailID;
     private String gender;
     private String nationality;
 
-    // dummy Constructor for checking if Student/Admin exist in database
-    public User(String networkName) {
-        this.networkName = networkName;
+    public User(String networkName,String password) {
+        this.networkName=networkName;
+        this.password=password;
     }
+
 
     public User(String name, String networkName, String password, String emailID,
                 String gender, String nationality) {
