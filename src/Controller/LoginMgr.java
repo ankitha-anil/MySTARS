@@ -75,11 +75,11 @@ public class LoginMgr {
 
 
     //  Saving the User class for username file
-    public static void createUser(User newUser, String password) throws IOException {
+    public static void createUser(String netwName, String password) throws IOException {
 
         for (int i = 0; i < loginDetails.size(); i++) {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(newUser.getNetworkName().trim());
+            stringBuilder.append(netwName.trim());
             stringBuilder.append(SEPARATOR);
             stringBuilder.append(generateHash(password));
             loginDetails.add(stringBuilder.toString());
