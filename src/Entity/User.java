@@ -1,38 +1,32 @@
 package Entity;
 
+import javax.swing.text.Style;
 import java.io.Serializable;
 
 public abstract class User implements Serializable {
-      protected String name;
-    protected String networkName; // Unique Value
-    private String password;
+    protected String name;
+    protected String networkName;
     protected String emailID;
     private String gender;
     private String nationality;
 
-    public User(String networkName,String password) {
-        this.networkName=networkName;
-        this.password=password;
+    // dummy Constructor for checking if Student/Admin exist in database
+    public User(String networkName) {
+        this.networkName = networkName;
+        System.out.println("LLLL");
     }
 
-
-    public User(String name, String networkName, String password, String emailID,
-                String gender, String nationality) {
+    public User(String name, String networkName, String gender, String nationality, String emailID) {
         this.name = name;
         this.networkName = networkName;
-        this.password=password;
-        this.emailID=emailID;
         this.gender = gender;
         this.nationality = nationality;
+        this.emailID = emailID;
     }
 
 
     public String getName() {
         return name;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public void setName(String name) {
@@ -45,6 +39,14 @@ public abstract class User implements Serializable {
 
     public void setNetworkName(String networkName) {
         this.networkName = networkName;
+    }
+
+    public String getEmailID() {
+        return emailID;
+    }
+
+    public void setEmailID(String emailID) {
+        this.emailID = emailID;
     }
 
     public String getGender() {
