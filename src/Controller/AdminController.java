@@ -35,18 +35,7 @@ public class AdminController {
         courses = fileMgr.loadObjects(courseFile);
     }
 
-    public void printMenu() {
-        System.out.println("1. Edit Access Period");
-        System.out.println("2. Add a new student");
-        System.out.println("3. Remove an existing student");
-        System.out.println("4. Update a student");
-        System.out.println("5. Add a new course");
-        System.out.println("6. Remove an existing course");
-        System.out.println("7. Update a course");
-        System.out.println("8. Check available slots for an index number");
-        System.out.println("9. Print student list by index number");
-        System.out.println("10. Print student list by course");
-    }
+
 
     public void editAccessPeriod(LocalTime startTime, LocalTime endTime, LocalDate startDay, LocalDate endDate) {
         Student.setAccessPeriod(startTime, endTime, startDay, endDate);
@@ -65,26 +54,31 @@ public class AdminController {
     }
 
     public void updateStudent() {
-        System.out.println("Select the option to update");
-        System.out.println();
-        System.out.println("1. Name");
-        System.out.println("2. Nationality");
-        System.out.println("3. School");
-        System.out.println("4. Max allowable AUs");
-        Scanner sc = new Scanner(System.in);
-        int choice = sc.nextInt();
-        switch (choice) {
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-        }
+
+                    System.out.println("Select the option to update");
+                    System.out.println();
+                    System.out.println("1. Name");
+                    System.out.println("2. Nationality");
+                    System.out.println("3. School");
+                    System.out.println("4. Max AUs allowed");
+                    Scanner sc = new Scanner(System.in);
+                    int choice = sc.nextInt();
+                    switch (choice) {
+                        case 1: System.out.println("Enter updated name");
+                                String updatedName = sc.next();
+                            break;
+                        case 2: System.out.println("Enter updated nationality");
+                                String updatedNationality = sc.next();
+                            break;
+                        case 3: System.out.println("Enter updated school");
+                                String updatedSchool = sc.next();
+                            break;
+                        case 4: System.out.println("Enter new limit for AUs");
+                                int updatedAU = sc.nextInt();
+                            break;
+                        default: System.out.println("Wrong input");
+                            break;
+                        }
     }
 
     public void addCourse(Object course) {
@@ -117,6 +111,7 @@ public class AdminController {
                 break;
             case 2:
                 System.out.println("Enter the new Course Name");
+                String newCourseName = sc.next();
                 break;
             case 3:
                 int indexNumber, vacancy;
