@@ -22,13 +22,51 @@ public class TimeTableMgr {
     }
 
 
-    // Check clash between an index and a List of Indexes
-    // This method can be used to check clash with registered courses as well as courses on waitList
     private boolean checkClash(ArrayList<Index> studentIndex, Index index) {
         for (Session session : index.getLessons()
         ) {
             for (Index indexRegistered : studentIndex
             ) {
+                for (Session registeredSession : indexRegistered.getLessons()
+                ) {
+                    if (session.getDay() != registeredSession.getDay())
+                        continue;
+
+                    if (session.getLessonType().equals(registeredSession.getLessonType()) && session.getLessonType().equals("lab")) {
+                        if (session.getLabWeek().equals("odd") && registeredSession.getLabWeek().equals("even"))
+                            continue;
+                        else if (session.getLabWeek().equals("even") && registeredSession.getLabWeek().equals("odd"))
+                            continue;
+                    }
+
+                    LocalTime time1, time2, time3, time4;
+                    time1 = session.getStartTime();
+                    time2 = session.getEndTime();
+                    time3 = registeredSession.getStartTime();
+                    time4 = registeredSession.getEndTime();
+
+                    if ((time1.isBefore(time3) && time2.isAfter(time3)) || time1.compareTo(time3) == 0)
+                        return true;
+                    else if ((time1.isAfter(time3) && time1.isBefore(time4)))
+                        return true;
+                }
+
+            }
+
+        }
+        return false;
+    }
+
+
+    // Check clash between an index and a List of Indexes
+    // This method can be used to check clash with registered courses as well as courses on waitList
+    private boolean checkClash(ArrayList<Index> studentIndex, Index index, Index skipIndex) {
+        for (Session session : index.getLessons()
+        ) {
+            for (Index indexRegistered : studentIndex
+            ) {
+                if (studentIndex.equals(skipIndex))
+                    continue;
                 for (Session registeredSession : indexRegistered.getLessons()
                 ) {
                     if (session.getDay() != registeredSession.getDay())
