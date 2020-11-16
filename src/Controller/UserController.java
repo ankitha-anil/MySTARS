@@ -18,7 +18,7 @@ public class UserController {
             MessageDigest sha = MessageDigest.getInstance("SHA-1");
             byte[] hashedBytes = sha.digest(input.getBytes());
             char[] digits = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
-            for (int idx = 0; idx < hashedBytes.length; ) {
+            for (int idx = 0; idx < hashedBytes.length; idx++) {
                 byte b = hashedBytes[idx];
                 hash.append(digits[(b & 0xf0) >> 4]);
                 hash.append(digits[b & 0x0f]);
@@ -31,35 +31,24 @@ public class UserController {
     }
 
     public static boolean loginCheck(String userName, String passWord) throws IOException {
+        LoginMgr txtDB = new LoginMgr();
         Boolean isAuthenticated = false;
-        File student = new File("student_list.txt");
-        FileInputStream come = new FileInputStream(student);
-        ObjectInputStream ios = new ObjectInputStream(come);
-        ArrayList<Student> stuobj = new ArrayList<Student>();
-
-        try{
-            while(true){
-                Student s = (Student)ios.readObject();
-                stuobj.add(s);
-
-            }
-        }catch (EOFException | ClassNotFoundException ex){
-
-        }
-
-        for (Student s : stuobj) {
-
-            System.out.println(s.getNetworkName());
-            System.out.println(s.getPassword());
+        String filename = "username_list.txt" ;
+        try {
+            // read file containing Professor records.
+            ArrayList al = txtDB.readUser(filename) ;
 
             String saltedPassword = SALT + passWord;
             String hashedPassword = generateHash(saltedPassword);
 
-            if(userName.equals(s.getNetworkName())&& hashedPassword.equals(s.getPassword()))
-                isAuthenticated = true;
+            for (int i = 0 ; i < al.size() ; i++) {
+                User s = (User)al.get(i);
+                if(userName.equals(s.getNetworkName()) && hashedPassword.equals(s.getPassword()))
+                { isAuthenticated = true;}
+            }
 
-            //isAuthenticated = hashedPassword.equals(s.getPassword()) && userName.equals(s.getUsername()) && user == 2;
-
+        }catch (IOException e) {
+            System.out.println("IOException > " + e.getMessage());
         }
         return isAuthenticated;
     }
@@ -68,7 +57,7 @@ public class UserController {
         for (int course = 0; course<courseList.length; course++)
         {
             for (int i = 0; i<courseList[course].getIndexList().length); i++)
-        }
+        }`
         }
     }*/
 
