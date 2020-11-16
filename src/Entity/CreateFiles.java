@@ -1,6 +1,7 @@
 package Entity;
 
 import Controller.FileMgr;
+import Controller.LoginMgr;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -19,7 +20,7 @@ public class CreateFiles {
             MessageDigest sha = MessageDigest.getInstance("SHA-1");
             byte[] hashedBytes = sha.digest(input.getBytes());
             char[] digits = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
-            for (int idx = 0; idx < hashedBytes.length; ) {
+            for(int idx = 0; idx < hashedBytes.length;idx++ ) {
                 byte b = hashedBytes[idx];
                 hash.append(digits[(b & 0xf0) >> 4]);
                 hash.append(digits[b & 0x0f]);
@@ -31,25 +32,35 @@ public class CreateFiles {
         return hash.toString();
     }
     public static void main(String[] args) throws IOException {
-       File stu_file = new File("student.txt");
+        String filename = "username_list.txt" ;
+        try {
+            // read file containing student records.
+            ArrayList student_list = LoginMgr.readUser(filename) ;//
 
-       //String salt= SALT +"54Harmony!";
-      //  String hashedPassword = generateHash(salt);
+            student_list.add(new User("Parthan0123",generateHash(SALT +"53Harmony!" )));
+            student_list.add(new User("Ankitha0123",generateHash(SALT +"54Harmony!" ) ));
+            student_list.add(new User("Nisha0123",generateHash(SALT +"55Harmony!" ) ));
+            student_list.add(new User("Atul0123",generateHash(SALT +"56Harmony!" )  ));
+            student_list.add(new User("Srishti0123",generateHash(SALT +"57Harmony!" ) ));
 
-        ArrayList<Student> student_list = new ArrayList<Student>();
-        student_list.add(new Student("Parthan","Parthan0123","U18221347C","54Harmony!","partha001@e.ntu.edu.sg", "M", "Indian","SCSE",2 ));
-        student_list.add(new Student("Ankitha","Ankitha0123","U19231515C","54Harmony!","ankitha001@e.ntu.edu.sg", "F", "Indian","SCSE",2 ));
-        student_list.add(new Student("Nisha","Nisha0123","U1922137C","54Harmony!","nisha001@e.ntu.edu.sg", "F", "Indian","SCSE",2 ));
-        student_list.add(new Student("Atul","Atul0123","U1922187C","54Harmony!","atul001@e.ntu.edu.sg", "M", "Indian","SCSE",2 ));
-        student_list.add(new Student("Srishti","Srishti0123","U1923637C","54Harmony!","srishti001@e.ntu.edu.sg", "F", "Indian","SCSE",2 ));
+            // write student record/s to file.
+            LoginMgr.saveUser(filename, student_list);
 
-        FileOutputStream studFile = new FileOutputStream(stu_file);
-        ObjectOutputStream studObject = new ObjectOutputStream(studFile);
+        /*    ArrayList admin_list = FileMgr.readUser(filename) ;
 
-        for (Object s : student_list){
-            studObject.writeObject(s);
+            admin_list.add(new User("Parthan0123",generateHash(SALT +"53Harmony!" )));
+            admin_list.add(new User("Ankitha0123",generateHash(SALT +"54Harmony!" ) ));
+            admin_list.add(new User("Nisha0123",generateHash(SALT +"55Harmony!" ) ));
+            admin_list.add(new User("Atul0123",generateHash(SALT +"56Harmony!" )  ));
+            admin_list.add(new User("Srishti0123",generateHash(SALT +"57Harmony!" ) ));
+
+            // write student record/s to file.
+            FileMgr.saveUser(filename, admin_list); */
+
+        }catch (IOException e) {
+            System.out.println("IOException > " + e.getMessage());
         }
-        studFile.close();
-        studObject.close();
+
+
     }
 }
