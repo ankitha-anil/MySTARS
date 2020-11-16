@@ -22,14 +22,18 @@ public class Student extends User implements Serializable {
     private ArrayList<Index> indexOnWaitList;
     private int registeredAU = 0;
 
-    public Student(String name, String networkName, String matriculationNumber, String password,String emailID, String gender, String nationality,
+    public Student(String name, String networkName, String matriculationNumber, String emailID, String gender, String nationality,
                    String school, int studyYear) {
-        super(name, networkName,password, emailID, gender, nationality);
+        super(name, networkName, gender, nationality, emailID);
         this.school = school;
         this.studyYear = studyYear;
         this.indexRegistered = new ArrayList<>();
         this.indexOnWaitList = new ArrayList<>();
         this.matriculationNumber = matriculationNumber;
+    }
+
+    public Student(String networkName) {
+        super(networkName);
     }
 
     // Dummy Constructor
@@ -96,12 +100,13 @@ public class Student extends User implements Serializable {
 
     public void addIndexRegistered(Index index) {
         this.indexRegistered.add(index);
-        this.increaseRegisteredAU(index.getAcademicUnits());
+        this.updateRegisteredAU(index.getAcademicUnits());
         index.addStudent(this);
     }
 
     public void removeIndex(Index index) {
         this.indexRegistered.remove(index);
+        this.updateRegisteredAU(-1 * index.getAcademicUnits());
         index.removeStudent(this);
     }
 
@@ -114,12 +119,12 @@ public class Student extends User implements Serializable {
         index.removeFromWaitingList(this);
     }
 
-    public void increaseRegisteredAU(int academicUnits) {
+    public void updateRegisteredAU(int academicUnits) {
         this.registeredAU += academicUnits;
     }
 
     public boolean equals(Object object) {
-        return (matriculationNumber.equals(((Student) object).getMatriculationNumber()));
+        return (networkName.equals(((Student) object).getNetworkName()));
     }
 
     public void print() {
@@ -149,3 +154,4 @@ public class Student extends User implements Serializable {
         return endDate;
     }
 }
+
