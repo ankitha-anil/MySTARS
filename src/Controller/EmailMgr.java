@@ -34,7 +34,7 @@ public class EmailMgr {
 
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("starsplanner@gmail.com"));
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("srishti.arora72@gmail.com")); // to be
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(stdEmail)); // to be
 																												// added
 																												// an
 																												// email																									// addr
