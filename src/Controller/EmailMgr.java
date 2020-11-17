@@ -12,7 +12,7 @@ import javax.mail.internet.MimeMessage;
 
 public class EmailMgr {
 
-   public static void main(String[] args, String stdEmail, String sub, String body) {
+   public static void sendEmail(String stdEmail, String sub, String body) {
     
 
         final String username = "starsplanner@gmail.com"; 
