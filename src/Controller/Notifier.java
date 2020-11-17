@@ -1,4 +1,4 @@
 interface Notifier {
-    void recipient(String recipientEmail);
-    void Sender(String recipientEmail, String senderEmail);
+    void sendNotification(String recipientEmail, String Message);
+    void sendNotification(String recipientEmail, String senderEmail, String Message);
 }
