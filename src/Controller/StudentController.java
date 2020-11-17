@@ -105,8 +105,8 @@ public class StudentController {
 
         }
 
-        fileMgr.saveObjects(students); //same change made in admin controller?
-        fileMgr.saveObjects(courses);
+        fileMgr.saveObjects(students, studentFile); //same change made in admin controller?
+        fileMgr.saveObjects(courses,courseFile);
     }
 
     public void dropCourse(Student student, int indexToDrop, String courseId)
@@ -127,8 +127,8 @@ public class StudentController {
                     //notification to newly registered student
                 }
 
-                fileMgr.saveObjects(students);
-                fileMgr.saveObjects(courses);
+                fileMgr.saveObjects(students,studentFile);
+                fileMgr.saveObjects(courses,courseFile);
 
                 return;
             }
@@ -142,8 +142,8 @@ public class StudentController {
                 System.out.println("Index"+index.getIndexNumber()+ "removed from waiting list");
                 //notification
 
-                fileMgr.saveObjects(students);
-                fileMgr.saveObjects(courses);
+                fileMgr.saveObjects(students,studentFile);
+                fileMgr.saveObjects(courses,courseFile);
 
                 return;
             }
@@ -232,8 +232,8 @@ public class StudentController {
                      {
                          student.removeIndex(index);
                          student.addIndex(changeToIndex);
-                         fileMgr.saveObjects(students);
-                         fileMgr.saveObjects(courses);
+                         fileMgr.saveObjects(students,studentFile);
+                         fileMgr.saveObjects(courses,courseFile);
 
                          //notification
                          return;
@@ -295,8 +295,8 @@ public class StudentController {
             student2.removeIndex(secondIndex);
             student1.addIndexRegistered(secondIndex);
             student2.addIndexRegistered(firstIndex);
-            fileMgr.saveObjects(students);
-            fileMgr.saveObjects(courses);
+            fileMgr.saveObjects(students,studentFile);
+            fileMgr.saveObjects(courses,courseFile);
         }
 
     }
