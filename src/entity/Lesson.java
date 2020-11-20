@@ -3,16 +3,32 @@ package entity;
 import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.ArrayList;
-
+/**
+ * @author group
+ */
 public class Lesson implements Serializable {
-
+/**
+ * venue is the venue where the lesson is being held
+ * day is the Day of the Week when the lesson is being held
+ * lessonType describes whether the lesson is a tutorial, lecture, seminar etc.
+ * startTime starting time of lesson
+ * endTime ending time of lesson
+ * labWeek specifies whether labs are held in the even week or odd week or both
+ */
     private String venue;
     private int day;
     private String lessonType;
     private LocalTime startTime;
     private LocalTime endTime;
     private String labWeek = "both";
-
+/**
+ * This is the constructor for objects of class Lesson
+ * @param day Day of the Week when the lesson is being held
+ * @param venue venue is the venue where the lesson is being held
+ * @param lessonType lessonType describes whether the lesson is a tutorial, lecture, seminar etc.
+ * @param startTime  startTime starting time of lesson
+ * @param endTime endTime ending time of lesson
+ */
     public Lesson(int day, String venue, String lessonType, LocalTime startTime, LocalTime endTime) {
         this.day = day;
         this.venue = venue;
@@ -20,7 +36,15 @@ public class Lesson implements Serializable {
         this.startTime = startTime;
         this.endTime = endTime;
     }
-
+/**
+ * This is the constructor for objects of class Lesson
+ * @param day Day of the Week when the lesson is being held
+ * @param venue venue is the venue where the lesson is being held
+ * @param lessonType lessonType describes whether the lesson is a tutorial, lecture, seminar etc.
+ * @param labWeek labWeek specifies whether labs are held in the even week or odd week or both
+ * @param startTime startTime starting time of lesson
+ * @param endTime endTime ending time of lesson
+ */
     public Lesson(int day, String venue, String lessonType, String labWeek, LocalTime startTime, LocalTime endTime) {
         this.day = day;
         this.venue = venue;
@@ -29,55 +53,93 @@ public class Lesson implements Serializable {
         this.startTime = startTime;
         this.endTime = endTime;
     }
-
+/**
+ * This is a Accessor function for labWeek
+ * @return returns the weeks in which labs are held
+ */
     public String getLabWeek() {
         return labWeek;
     }
-
+/**
+ * This is a mutator function for labweek
+ * @param labWeek
+ */
     public void setLabWeek(String labWeek) {
         this.labWeek = labWeek;
     }
-
+/**
+ * This is the accessor function for day of the week in which the lesson is held
+ * @return
+ */
     public int getDay() {
         return day;
     }
-
+/**
+ * This is the mutator function for the day of the week in which the lesson is being held
+ * @param day
+ */
     public void setDay(int day) {
         this.day = day;
     }
-
+/**
+ * This is the accessor function for the venue the lesson is being held
+ * @return
+ */
     public String getVenue() {
         return venue;
     }
-
+/**
+ * This is the mutator function  for venue where the lesson is being held
+ * @param venue
+ */
     public void setVenue(String venue) {
         this.venue = venue;
     }
-
+/**
+ * This is the accessor function for the type of the lesson
+ * @return
+ */
     public String getLessonType() {
         return lessonType;
     }
-
+/**
+ * This is the mutator function for the type of lesson
+ * @param lessonType
+ */
     public void setLessonType(String lessonType) {
         this.lessonType = lessonType;
     }
-
+/**
+ * This is the accessor function for the ending time of the lesson
+ * @return
+ */
     public LocalTime getEndTime() {
         return endTime;
     }
-
+/**
+ * This is the mutator function for the ending time of the lesson
+ * @param endTime
+ */
     public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
     }
-
+/**
+ * This is the accessor function for the starting time of the lesson
+ * @return
+ */
     public LocalTime getStartTime() {
         return startTime;
     }
-
+/**
+ * This is the mutator function for the starting time of the lesson
+ * @param startTime
+ */
     public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
-
+/**
+ * This function prints the lesson type, venue, weeks it is held in, start time and end time
+ */
     public void print() {
         String lesson = lessonType.toUpperCase().charAt(0) + lessonType.toLowerCase().substring(1);
         System.out.println(lesson);
@@ -100,13 +162,11 @@ public class Lesson implements Serializable {
         System.out.println();
     }
 
-    public static void printObjects(ArrayList<Lesson> lessons) {
-        for (Lesson lesson : lessons
-        ) {
-            lesson.print();
-        }
-    }
-
+/**
+ * Checks if the timings of this lesson object is clashing with thos of the object passed as a parameter
+ * @param lesson
+ * @return
+ */
     public boolean checkCLash(Lesson lesson) {
         if (lesson.getDay() != this.getDay())
             return false;
