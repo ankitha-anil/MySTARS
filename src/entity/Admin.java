@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * @author group
+ * @author Anon
  */
 public class Admin extends User implements Serializable {
     /**

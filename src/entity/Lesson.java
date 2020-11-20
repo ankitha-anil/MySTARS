@@ -5,7 +5,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 /**
- * @author group
+ * @author Anon
  */
 public class Lesson implements Serializable {
     /**

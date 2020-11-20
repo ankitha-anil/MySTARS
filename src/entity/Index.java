@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * @author group
+ * @author Anon
  */
 public class Index implements Serializable {
     /**
