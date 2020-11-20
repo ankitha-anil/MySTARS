@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class Student extends User implements Serializable {
 
+    
     // Registration Period
     private static LocalTime startTime = LocalTime.of(0, 0);
     private static LocalTime endTime = LocalTime.of(23, 59);
