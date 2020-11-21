@@ -47,6 +47,7 @@ public class StudentFunctionsInterface {
             String indexNumber;
             String friendName;
             String newIndexNumber;
+            String password;
 
             switch (choice) {
                 case 0:
@@ -92,11 +93,16 @@ public class StudentFunctionsInterface {
                     indexNumber = sc.next();
                     System.out.print("Enter the other student's user name: ");
                     friendName = sc.next();
-                    char[] friendPassWord1 = console.readPassword("Enter the other student's password: ");
-                    String friendPassWord = String.valueOf(friendPassWord1);
+                    try {
+                        password = String.valueOf(console.readPassword("Enter the other student's password: "));
+                    } catch (NullPointerException e) {
+                        System.out.println(RED + "Could not mask password" + RESET);
+                        System.out.print("Enter the other student's password: ");
+                        password = sc.next();
+                    }
                     System.out.print("Enter the other student's index number: ");
                     newIndexNumber = sc.next();
-                    registrationManager.swapIndex(actor.getUserName(), friendName, friendPassWord, courseCode, indexNumber, newIndexNumber);
+                    registrationManager.swapIndex(actor.getUserName(), friendName, password, courseCode, indexNumber, newIndexNumber);
                     break;
 
                 case 7:

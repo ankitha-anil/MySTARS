@@ -65,7 +65,7 @@ public class LoginInterface {
             password = String.valueOf(console.readPassword("  |  Enter your password :  |  "));
         } catch (NullPointerException e) {
             System.out.println(RED + "Cannot mask password" + RESET);
-            System.out.println("  |  Enter your password :  |  ");
+            System.out.print("  |  Enter your password :  |  ");
             password = sc.next();
         }
 

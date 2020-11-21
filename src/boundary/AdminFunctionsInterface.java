@@ -67,6 +67,7 @@ public class AdminFunctionsInterface {
             String courseName = "";
             String indexNumber;
             int academicUnits = 0;
+            String password = "";
 
             switch (choice) {
                 case 0:
@@ -128,8 +129,13 @@ public class AdminFunctionsInterface {
                     System.out.print("| Enter the Student's study year :          | ");
                     studyYear = sc.nextInt();
                     System.out.println("|-------------------------------------------|");
-                    char[] password1 = console.readPassword("| Enter the Student's password :            | ");
-                    String password = String.valueOf(password1);
+                    try {
+                        password = String.valueOf(console.readPassword("  |  Enter your password :  |  "));
+                    } catch (NullPointerException e) {
+                        System.out.println(RED + "Cannot mask password" + RESET);
+                        System.out.print("  |  Enter your password :  |  ");
+                        password = sc.next();
+                    }
                     System.out.println("+-------------------------------------------+");
 
                     ((StudentRecordsMgr) studentRecordsMgr).addStudent(studentName, networkName, matriculationNumber, emailID, gender, nationality, school, studyYear, password);
