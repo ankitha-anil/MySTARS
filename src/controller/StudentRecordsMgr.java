@@ -12,6 +12,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class StudentRecordsMgr extends ObjectEntityController {
+    public static final String RESET = "\u001B[0m";
+    public static final String RED = "\033[1;31m";
+    public static final String CYAN = "\033[0;36m";    // CYAN
+    public static final String CYAN_UNDERLINED = "\033[4;36m"; //CYAN Underlined
+
     private static ArrayList<Object> students;
     private static final String studentFile = "student.dat";
 
@@ -31,10 +36,10 @@ public class StudentRecordsMgr extends ObjectEntityController {
     public void editAccessPeriod(LocalTime startTime, LocalTime endTime, LocalDate startDay, LocalDate endDate) {
         loadStudentObjectList();
         if (!systemMgr.checkTimeSanity(startTime, endTime)) {
-            System.out.println("Start Time must be before End Time");
+            System.out.println(RED+"Start Time must be before End Time" +RESET);
             return;
         } else if (!systemMgr.checkDateSanity(startDay, endDate)) {
-            System.out.println("Start Date must be before End Date");
+            System.out.println(RED+"Start Date must be before End Date"+RESET);
             return;
         } else {
             Student.setAccessPeriod(startTime, endTime, startDay, endDate);
@@ -52,8 +57,7 @@ public class StudentRecordsMgr extends ObjectEntityController {
             printObjects();
             LoginMgr.createUser(networkName, password, "student");
         } else {
-            System.out.print("Student already exists... ");
-            System.out.println("System cannot add this student");
+            System.out.println(RED+"System cannot add this student as student already exists"+RESET);
         }
         System.out.println();
 
@@ -72,7 +76,9 @@ public class StudentRecordsMgr extends ObjectEntityController {
     }
 
     public void printTimeTable(String userName) {
-        System.out.println("*********  Time Table  *********");
+        System.out.println(CYAN_UNDERLINED+"+--------------------------------------+"+RESET);
+        System.out.println(CYAN+"|"+RESET+"              TIMETABLE               "+CYAN+"|"+RESET);
+        System.out.println(CYAN_UNDERLINED+"|--------------------------------------|"+RESET);
         Student student = (Student) getObjectFromList(userName);
         if (student == null)
             return;
@@ -101,11 +107,19 @@ public class StudentRecordsMgr extends ObjectEntityController {
         dayMap.put(5, "Saturday");
         dayMap.put(6, "Sunday");
         for (int i = 0; i < weeklyLessons.length; i++) {
-            System.out.println("=========" + dayMap.get(i) + "==========");
+            switch(i){
+                case 0: System.out.println(CYAN+"|"+RESET+"                " + dayMap.get(0) + "                "+CYAN+"|"+RESET); break;
+                case 1:System.out.println(CYAN+"|"+RESET+"               " + dayMap.get(1) + "                "+CYAN+"|"+RESET);break;
+                case 2:System.out.println(CYAN+"|"+RESET+"               " + dayMap.get(2) + "              "+CYAN+"|"+RESET);break;
+                case 3:System.out.println(CYAN+"|"+RESET+"               " + dayMap.get(3) + "               "+CYAN+"|"+RESET);break;
+                case 4:System.out.println(CYAN+"|"+RESET+"                " + dayMap.get(4) + "                "+CYAN+"|"+RESET);break;
+                case 5:System.out.println(CYAN+"|"+RESET+"               " + dayMap.get(5) + "               "+CYAN+"|"+RESET);break;
+                case 6:System.out.println(CYAN+"|"+RESET+"                " + dayMap.get(6) + "                "+CYAN+"|"+RESET);break;}
+            System.out.println(CYAN+"|--------------------------------------|"+RESET);
             for (int j = 0; j < weeklyLessons[i].size(); j++) {
                 System.out.println(weeklyCourses[i].get(j));
                 weeklyLessons[i].get(j).print();
-                System.out.println();
+                System.out.println(CYAN_UNDERLINED+"|--------------------------------------|"+RESET);
             }
         }
     }

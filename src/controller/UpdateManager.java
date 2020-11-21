@@ -8,6 +8,11 @@ import entity.Student;
 // Most important class
 
 public class UpdateManager {
+
+    public static final String RESET = "\u001B[0m";
+    public static final String RED = "\033[1;31m";
+    public static final String GREEN = "\033[1;32m";
+
     private ObjectEntityController studentRecordsMgr;
     private ObjectEntityController courseMgr;
     private ObjectEntityController indexMgr;
@@ -45,12 +50,12 @@ public class UpdateManager {
                         student.setName(name);
                 }
             }
-            System.out.println("Student updated");
+            System.out.println(GREEN+"Successfully updated details"+RESET);
             ((CourseMgr) courseMgr).saveCourseObjectList();
             ((StudentRecordsMgr) studentRecordsMgr).saveStudentObjectList();
             ((Student) existingStudent).print();
         } else {
-            System.out.println("Student doesn't exist in the database... Cannot update student details");
+            System.out.println(RED+"Student doesn't exist in the database... Cannot update student details"+RESET);
         }
         System.out.println();
     }
@@ -83,12 +88,12 @@ public class UpdateManager {
                         student.setNationality(nationality);
                 }
             }
-            System.out.println("Student updated");
+            System.out.println(GREEN+"Successfully updated details"+RESET);
             ((CourseMgr) courseMgr).saveCourseObjectList();
             ((StudentRecordsMgr) studentRecordsMgr).saveStudentObjectList();
             ((Student) existingStudent).print();
         } else {
-            System.out.println("Student doesn't exist in the database... Cannot update student details");
+            System.out.println(RED+"Student doesn't exist in the database... Cannot update student details"+RESET);
         }
         System.out.println();
     }
@@ -121,12 +126,12 @@ public class UpdateManager {
                         student.setMaxAU(maxAU);
                 }
             }
-            System.out.println("Student updated");
+            System.out.println(GREEN+"Successfully updated details"+RESET);
             ((CourseMgr) courseMgr).saveCourseObjectList();
             ((StudentRecordsMgr) studentRecordsMgr).saveStudentObjectList();
             ((Student) existingStudent).print();
         } else {
-            System.out.println("Student doesn't exist in the database... Cannot update student details");
+            System.out.println(RED+"Student doesn't exist in the database... Cannot update student details"+RESET);
         }
         System.out.println();
     }
@@ -160,12 +165,12 @@ public class UpdateManager {
                         student.setSchool(school);
                 }
             }
-            System.out.println("Student updated");
+            System.out.println(GREEN+"Successfully updated details"+RESET);
             ((CourseMgr) courseMgr).saveCourseObjectList();
             ((StudentRecordsMgr) studentRecordsMgr).saveStudentObjectList();
             ((Student) existingStudent).print();
         } else {
-            System.out.println("Student doesn't exist in the database... Cannot update student details");
+            System.out.println(RED+"Student doesn't exist in the database... Cannot update student details"+RESET);
         }
         System.out.println();
     }
@@ -175,14 +180,14 @@ public class UpdateManager {
         ((StudentRecordsMgr) studentRecordsMgr).loadStudentObjectList();
         Object newExistingCourse = courseMgr.getObjectFromList(newCourseCode);
         if (newExistingCourse != null) {
-            System.out.println("A course with this course code already exists");
+            System.out.println(RED+"A course with this course code already exists"+RESET);
             return;
         }
 
         Object existingCourse = courseMgr.getObjectFromList(courseCode);
 
         if (existingCourse == null) {
-            System.out.println("This course doesn't exist in the database");
+            System.out.println(RED+"This course doesn't exist in the database"+RESET);
             return;
         }
         if (existingCourse instanceof Course) {
@@ -210,7 +215,7 @@ public class UpdateManager {
                 ((Index) index).setCourseCode(courseCode);
             }
             ((Course) existingCourse).setCourseCode(newCourseCode);
-            System.out.println("Updated course");
+            System.out.println(GREEN+"Successfully updated course"+RESET);
             ((Course) existingCourse).print();
 
             ((StudentRecordsMgr) studentRecordsMgr).saveStudentObjectList();
@@ -223,14 +228,14 @@ public class UpdateManager {
         ((CourseMgr) courseMgr).loadCourseObjectList();
         Course existingCourse = (Course) courseMgr.getObjectFromList(courseCode);
         if (existingCourse == null) {
-            System.out.println("No such course exists");
+            System.out.println(RED+"No such course exists"+RESET);
             return;
         }
         indexMgr = new IndexMgr(existingCourse);
 
         Index indexToUpdate = (Index) indexMgr.getObjectFromList(indexNumber);
         if (indexToUpdate == null) {
-            System.out.println("No such index number exists");
+            System.out.println(RED+"No such index number exists"+RESET);
             return;
         }
 
@@ -241,7 +246,7 @@ public class UpdateManager {
 
         Object newExistingIndex = ((IndexMgr) indexMgr).getObjectFromList(newIndexNumber);
         if (newExistingIndex != null) {
-            System.out.println("An index with this index number already exists");
+            System.out.println(RED+"An index with this index number already exists"+RESET);
             return;
         }
 
@@ -281,19 +286,19 @@ public class UpdateManager {
         ((CourseMgr) courseMgr).loadCourseObjectList();
         Course existingCourse = (Course) courseMgr.getObjectFromList(courseCode);
         if (existingCourse == null) {
-            System.out.println("No such course exists");
+            System.out.println(RED+"No such course exists"+RESET);
             return;
         }
         indexMgr = new IndexMgr(existingCourse);
 
         Index indexToUpdate = (Index) indexMgr.getObjectFromList(indexNumber);
         if (indexToUpdate == null) {
-            System.out.println("No such index number exists");
+            System.out.println(RED+"No such index number exists"+RESET);
             return;
         }
 
         if (vacancy < indexToUpdate.getStudentsRegistered().size()) {
-            System.out.println("Too many students have already registered");
+            System.out.println(RED+"Too many students have already registered"+RESET);
             return;
         }
 
