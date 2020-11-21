@@ -2,7 +2,6 @@ package boundary;
 
 import controller.*;
 import actor.Actor;
-import entity.Course;
 
 import javax.mail.Session;
 import java.io.IOException;
@@ -185,7 +184,7 @@ public class AdminFunctionsInterface {
                     courseMgr.printObjects();
                     break;
                 case 11:
-                    System.out.println("Enter the course code : ");
+                    System.out.print("Enter the course code : ");
                     courseCode = sc.next();
                     if (courseMgr instanceof CourseMgr)
                         ((CourseMgr) courseMgr).printIndexes(courseCode);
@@ -193,9 +192,9 @@ public class AdminFunctionsInterface {
                         System.out.println(RED + "System error" + RESET);
                     break;
                 case 12:
-                    System.out.println("Enter the course code : ");
+                    System.out.print("Enter the course code : ");
                     courseCode = sc.next();
-                    System.out.println("Enter the index number : ");
+                    System.out.print("Enter the index number : ");
                     indexNumber = sc.next();
                     ((CourseMgr) courseMgr).printLessons(courseCode, indexNumber);
                     break;

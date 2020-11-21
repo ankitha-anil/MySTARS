@@ -5,7 +5,6 @@ import controller.CourseMgr;
 import actor.Actor;
 import controller.IndexMgr;
 import controller.UpdateManager;
-import entity.Index;
 
 import java.util.Scanner;
 
@@ -20,7 +19,7 @@ public class CourseUpdateInterface {
         Scanner sc = new Scanner(System.in);
 
         do {
-            String courseCode = "";
+            String courseCode;
             courseCode = sc.next();
             System.out.println("+---------------------------------------------------------+");
             System.out.println("|                    Update Course Menu                   |");
@@ -57,7 +56,6 @@ public class CourseUpdateInterface {
                 String newCourseCode = "";
                 String courseName = "";
                 String school = "";
-                int academicUnits = 0;
                 String indexNumber;
                 int vacancy;
                 boolean goBack = false;

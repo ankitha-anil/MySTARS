@@ -40,7 +40,7 @@ public class EmailAdminInterface {
                     + " AUs because " + message + ".";
             String subject = "Permission to Overload this semester for " + actor.getUserName();
             Notifier notifier = new EmailMgr();
-            //communicationController.communicateToAdmin(adminUsername, subject, message, notifier);
+            communicationController.communicateToAdmin(adminUsername, subject, message, notifier);
         }
     }
 }
