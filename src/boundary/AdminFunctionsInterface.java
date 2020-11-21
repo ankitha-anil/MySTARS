@@ -12,6 +12,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
+import java.io.Console;
 
 
 public class AdminFunctionsInterface {
@@ -23,6 +24,7 @@ public class AdminFunctionsInterface {
 
         int choice = 0;
         Scanner sc = new Scanner(System.in);
+        Console console = System.console();
         do {
             System.out.println("+----------------------------------------------+");
             System.out.println("|             Select your task                 |");
@@ -60,7 +62,6 @@ public class AdminFunctionsInterface {
             String nationality = "";
             String school = "";
             int studyYear = 1;
-            String password = "";
             String courseCode = "";
             String courseName = "";
             String indexNumber;
@@ -126,8 +127,8 @@ public class AdminFunctionsInterface {
                     System.out.print("| Enter the Student's study year :          | ");
                     studyYear = sc.nextInt();
                     System.out.println("|-------------------------------------------|");
-                    System.out.print("| Enter the Student's password :            | ");
-                    password = sc.next();
+                    char[] password1 = console.readPassword("| Enter the Student's password :            | ");
+                    String password=String.valueOf(password1);
                     System.out.println("+-------------------------------------------+");
 
                     ((StudentRecordsMgr) studentRecordsMgr).addStudent(studentName, networkName, matriculationNumber, emailID, gender, nationality, school, studyYear, password);

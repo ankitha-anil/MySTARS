@@ -94,7 +94,7 @@ public class MyStarsInterface {
         fileMgr.saveObjects(courses, "course.dat");
 
 
-        ArrayList<Object> students = new ArrayList<>();
+        /*ArrayList<Object> students = new ArrayList<>();
 
         Object s1 = new Student("T", "Tiana", "#$%", "Gmail", "M", "SG", "SCSE", 2);
         Object s2 = new Student("Dan", "D1", "#$%", "Gmail", "F", "SG", "SCSE", 2);
@@ -104,7 +104,7 @@ public class MyStarsInterface {
         fileMgr.saveObjects(students, "student.dat");
 
         LoginMgr.createUser("Tiana", "passwordx", "student");
-        LoginMgr.createUser("D1", "password", "student");
+        LoginMgr.createUser("D1", "password", "student");*/
         LoginInterface.main(null);
     }
 }

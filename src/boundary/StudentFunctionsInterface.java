@@ -5,14 +5,17 @@ import actor.Actor;
 
 import java.io.IOException;
 import java.util.Scanner;
+import java.io.Console;
 
 public class StudentFunctionsInterface {
     public static final String RESET = "\u001B[0m";
     public static final String RED = "\033[1;31m";
+
     public static void main(String[] args, Actor actor) throws IOException {
         RegistrationManager registrationManager = new RegistrationManager(new StudentRecordsMgr(), new CourseMgr());
         ObjectEntityController courseMgr = new CourseMgr();
         ObjectEntityController studentMgr = new StudentRecordsMgr();
+        Console console= System.console();
         int choice = 0;
         Scanner sc = new Scanner(System.in);
         do {
@@ -43,7 +46,6 @@ public class StudentFunctionsInterface {
             String courseCode;
             String indexNumber;
             String friendName;
-            String friendPassWord;
             String newIndexNumber;
 
             switch (choice) {
@@ -90,8 +92,8 @@ public class StudentFunctionsInterface {
                     indexNumber = sc.next();
                     System.out.print("Enter the other student's user name: ");
                     friendName = sc.next();
-                    System.out.print("Enter the other student's password: ");
-                    friendPassWord = sc.next();
+                    char[] friendPassWord1 = console.readPassword("Enter the other student's password: ");
+                    String friendPassWord = String.valueOf(friendPassWord1);
                     System.out.print("Enter the other student's index number: ");
                     newIndexNumber = sc.next();
                     registrationManager.swapIndex(actor.getUserName(), friendName, friendPassWord, courseCode, indexNumber, newIndexNumber);

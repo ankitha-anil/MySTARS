@@ -6,6 +6,7 @@ import actor.Actor;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.io.Console;
 
 public class LoginInterface {
     public static final String RESET = "\u001B[0m";
@@ -53,14 +54,14 @@ public class LoginInterface {
     private static void login(String domain) throws IOException {
         Scanner sc = new Scanner(System.in);
         SystemMgr systemMgr = new SystemMgr();
-        String userName, password;
+        Console console = System.console();
+        String userName;
         System.out.println("  +-------------------------+");
         System.out.print("  |  Enter your user name : |  ");
         userName = sc.next();
         System.out.println("  +-------------------------+");
-
-        System.out.print("  |  Enter your password :  |  ");
-        password = sc.next();
+        char[] password1 = console.readPassword("  |  Enter your password :  |  ");
+        String password = String.valueOf(password1);
         System.out.println("  +-------------------------+");
 
         if (!LoginMgr.loginCheck(userName, password, domain)) {
