@@ -1,13 +1,25 @@
 package controller;
 
+package controller;
+
 import entity.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class RegistrationManager {
+/**
+ * @author Anon
+ */
 
+public class RegistrationManager {
+    /**
+     * controller for list of students
+     * controller for list of all available courses
+     * controller for list of indices of a particular course
+     * controller for notifications
+     * controller for timetable of a student
+     */
     private ObjectEntityController studentRecordsMgr;
     private ObjectEntityController courseMgr;
     private ObjectEntityController indexMgr;
@@ -15,6 +27,11 @@ public class RegistrationManager {
 
     private TimeTableMgr timeTableMgr;
 
+    /**
+     * Constructor for RegistrationManager class
+     * @param studentRecordsMgr controller for records of the student
+     * @param courseMgr controller for courses
+     */
     public RegistrationManager(ObjectEntityController studentRecordsMgr, ObjectEntityController courseMgr) {
         this.courseMgr = courseMgr;
         this.studentRecordsMgr = studentRecordsMgr;
@@ -22,11 +39,22 @@ public class RegistrationManager {
         communicationController = new CommunicationController();
     }
 
+    /**
+     * Constructor for RegistrationManager class. Initialises studentRecordsMgr, courseMgr and timeTableMgr
+     */
+
     public RegistrationManager() {
         studentRecordsMgr = new StudentRecordsMgr();
         courseMgr = new CourseMgr();
         timeTableMgr = new TimeTableMgr();
     }
+
+    /**
+     * To register a student for a particular index of the course
+     * @param userName  username of the student who wants to register
+     * @param courseCode course code of the course to be added
+     * @param indexNumber index number of the index to be added
+     */
 
     public void registerCourse(String userName, String courseCode, String indexNumber) {
         User student = (User) studentRecordsMgr.getObjectFromList(userName);
@@ -110,7 +138,13 @@ public class RegistrationManager {
 
     }
 
-
+    /**
+     * To drop an index of a course that a student has been registered for or is on waiting list for
+     * @param userName username of the student who wants to drop an index
+     * @param courseCode course code of the index to be dropped
+     * @param indexToDrop index number of the index to be dropped
+     * @param ignoreWaitList boolean variable to indicate if vacancy created should be assigned to first student in waiting list (should not be done in case of swap)
+     */
     public void dropCourse(String userName, String courseCode, String indexToDrop, boolean ignoreWaitList) {
         Object student = studentRecordsMgr.getObjectFromList(userName);
         if (!courseMgr.checkObjectExists(courseCode)) {
@@ -174,6 +208,14 @@ public class RegistrationManager {
 
     }
 
+    /**
+     * To change the index of a course that a student is already registered to
+     * @param userName user name of the student who wants to change index
+     * @param courseCode course code of the index to be changed
+     * @param currentIndex index number of the currently registered index
+     * @param newIndex index number of the index to be changed to
+     */
+
     public void changeIndex(String userName, String courseCode, String currentIndex, String newIndex) {
 
         if (newIndex.equals(currentIndex)) {
@@ -235,7 +277,16 @@ public class RegistrationManager {
         System.out.println("Not registered for current index");
     }
 
-
+    /**
+     * To swap the indices of 2 students registered for a particular course
+     * @param userName user name of the student who is currently logged in
+     * @param friendUserName user name of the other student with whom swap is to be done
+     * @param password password of the student with whom swap is to be done
+     * @param courseCode course code of the indices to be swapped
+     * @param userIndexNumber index number of the student who is currently logged in
+     * @param friendIndexNumber index number of the other student with whom swap is to be done
+     * @throws IOException
+     */
     public void swapIndex(String userName, String friendUserName, String password, String courseCode, String userIndexNumber, String friendIndexNumber) throws IOException {
         ((StudentRecordsMgr) studentRecordsMgr).loadStudentObjectList();
         ((CourseMgr) courseMgr).loadCourseObjectList();
