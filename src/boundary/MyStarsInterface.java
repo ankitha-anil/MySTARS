@@ -186,7 +186,26 @@ public class MyStarsInterface {
         course_list.add(course_8006);
 
         FileMgr fileMgr = new FileMgr();
-        fileMgr.saveObjects(course_list, "course.dat");*/
+        fileMgr.saveObjects(course_list, "course.dat");
+                ArrayList<Object> student_list = new ArrayList<>();
+        student_list.add(new Student("Parthan","Parthan0123","U18221347C","partha001@e.ntu.edu.sg", "M", "Indian","SCSE",2 ));
+        student_list.add(new Student("Ankitha","Ankitha0123","U19231515C","ankitha001@e.ntu.edu.sg", "F", "Indian","SCSE",2 ));
+        student_list.add(new Student("Nisha","Nisha0123","U1922137C","nisha001@e.ntu.edu.sg", "F", "Indian","SCSE",2 ));
+        student_list.add(new Student("Atul","Atul0123","U1922187C","atul001@e.ntu.edu.sg", "M", "Indian","SCSE",2 ));
+        student_list.add(new Student("Srishti","Srishti0123","U1923637C","srishti001@e.ntu.edu.sg", "F", "Indian","SCSE",2 ));
+
+        FileMgr fileMgr1 = new FileMgr();
+        fileMgr1.saveObjects(student_list, "student.dat");
+
+        ArrayList<Object> admin_list = new ArrayList<>();
+        admin_list.add(new Admin("John","John0123", "M", "Indian" ,"John001@e.ntu.edu.sg",101));
+        admin_list.add(new Admin("Anne","Anne0123", "F", "American","anne001@e.ntu.edu.sg", 102));
+        admin_list.add(new Admin("Henry","Henry0123", "F", "Singapore","henry001@e.ntu.edu.sg",103 ));
+        admin_list.add(new Admin("Sam","Sam0123", "M", "Indian","sam001@e.ntu.edu.sg",104));
+        admin_list.add(new Admin("Jenna","Jenna0123", "F", "Indian" ,"jenna001@e.ntu.edu.sg",105));
+
+        FileMgr fileMgr2 = new FileMgr();
+        fileMgr2.saveObjects(admin_list, "admin.dat");*/
 
         LoginInterface.main(null);
     }
