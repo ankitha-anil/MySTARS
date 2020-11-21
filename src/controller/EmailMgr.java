@@ -13,6 +13,11 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class EmailMgr implements Notifier {
+
+    public static final String RESET = "\u001B[0m";
+    public static final String RED = "\033[1;31m";
+    public static final String GREEN = "\033[1;32m";
+
     private static final String systemEmail = "starsplanner@gmail.com";
     private static final String password = "$tarsplanner21";
 
@@ -42,13 +47,13 @@ public class EmailMgr implements Notifier {
 
             Transport.send(message);
 
-            System.out.println("Notification Sent to " + receiverEmail);
+            System.out.println(GREEN+"Notification Sent to " + receiverEmail+RESET);
             System.out.println();
 
         } catch (MessagingException e) {
-            System.out.println("System error... Could not send email");
+            System.out.println(RED+"System error: Could not send email"+RESET);
         } catch (NoClassDefFoundError e) {
-            System.out.println("System error... Could not send email");
+            System.out.println(RED+"System error: Could not send email"+RESET);
         }
     }
 }

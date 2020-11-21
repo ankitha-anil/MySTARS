@@ -5,6 +5,8 @@ import java.lang.String;
 import java.util.ArrayList;
 
 public class FileMgr {
+    public static final String RESET = "\u001B[0m";
+    public static final String RED = "\033[1;31m";
 
     public ArrayList<Object> loadObjects(String fileName) {
         ArrayList<Object> objects = new ArrayList<>();
@@ -18,13 +20,13 @@ public class FileMgr {
             objectInputStream.close();
             fileInputStream.close();
         } catch (EOFException e) {
-            System.out.println("System error");
+            System.out.println(RED+"System error"+RESET);
         } catch (FileNotFoundException e) {
-            System.out.println("System error");
+            System.out.println(RED+"System error"+RESET);
         } catch (IOException e) {
-            System.out.println("System error");
+            System.out.println(RED+"System error"+RESET);
         } catch (ClassNotFoundException e) {
-            System.out.println("System error");
+            System.out.println(RED+"System error"+RESET);
         }
         return objects;
     }
@@ -40,11 +42,11 @@ public class FileMgr {
             objectOutputStream.close();
             fileOutputStream.close();
         } catch (EOFException e) {
-            System.out.println("System error");
+            System.out.println(RED+"System error"+RESET);
         } catch (FileNotFoundException e) {
-            System.out.println("System error");
+            System.out.println(RED+"System error"+RESET);
         } catch (IOException e) {
-            System.out.println("System error");
+            System.out.println(RED+"System error"+RESET);
         }
     }
 
