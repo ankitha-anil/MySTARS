@@ -47,13 +47,13 @@ public class EmailMgr implements Notifier {
 
             Transport.send(message);
 
-            System.out.println(GREEN+"Notification Sent to " + receiverEmail+RESET);
+            System.out.println(GREEN + "Notification Sent to " + receiverEmail + RESET);
             System.out.println();
 
         } catch (MessagingException e) {
-            System.out.println(RED+"System error: Could not send email"+RESET);
+            System.out.println(RED + "System error: Could not send email" + RESET);
         } catch (NoClassDefFoundError e) {
-            System.out.println(RED+"System error: Could not send email"+RESET);
+            System.out.println(RED + "System error: Could not send email" + RESET);
         }
     }
 }

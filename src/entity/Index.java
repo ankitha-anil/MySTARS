@@ -208,8 +208,8 @@ public class Index implements Serializable {
 
     public void addLesson(int day, String venue, String lessonType, LocalTime startTime, LocalTime endTime) {
         if (startTime.compareTo(endTime) >= 0) {
-            System.out.println(RED+"Start time must be earlier than end time"+RESET);
-            System.out.println(RED+"System will not add this lesson"+RESET);
+            System.out.println(RED + "Start time must be earlier than end time" + RESET);
+            System.out.println(RED + "System will not add this lesson" + RESET);
             return;
         }
         // Check for clash with existing sessions
@@ -217,16 +217,16 @@ public class Index implements Serializable {
         for (Lesson lesson : lessons
         ) {
             if (session.checkCLash(lesson)) {
-                System.out.println(RED+"Lesson clashes with an existing leeson in this index number"+RESET);
-                System.out.println(RED+"System will not add this lesson"+RESET);
+                System.out.println(RED + "Lesson clashes with an existing leeson in this index number" + RESET);
+                System.out.println(RED + "System will not add this lesson" + RESET);
                 return;
             }
         }
         if (checkLessonValidity(session.getLessonType()))
             this.lessons.add(session);
         else {
-            System.out.println(RED+"Illegal combination of classes"+RESET);
-            System.out.println(RED+"Can only have (Lecture) or (Lecture, Tutorial) or (Lecture, Tutorial, Lab)"+RESET);
+            System.out.println(RED + "Illegal combination of classes" + RESET);
+            System.out.println(RED + "Can only have (Lecture) or (Lecture, Tutorial) or (Lecture, Tutorial, Lab)" + RESET);
             System.out.println();
         }
     }
@@ -245,8 +245,8 @@ public class Index implements Serializable {
     public void addLesson(int day, String venue, String lessonType, LocalTime startTime,
                           LocalTime endTime, String labWeek) {
         if (startTime.isAfter(endTime)) {
-            System.out.println(RED+"Start time must be earlier than end time"+RESET);
-            System.out.println(RED+"System will not add this lesson"+RESET);
+            System.out.println(RED + "Start time must be earlier than end time" + RESET);
+            System.out.println(RED + "System will not add this lesson" + RESET);
             return;
         }
         // Check for clash with existing sessions
@@ -254,8 +254,8 @@ public class Index implements Serializable {
         for (Lesson lesson : lessons
         ) {
             if (session.checkCLash(lesson)) {
-                System.out.println(RED+"Lesson clashes with an existing lesson in this index number"+RESET);
-                System.out.println(RED+"System will not add this lesson"+RESET);
+                System.out.println(RED + "Lesson clashes with an existing lesson in this index number" + RESET);
+                System.out.println(RED + "System will not add this lesson" + RESET);
                 return;
             }
         }

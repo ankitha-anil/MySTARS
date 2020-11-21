@@ -20,13 +20,13 @@ public class FileMgr {
             objectInputStream.close();
             fileInputStream.close();
         } catch (EOFException e) {
-            System.out.println(RED+"System error"+RESET);
+            System.out.println(RED + "System error" + RESET);
         } catch (FileNotFoundException e) {
-            System.out.println(RED+"System error"+RESET);
+            System.out.println(RED + "System error" + RESET);
         } catch (IOException e) {
-            System.out.println(RED+"System error"+RESET);
+            System.out.println(RED + "System error" + RESET);
         } catch (ClassNotFoundException e) {
-            System.out.println(RED+"System error"+RESET);
+            System.out.println(RED + "System error" + RESET);
         }
         return objects;
     }
@@ -42,11 +42,11 @@ public class FileMgr {
             objectOutputStream.close();
             fileOutputStream.close();
         } catch (EOFException e) {
-            System.out.println(RED+"System error"+RESET);
+            System.out.println(RED + "System error" + RESET);
         } catch (FileNotFoundException e) {
-            System.out.println(RED+"System error"+RESET);
+            System.out.println(RED + "System error" + RESET);
         } catch (IOException e) {
-            System.out.println(RED+"System error"+RESET);
+            System.out.println(RED + "System error" + RESET);
         }
     }
 

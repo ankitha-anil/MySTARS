@@ -53,7 +53,7 @@ public class CourseMgr extends ObjectEntityController {
             saveCourseObjectList();
             printObjects();
         } else {
-            System.out.println(RED+"Course already exists: System cannot add this course"+RESET);
+            System.out.println(RED + "Course already exists: System cannot add this course" + RESET);
         }
     }
 
@@ -117,10 +117,10 @@ public class CourseMgr extends ObjectEntityController {
         if (existingCourse != null) {
             ((Course) existingCourse).setCourseName(newCourseName);
             saveCourseObjectList();
-            System.out.println(GREEN+"Updated course"+RESET);
+            System.out.println(GREEN + "Updated course" + RESET);
             ((Course) existingCourse).print();
         } else {
-            System.out.println(RED+"Course doesn't exist in the database"+RESET);
+            System.out.println(RED + "Course doesn't exist in the database" + RESET);
             saveCourseObjectList();
         }
     }
@@ -146,10 +146,10 @@ public class CourseMgr extends ObjectEntityController {
         if (existingCourse != null) {
             ((Course) existingCourse).setSchoolName(newCourseSchool);
             saveCourseObjectList();
-            System.out.println(GREEN+"Updated course"+RESET);
+            System.out.println(GREEN + "Updated course" + RESET);
             ((Course) existingCourse).print();
         } else {
-            System.out.println(RED+"Course doesn't exist in the database"+RESET);
+            System.out.println(RED + "Course doesn't exist in the database" + RESET);
         }
     }
 
@@ -164,7 +164,7 @@ public class CourseMgr extends ObjectEntityController {
             saveCourseObjectList();
             saveCourseObjectList();
         } else {
-            System.out.println(RED+"Course doesn't exist in the database"+RESET);
+            System.out.println(RED + "Course doesn't exist in the database" + RESET);
         }
     }
 
@@ -226,7 +226,7 @@ public class CourseMgr extends ObjectEntityController {
         loadCourseObjectList();
         Object existingCourse = getObjectFromList(courseCode);
         if (existingCourse == null) {
-            System.out.println(RED+"This course doesn't exist"+RESET);
+            System.out.println(RED + "This course doesn't exist" + RESET);
             System.out.println();
             return;
         } else {
@@ -244,7 +244,7 @@ public class CourseMgr extends ObjectEntityController {
         loadCourseObjectList();
         Object existingCourse = getObjectFromList(courseCode);
         if (existingCourse == null) {
-            System.out.println(RED+"This course doesn't exist"+RESET);
+            System.out.println(RED + "This course doesn't exist" + RESET);
             System.out.println();
             saveCourseObjectList();
             return;
@@ -253,7 +253,7 @@ public class CourseMgr extends ObjectEntityController {
                 IndexMgr indexMgr = new IndexMgr((Course) existingCourse);
                 indexMgr.printStudentListByIndex(indexNumber);
             } else {
-                System.out.println(RED+"Unexpected object received"+RESET);
+                System.out.println(RED + "Unexpected object received" + RESET);
                 System.out.println();
             }
 
@@ -264,7 +264,7 @@ public class CourseMgr extends ObjectEntityController {
         loadCourseObjectList();
         Object existingCourse = getObjectFromList(courseCode);
         if (existingCourse == null) {
-            System.out.println(RED+"This course doesn't exist"+RESET);
+            System.out.println(RED + "This course doesn't exist" + RESET);
             System.out.println();
             return;
         } else {
@@ -273,7 +273,7 @@ public class CourseMgr extends ObjectEntityController {
                 indexMgr = new IndexMgr((Course) existingCourse);
                 indexMgr.checkAvailabilityIndex(indexNumber);
             } else {
-                System.out.println(RED+"System Error: Will resolve it soon"+RESET);
+                System.out.println(RED + "System Error: Will resolve it soon" + RESET);
             }
         }
     }
@@ -285,7 +285,7 @@ public class CourseMgr extends ObjectEntityController {
             if (course instanceof Course)
                 ((Course) course).print();
             else
-                System.out.println(RED+"Unexpected object type"+RESET);
+                System.out.println(RED + "Unexpected object type" + RESET);
         }
     }
 
@@ -293,7 +293,7 @@ public class CourseMgr extends ObjectEntityController {
         loadCourseObjectList();
         Object existingCourse = getObjectFromList(courseCode);
         if (existingCourse == null) {
-            System.out.println(RED+"This course doesn't exist"+RESET);
+            System.out.println(RED + "This course doesn't exist" + RESET);
             return;
         } else {
             if (existingCourse instanceof Course) {
@@ -312,14 +312,14 @@ public class CourseMgr extends ObjectEntityController {
         loadCourseObjectList();
         Object existingCourse = getObjectFromList(courseCode);
         if (existingCourse == null) {
-            System.out.println(RED+"No such course exists"+RESET);
+            System.out.println(RED + "No such course exists" + RESET);
             return;
         }
         IndexMgr indexMgr = new IndexMgr((Course) existingCourse);
         Object index = indexMgr.getObjectFromList(indexNumber);
 
         if (index == null) {
-            System.out.println(RED+"No such index number exists"+RESET);
+            System.out.println(RED + "No such index number exists" + RESET);
             return;
         }
         if (index instanceof Index)

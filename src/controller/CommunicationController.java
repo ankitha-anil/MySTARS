@@ -12,7 +12,7 @@ public class CommunicationController {
         objectEntityController = new StudentRecordsMgr();
         User student = (User) objectEntityController.getObjectFromList(receiver);
         if (student == null) {
-            System.out.println(RED+"No such student exists"+RESET);
+            System.out.println(RED + "No such student exists" + RESET);
             return;
         }
         notifier.sendMessage(student, subject, body);
@@ -22,7 +22,7 @@ public class CommunicationController {
         ObjectEntityController objectEntityController = new AdminMgr();
         User admin = (User) objectEntityController.getObjectFromList(receiver);
         if (admin == null) {
-            System.out.println(RED+"No such admin exists"+RESET);
+            System.out.println(RED + "No such admin exists" + RESET);
             return;
         }
         notifier.sendMessage(admin, subject, body);

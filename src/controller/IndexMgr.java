@@ -20,7 +20,7 @@ public class IndexMgr extends ObjectEntityController {
     public IndexMgr(Course parentCourse) {
         super();
         if (parentCourse == null) {
-            System.out.println(RED+"Invalid course"+RESET);
+            System.out.println(RED + "Invalid course" + RESET);
             System.out.println();
             indexes = new ArrayList<>();
         } else {
@@ -32,7 +32,7 @@ public class IndexMgr extends ObjectEntityController {
     IndexMgr() {
         super();
         indexes = new ArrayList<>();
-        System.out.println(RED+"Indexes must be present inside a course"+RESET);
+        System.out.println(RED + "Indexes must be present inside a course" + RESET);
         System.out.println();
     }
 
@@ -51,12 +51,12 @@ public class IndexMgr extends ObjectEntityController {
     public void addIndex(String indexNumber, int vacancy, String courseCode, int academicUnits) {
         int indexNum = getIntegerValueOfIndex(indexNumber);
         if (indexNum < 0) {
-            System.out.println(RED+"Index number is invalid"+RESET);
+            System.out.println(RED + "Index number is invalid" + RESET);
             System.out.println();
             return;
         }
         if (checkObjectExists(indexNumber)) {
-            System.out.println(RED+"The index number already exists"+RESET);
+            System.out.println(RED + "The index number already exists" + RESET);
         } else {
             Object index = new Index(indexNum, vacancy, academicUnits, courseCode);
             indexes.add(index);
@@ -138,7 +138,7 @@ public class IndexMgr extends ObjectEntityController {
             try {
                 choice = sc.nextInt();
             } catch (NumberFormatException e) {
-                System.out.println(RED+"Invalid choice"+RESET);
+                System.out.println(RED + "Invalid choice" + RESET);
                 continue;
             }
 
@@ -152,7 +152,7 @@ public class IndexMgr extends ObjectEntityController {
                 String type = sc.next();
                 type = type.toLowerCase();
                 if (!type.equals("lecture") && !type.equals("tutorial") && !type.equals("lab")) {
-                    System.out.println(RED+"Invalid class"+RESET);
+                    System.out.println(RED + "Invalid class" + RESET);
                     continue;
                 }
                 if (type.toLowerCase().equals("lab")) {
@@ -160,14 +160,14 @@ public class IndexMgr extends ObjectEntityController {
                     labWeek = sc.next();
                     labWeek = labWeek.toLowerCase();
                     if (!labWeek.equals("both") && !labWeek.equals("even") && !labWeek.equals("odd")) {
-                        System.out.println(RED+"Invalid lab week"+RESET);
+                        System.out.println(RED + "Invalid lab week" + RESET);
                         continue;
                     }
                 }
                 System.out.print("Enter the day (1 to 7) for Monday to Sunday : ");
                 int day = sc.nextInt();
                 if (choice < 1 || choice > 7) {
-                    System.out.println(RED+"Invalid day"+RESET);
+                    System.out.println(RED + "Invalid day" + RESET);
                     continue;
                 }
                 LocalTime starTime = null;
@@ -183,7 +183,7 @@ public class IndexMgr extends ObjectEntityController {
                     endTime = LocalTime.parse(dateTimeLine, dateTimeFormatter);
                     System.out.print("Enter the ending time (Separate the hour and minute by space) : ");
                 } catch (DateTimeParseException e) {
-                    System.out.print(RED+"Date and time are not in the specified format"+RESET);
+                    System.out.print(RED + "Date and time are not in the specified format" + RESET);
                     continue;
                 }
                 System.out.print("Enter the venue : ");
@@ -198,7 +198,7 @@ public class IndexMgr extends ObjectEntityController {
         }
         if (index.getLessons().size() == 0) {
             indexes.remove(index);
-            System.out.println(RED+"Index was removed as there were no lessons"+RESET);
+            System.out.println(RED + "Index was removed as there were no lessons" + RESET);
             System.out.println();
         }
     }
@@ -206,7 +206,7 @@ public class IndexMgr extends ObjectEntityController {
     public void checkAvailabilityIndex(String indexNumber) {
         int indexNum = getIntegerValueOfIndex(indexNumber);
         if (indexNum < 0) {
-            System.out.println(RED+"Index number is invalid"+RESET);
+            System.out.println(RED + "Index number is invalid" + RESET);
             return;
         }
         Object index = new Index(indexNum);
@@ -214,16 +214,16 @@ public class IndexMgr extends ObjectEntityController {
         if (existingIndex != null) {
             if (existingIndex instanceof Index) {
                 System.out.println("+--------------------------------------+");
-                System.out.println("| Index number: |   "+indexNumber+"              |");
+                System.out.println("| Index number: |   " + indexNumber + "              |");
                 System.out.println("|--------------------------------------|");
-                System.out.println("| Vacancy:      |    "+((Index) existingIndex).getVacancy() / (((Index) existingIndex).getStudentsRegistered().size() + ((Index) existingIndex).getVacancy())+"                |");
+                System.out.println("| Vacancy:      |    " + ((Index) existingIndex).getVacancy() / (((Index) existingIndex).getStudentsRegistered().size() + ((Index) existingIndex).getVacancy()) + "                |");
                 System.out.println("+--------------------------------------+");
 
             } else {
-                System.out.println(RED+"System Error"+RESET);
+                System.out.println(RED + "System Error" + RESET);
             }
         } else {
-            System.out.println(RED+"Index doesn't exists in the database"+RESET);
+            System.out.println(RED + "Index doesn't exists in the database" + RESET);
         }
         System.out.println();
     }
@@ -237,10 +237,10 @@ public class IndexMgr extends ObjectEntityController {
                     student.print();
                 }
             } else {
-                System.out.println(RED+"System Error"+RESET);
+                System.out.println(RED + "System Error" + RESET);
             }
         } else {
-            System.out.println(RED+"Index doesn't exists in the database"+RESET);
+            System.out.println(RED + "Index doesn't exists in the database" + RESET);
         }
     }
 
@@ -249,7 +249,7 @@ public class IndexMgr extends ObjectEntityController {
         ) {
             if (index instanceof Index)
                 ((Index) index).print();
-            else System.out.println(RED+"Unexpected object type"+RESET);
+            else System.out.println(RED + "Unexpected object type" + RESET);
         }
     }
 
@@ -267,13 +267,13 @@ public class IndexMgr extends ObjectEntityController {
         try {
             int indexNum = Integer.parseInt(indexNumber);
             if (indexNum < 1) {
-                System.out.println(RED+"Index number must be a positive number"+RESET);
+                System.out.println(RED + "Index number must be a positive number" + RESET);
                 System.out.println();
                 return -1;
             }
             return indexNum;
         } catch (NumberFormatException e) {
-            System.out.println(RED+"Index number must be an integer "+RESET);
+            System.out.println(RED + "Index number must be an integer " + RESET);
             System.out.println();
             return -1;
         }

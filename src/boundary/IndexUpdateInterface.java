@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class IndexUpdateInterface {
     public static final String RESET = "\u001B[0m";
     public static final String RED = "\033[1;31m";
+
     public static void main(String[] args, Actor actor, String courseCode) {
         CourseMgr courseMgr = new CourseMgr();
         UpdateManager updateManager = new UpdateManager();
@@ -25,7 +26,7 @@ public class IndexUpdateInterface {
             if (indexNumber.equals("0"))
                 break;
             if (!courseMgr.checkIndex(courseCode, indexNumber)) {
-                System.out.println(RED+"This index number doesn't exist"+RESET);
+                System.out.println(RED + "This index number doesn't exist" + RESET);
                 break;
             } else {
                 String newIndexNumber;
@@ -62,7 +63,7 @@ public class IndexUpdateInterface {
                         goBack = true;
                         break;
                     default:
-                        System.out.println(RED+"Invalid choice"+RESET);
+                        System.out.println(RED + "Invalid choice" + RESET);
                 }
                 if (goBack)
                     break;

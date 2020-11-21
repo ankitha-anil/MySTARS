@@ -32,7 +32,7 @@ public class CourseUpdateInterface {
                 return;
             boolean isCoursePresent = courseMgr.checkObjectExists(courseCode);
             if (!isCoursePresent) {
-                System.out.println(RED+"The course doesn't exists in the system"+RESET);
+                System.out.println(RED + "The course doesn't exists in the system" + RESET);
                 break;
             } else {
                 System.out.println("+-------------------------------------------+");
@@ -97,7 +97,7 @@ public class CourseUpdateInterface {
                         break;
 
                     default:
-                        System.out.println(RED+"Invalid option"+RESET);
+                        System.out.println(RED + "Invalid option" + RESET);
                         break;
 
                 }

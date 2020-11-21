@@ -15,7 +15,7 @@ public class StudentFunctionsInterface {
         RegistrationManager registrationManager = new RegistrationManager(new StudentRecordsMgr(), new CourseMgr());
         ObjectEntityController courseMgr = new CourseMgr();
         ObjectEntityController studentMgr = new StudentRecordsMgr();
-        Console console= System.console();
+        Console console = System.console();
         int choice = 0;
         Scanner sc = new Scanner(System.in);
         do {
@@ -59,7 +59,7 @@ public class StudentFunctionsInterface {
                     registrationManager.registerCourse(actor.getUserName(), courseCode, indexNumber);
                     break;
                 case 2:
-                    ((StudentRecordsMgr)studentMgr).printCoursesRegistered(actor.getUserName());
+                    ((StudentRecordsMgr) studentMgr).printCoursesRegistered(actor.getUserName());
                     System.out.print("Enter the course code to remove: ");
                     courseCode = sc.next();
                     System.out.print("Enter the index to remove: ");
@@ -67,7 +67,7 @@ public class StudentFunctionsInterface {
                     registrationManager.dropCourse(actor.getUserName(), courseCode, indexNumber, false);
                     break;
                 case 3:
-                    ((StudentRecordsMgr)studentMgr).printCoursesRegistered(actor.getUserName());
+                    ((StudentRecordsMgr) studentMgr).printCoursesRegistered(actor.getUserName());
                     break;
                 case 4:
                     System.out.print("Enter the course code: ");
@@ -100,7 +100,7 @@ public class StudentFunctionsInterface {
                     break;
 
                 case 7:
-                    ((StudentRecordsMgr)studentMgr).printTimeTable(actor.getUserName());
+                    ((StudentRecordsMgr) studentMgr).printTimeTable(actor.getUserName());
                     break;
                 case 8:
                     System.out.println("+-------------List of courses----------------+"); //HERE
@@ -117,7 +117,7 @@ public class StudentFunctionsInterface {
                     BoundaryController.callEmailAdminInterface(actor);
                     break;
                 default:
-                    System.out.println(RED+"Invalid choice"+RESET);
+                    System.out.println(RED + "Invalid choice" + RESET);
                     break;
             }
 

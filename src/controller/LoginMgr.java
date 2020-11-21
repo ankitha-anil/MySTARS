@@ -25,7 +25,7 @@ public class LoginMgr {
         try {
             studentLoginDetails = (ArrayList<String>) readCredentials(studentFile);
         } catch (IOException e) {
-            System.out.println(RED+"Could not retrieve data"+RESET);
+            System.out.println(RED + "Could not retrieve data" + RESET);
         }
     }
 
@@ -35,7 +35,7 @@ public class LoginMgr {
         try {
             adminLoginDetails = (ArrayList<String>) readCredentials(adminFile);
         } catch (IOException e) {
-            System.out.println(RED+"Could not retrieve data"+RESET);
+            System.out.println(RED + "Could not retrieve data" + RESET);
         }
     }
 
@@ -49,7 +49,7 @@ public class LoginMgr {
             return false;
         }
         if (loginDetails.size() == 0) {
-            System.out.println(RED+"System error: " + userType + "s are not stored in the system"+RESET);
+            System.out.println(RED + "System error: " + userType + "s are not stored in the system" + RESET);
         }
         for (int i = 0; i < loginDetails.size(); i++) {
             String record = loginDetails.get(i);
@@ -83,7 +83,7 @@ public class LoginMgr {
             }
             scanner.close();
         } catch (FileNotFoundException e) {
-            System.out.println(RED+"System error: file " + fileName + " is not present"+RESET);
+            System.out.println(RED + "System error: file " + fileName + " is not present" + RESET);
 
         }
         return data;
@@ -96,7 +96,7 @@ public class LoginMgr {
         else if (fileName.equals(adminFile))
             loginDetails = adminLoginDetails;
         else {
-            System.out.println(RED+"File doesn't exist"+RESET);
+            System.out.println(RED + "File doesn't exist" + RESET);
             return;
         }
         PrintWriter printWriter = new PrintWriter(new FileWriter(fileName));
@@ -121,7 +121,7 @@ public class LoginMgr {
             loginDetails = adminLoginDetails;
             fileName = adminFile;
         } else {
-            System.out.println(RED+"Invalid type: Cannot create"+RESET);
+            System.out.println(RED + "Invalid type: Cannot create" + RESET);
             return;
         }
 
@@ -134,13 +134,13 @@ public class LoginMgr {
             printWriter.println(loginDetails.get(i));
             StringTokenizer star = new StringTokenizer(loginDetails.get(i), SEPARATOR);    // pass in the string to the string tokenizer using delimiter ","
             String userNameFile = star.nextToken().trim();
-            if (userNameFile.equals(networkName)){
+            if (userNameFile.equals(networkName)) {
                 toWrite = false;
             }
         }
         if (toWrite)
             printWriter.print(newRecord);
-        else System.out.println(RED+"Student already exists"+RESET);
+        else System.out.println(RED + "Student already exists" + RESET);
         printWriter.close();
     }
 
@@ -154,7 +154,7 @@ public class LoginMgr {
             loginDetails = adminLoginDetails;
             fileName = adminFile;
         } else {
-            System.out.println(RED+"Invalid type... cannot create"+RESET);
+            System.out.println(RED + "Invalid type... cannot create" + RESET);
             return;
         }
         PrintWriter printWriter = new PrintWriter(new FileWriter(fileName));
@@ -166,7 +166,7 @@ public class LoginMgr {
                 if (!userNameFile.equals(userName))
                     printWriter.println(loginDetails.get(i));
                 else {
-                    System.out.println(RED+"Deleting: " + userName + " from system"+RESET);
+                    System.out.println(RED + "Deleting: " + userName + " from system" + RESET);
                 }
             }
         } finally {
@@ -188,7 +188,7 @@ public class LoginMgr {
             }
         } catch (
                 NoSuchAlgorithmException e) {
-            System.out.println(RED+"System error"+RESET);
+            System.out.println(RED + "System error" + RESET);
         }
         return hash.toString();
     }

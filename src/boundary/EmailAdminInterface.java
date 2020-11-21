@@ -26,7 +26,7 @@ public class EmailAdminInterface {
         if (adminUsername.equals("0"))
             return;
         if (!adminMgr.checkObjectExists(adminUsername)) {
-            System.out.println(RED+"No such admin exists"+RESET);
+            System.out.println(RED + "No such admin exists" + RESET);
         } else {
             CommunicationController communicationController = new CommunicationController();
             int academicUnits;

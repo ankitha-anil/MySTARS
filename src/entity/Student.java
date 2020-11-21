@@ -247,7 +247,7 @@ public class Student extends User implements Serializable {
      * @param index the index to add to the registered list
      */
     public void addIndexRegistered(Index index) {
-        System.out.println(YELLOW+"Registering " + networkName + " to  " + index.getIndexNumber()+RESET);
+        System.out.println(YELLOW + "Registering " + networkName + " to  " + index.getIndexNumber() + RESET);
         this.indexRegistered.add(index);
         this.updateRegisteredAU(index.getAcademicUnits());
         index.addStudent(this);
@@ -261,7 +261,7 @@ public class Student extends User implements Serializable {
     public void removeIndex(Index index) {
         boolean success = this.indexRegistered.remove(index);
         if (success) {
-            System.out.println(YELLOW+"De-registering " + this.networkName + " from" + index.getIndexNumber()+RESET);
+            System.out.println(YELLOW + "De-registering " + this.networkName + " from" + index.getIndexNumber() + RESET);
             this.updateRegisteredAU(-1 * index.getAcademicUnits());
             index.removeStudent(this);
         }
@@ -310,9 +310,9 @@ public class Student extends User implements Serializable {
      */
     public void print() {
         System.out.println("+--------------------------------------------------+");
-        System.out.println(" Name: " +getName() );
-        System.out.println(" Username :"+getNetworkName());
-        System.out.println(" Sex: "+ getGender());
+        System.out.println(" Name: " + getName());
+        System.out.println(" Username :" + getNetworkName());
+        System.out.println(" Sex: " + getGender());
         System.out.println(" Nationality: " + getNationality());
         System.out.println("+--------------------------------------------------+");
     }

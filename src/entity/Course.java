@@ -22,10 +22,11 @@ public class Course implements Serializable {
 
     /**
      * Constructor of Course class
-     * @param courseCode course code of the course
-     * @param courseName name of the course
+     *
+     * @param courseCode    course code of the course
+     * @param courseName    name of the course
      * @param academicUnits academic units of the course
-     * @param schoolName school offering the course
+     * @param schoolName    school offering the course
      */
     public Course(String courseCode, String courseName, int academicUnits, String schoolName) {
         this.courseCode = courseCode;
@@ -37,6 +38,7 @@ public class Course implements Serializable {
 
     /**
      * Dummy constructor of Course class. Initialises the unique attribute to identify the course
+     *
      * @param courseCode
      */
 
@@ -46,6 +48,7 @@ public class Course implements Serializable {
 
     /**
      * Accessor of courseCode
+     *
      * @return returns the course code
      */
     public String getCourseCode() {
@@ -54,6 +57,7 @@ public class Course implements Serializable {
 
     /**
      * Mutator of courseCode
+     *
      * @param courseCode course code to be set
      */
     public void setCourseCode(String courseCode) {
@@ -66,6 +70,7 @@ public class Course implements Serializable {
 
     /**
      * Accessor of courseName
+     *
      * @return returns the name of the course
      */
 
@@ -75,6 +80,7 @@ public class Course implements Serializable {
 
     /**
      * Mutator of courseName
+     *
      * @param courseName course name to be set
      */
 
@@ -84,6 +90,7 @@ public class Course implements Serializable {
 
     /**
      * Accessor of academicUnits
+     *
      * @return returns academic units of the course
      */
 
@@ -93,6 +100,7 @@ public class Course implements Serializable {
 
     /**
      * Mutator of academicUnits
+     *
      * @param academicUnits academic units to be set
      */
     public void setAcademicUnits(int academicUnits) {
@@ -105,6 +113,7 @@ public class Course implements Serializable {
 
     /**
      * Accessor of schoolName
+     *
      * @return returns name of the school offering the course
      */
 
@@ -114,6 +123,7 @@ public class Course implements Serializable {
 
     /**
      * Mutator of schoolName
+     *
      * @param schoolName school name to be set
      */
     public void setSchoolName(String schoolName) {
@@ -122,8 +132,9 @@ public class Course implements Serializable {
 
     /**
      * Creates a new Index and adds it to indexNumberList
+     *
      * @param indexNumber index number of the Index
-     * @param vacancy vacancy of the index
+     * @param vacancy     vacancy of the index
      */
 
     public void addIndexNumber(int indexNumber, int vacancy) {
@@ -133,6 +144,7 @@ public class Course implements Serializable {
 
     /**
      * Removes an index from indexNumberList
+     *
      * @param index Index to remove
      */
 
@@ -152,6 +164,7 @@ public class Course implements Serializable {
 
     /**
      * Accessor of indexNumberList
+     *
      * @return returns the list of Indexes
      */
 
@@ -161,6 +174,7 @@ public class Course implements Serializable {
 
     /**
      * Mutator of indexNumberList
+     *
      * @param indexNumberList index list to be set
      */
 
@@ -171,6 +185,7 @@ public class Course implements Serializable {
     /**
      * Overridden method
      * Checks if two courses have the same course code
+     *
      * @param object Object to compare with
      * @return
      */
@@ -184,7 +199,7 @@ public class Course implements Serializable {
      */
     public void print() {
         System.out.println("+-----------------------------------------------+");
-        System.out.println(" Course Code: "+courseCode);
+        System.out.println(" Course Code: " + courseCode);
         System.out.println(" Course Name: " + courseName);
         System.out.println(" Academic Units: " + academicUnits + "AU");
         System.out.println(" School: " + schoolName);

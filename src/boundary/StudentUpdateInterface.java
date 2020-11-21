@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class StudentUpdateInterface {
     public static final String RESET = "\u001B[0m";
     public static final String RED = "\033[1;31m";
+
     public static void main(String args[], Actor actor) {
         StudentRecordsMgr studentUpdateManager = new StudentRecordsMgr();
         UpdateManager updateManager = new UpdateManager();
@@ -27,7 +28,7 @@ public class StudentUpdateInterface {
                 return;
             boolean isStudentPresent = studentUpdateManager.checkObjectExists(userName);
             if (!isStudentPresent) {
-                System.out.println(RED+"The student doesn't exists in the system"+RESET);
+                System.out.println(RED + "The student doesn't exists in the system" + RESET);
                 break;
             } else {
                 System.out.println("+------------------------------+");
@@ -84,7 +85,7 @@ public class StudentUpdateInterface {
                         goBack = true;
                         break;
                     default:
-                        System.out.println(RED+"Invalid option"+RESET);
+                        System.out.println(RED + "Invalid option" + RESET);
                         break;
 
                 }
