@@ -169,16 +169,21 @@ public class AdminFunctionsInterface {
                     courseCode = sc.next();
                     ((CourseMgr) courseMgr).printStudentListByCourse(courseCode);
                     break;
+case 8:
+                    System.out.print("Enter the course code : ");
+                    courseCode = sc.next();
+                    ((CourseMgr) courseMgr).printStudentListByCourse(courseCode);
+                    break;
                 case 9:
-                    System.out.print("List of students"); //HERE
+                    System.out.println("+----------------List of students------------------+"); //HERE
                     studentRecordsMgr.printObjects();
                     break;
                 case 10:
-                    System.out.println("List of courses"); //HERE
+                    System.out.println("+----------------List of courses------------------+"); //HERE
                     courseMgr.printObjects();
                     break;
                 case 11:
-                    System.out.println("Enter the course code");
+                    System.out.println("Enter the course code : ");
                     courseCode = sc.next();
                     if (courseMgr instanceof CourseMgr)
                         ((CourseMgr) courseMgr).printIndexes(courseCode);
@@ -186,9 +191,9 @@ public class AdminFunctionsInterface {
                         System.out.println(RED+"System error"+RESET);
                     break;
                 case 12:
-                    System.out.println("Enter the course code");
+                    System.out.println("Enter the course code : ");
                     courseCode = sc.next();
-                    System.out.println("Enter the index number");
+                    System.out.println("Enter the index number : ");
                     indexNumber = sc.next();
                     ((CourseMgr) courseMgr).printLessons(courseCode, indexNumber);
                     break;
