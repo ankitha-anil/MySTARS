@@ -103,7 +103,7 @@ public class StudentFunctionsInterface {
                     ((StudentRecordsMgr)studentMgr).printTimeTable(actor.getUserName());
                     break;
                 case 8:
-                    System.out.println("List of courses"); //HERE
+                    System.out.println("+-------------List of courses----------------+"); //HERE
                     courseMgr.printObjects();
                     break;
                 case 9:
