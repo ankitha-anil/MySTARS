@@ -183,10 +183,13 @@ public class Course implements Serializable {
      * Prints details of a course object
      */
     public void print() {
-        System.out.print(courseCode);
-        System.out.print("  " + courseName);
-        System.out.print("  " + academicUnits + "AU");
-        System.out.println("  " + "School: " + schoolName);
+        System.out.println("+-----------------------------------------------+");
+        System.out.println(" Course Code: "+courseCode);
+        System.out.println(" Course Name: " + courseName);
+        System.out.println(" Academic Units" + academicUnits + "AU");
+        System.out.println(" School: " + schoolName);
+        System.out.println("+-----------------------------------------------+");
+
     }
 
 }

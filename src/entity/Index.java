@@ -10,6 +10,8 @@ import java.util.Queue;
  * @author Anon
  */
 public class Index implements Serializable {
+    public static final String RESET = "\u001B[0m";
+    public static final String RED = "\033[1;31m";
     /**
      * Index number of the index
      * Vacancy of the index
@@ -206,8 +208,8 @@ public class Index implements Serializable {
 
     public void addLesson(int day, String venue, String lessonType, LocalTime startTime, LocalTime endTime) {
         if (startTime.compareTo(endTime) >= 0) {
-            System.out.println("Error... Start time must be earlier than end time");
-            System.out.println("System will not add this lesson");
+            System.out.println(RED+"Start time must be earlier than end time"+RESET);
+            System.out.println(RED+"System will not add this lesson"+RESET);
             return;
         }
         // Check for clash with existing sessions
@@ -215,16 +217,16 @@ public class Index implements Serializable {
         for (Lesson lesson : lessons
         ) {
             if (session.checkCLash(lesson)) {
-                System.out.println("Lesson clashes with an existing leeson in this index number");
-                System.out.println("System will not add this lesson");
+                System.out.println(RED+"Lesson clashes with an existing leeson in this index number"+RESET);
+                System.out.println(RED+"System will not add this lesson"+RESET);
                 return;
             }
         }
         if (checkLessonValidity(session.getLessonType()))
             this.lessons.add(session);
         else {
-            System.out.println("Illegal combination of classes");
-            System.out.println("Can only have (Lecture) or (Lecture, Tutorial) or (Lecture, Tutorial, Lab)");
+            System.out.println(RED+"Illegal combination of classes"+RESET);
+            System.out.println(RED+"Can only have (Lecture) or (Lecture, Tutorial) or (Lecture, Tutorial, Lab)"+RESET);
             System.out.println();
         }
     }
@@ -243,8 +245,8 @@ public class Index implements Serializable {
     public void addLesson(int day, String venue, String lessonType, LocalTime startTime,
                           LocalTime endTime, String labWeek) {
         if (startTime.isAfter(endTime)) {
-            System.out.println("Error... Start time must be earlier than end time");
-            System.out.println("System will not add this lesson");
+            System.out.println(RED+"Start time must be earlier than end time"+RESET);
+            System.out.println(RED+"System will not add this lesson"+RESET);
             return;
         }
         // Check for clash with existing sessions
@@ -252,8 +254,8 @@ public class Index implements Serializable {
         for (Lesson lesson : lessons
         ) {
             if (session.checkCLash(lesson)) {
-                System.out.println("Lesson clashes with an existing lesson in this index number");
-                System.out.println("System will not add this lesson");
+                System.out.println(RED+"Lesson clashes with an existing lesson in this index number"+RESET);
+                System.out.println(RED+"System will not add this lesson"+RESET);
                 return;
             }
         }
@@ -348,10 +350,12 @@ public class Index implements Serializable {
      * Prints the details of the index number
      */
     public void print() {
-        System.out.print("Index number: " + this.getIndexNumber());
-        System.out.print(", Vacancy: " + this.getVacancy());
-        System.out.print(" Students Registered: " + studentsRegistered.size());
+        System.out.println("+------------------------------------------------+");
+        System.out.println(" Index number: " + this.getIndexNumber());
+        System.out.println(" Vacancy: " + this.getVacancy());
+        System.out.println(" Students Registered: " + studentsRegistered.size());
         System.out.println(" Students on Waiting list: " + waitingList.size());
+        System.out.println("+------------------------------------------------+");
 
         for (Lesson lesson : lessons) {
             lesson.print();

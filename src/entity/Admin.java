@@ -59,7 +59,12 @@ public class Admin extends User implements Serializable {
      */
 
     public void print() {
-        System.out.println("Name: " + name + ", Username: " + networkName + " , Email: " + emailID);
+        System.out.println("+-----------------------------------------------------+");
+        System.out.println(" Name: " + name);
+        System.out.println(" Username: " + networkName);
+        System.out.println(" Email: " + emailID);
+        System.out.println("+-----------------------------------------------------+");
+
     }
 
 

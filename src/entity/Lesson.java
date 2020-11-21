@@ -173,7 +173,7 @@ public class Lesson implements Serializable {
     public void print() {
         String lesson = lessonType.toUpperCase().charAt(0) + lessonType.toLowerCase().substring(1);
         System.out.println(lesson);
-        System.out.println("Venue: " + venue);
+        System.out.print("Venue: " + venue);
         String weeks = "1-13";
         if (lessonType.equals("lecture"))
             weeks = "1-13";
