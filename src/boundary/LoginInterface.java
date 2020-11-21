@@ -11,6 +11,7 @@ import java.io.Console;
 public class LoginInterface {
     public static final String RESET = "\u001B[0m";
     public static final String RED = "\033[1;31m";
+
     public static void main(String args[]) throws IOException {
         Scanner sc = new Scanner(System.in);
         int choice = 0;
@@ -44,7 +45,7 @@ public class LoginInterface {
                     login(domain);
                     break;
                 default:
-                    System.out.println(RED+"Invalid Choice"+RESET);
+                    System.out.println(RED + "Invalid Choice" + RESET);
 
             }
         } while (choice != 0);
@@ -55,17 +56,23 @@ public class LoginInterface {
         Scanner sc = new Scanner(System.in);
         SystemMgr systemMgr = new SystemMgr();
         Console console = System.console();
-        String userName;
+        String userName, password;
         System.out.println("  +-------------------------+");
         System.out.print("  |  Enter your user name : |  ");
         userName = sc.next();
         System.out.println("  +-------------------------+");
-        char[] password1 = console.readPassword("  |  Enter your password :  |  ");
-        String password = String.valueOf(password1);
+        try {
+            password = String.valueOf(console.readPassword("  |  Enter your password :  |  "));
+        } catch (NullPointerException e) {
+            System.out.println(RED + "Cannot mask password" + RESET);
+            System.out.println("  |  Enter your password :  |  ");
+            password = sc.next();
+        }
+
         System.out.println("  +-------------------------+");
 
         if (!LoginMgr.loginCheck(userName, password, domain)) {
-            System.out.println(RED+"The username or password is incorrect"+RESET);
+            System.out.println(RED + "The username or password is incorrect" + RESET);
         } else {
             Actor actor = new Actor(userName);
             if (actor != null) {
@@ -75,13 +82,13 @@ public class LoginInterface {
                     if (systemMgr.isAccessible())
                         BoundaryController.callStudentFunctionInterface(actor);
                     else {
-                        System.out.println(RED+"You are not allowed to register for course now"+RESET);
+                        System.out.println(RED + "You are not allowed to register for course now" + RESET);
                     }
                 } else {
-                    System.out.println(RED+"Invalid Domain"+RESET);
+                    System.out.println(RED + "Invalid Domain" + RESET);
                 }
             } else {
-                System.out.println(RED+"System Error: Sorry for any inconvenience"+RESET);
+                System.out.println(RED + "System Error: Sorry for any inconvenience" + RESET);
             }
         }
     }

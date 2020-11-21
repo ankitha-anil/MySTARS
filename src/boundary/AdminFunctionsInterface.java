@@ -18,6 +18,7 @@ import java.io.Console;
 public class AdminFunctionsInterface {
     public static final String RESET = "\u001B[0m";
     public static final String RED = "\033[1;31m";
+
     public static void main(String[] args, Actor actor) throws IOException {
         ObjectEntityController studentRecordsMgr = new StudentRecordsMgr();
         ObjectEntityController courseMgr = new CourseMgr();
@@ -48,7 +49,7 @@ public class AdminFunctionsInterface {
             try {
                 choice = sc.nextInt();
             } catch (Exception e) {
-                System.out.println(RED+"Invalid choice"+RESET);
+                System.out.println(RED + "Invalid choice" + RESET);
                 sc.nextLine();
                 choice = -1;
             }
@@ -97,7 +98,7 @@ public class AdminFunctionsInterface {
 
                         ((StudentRecordsMgr) studentRecordsMgr).editAccessPeriod(starTime, endTime, startDate, endDate);
                     } catch (DateTimeParseException e) {
-                        System.out.println(RED+"Error: Enter the date in the specified format"+RESET);
+                        System.out.println(RED + "Error: Enter the date in the specified format" + RESET);
                     }
 
                     break;
@@ -128,7 +129,7 @@ public class AdminFunctionsInterface {
                     studyYear = sc.nextInt();
                     System.out.println("|-------------------------------------------|");
                     char[] password1 = console.readPassword("| Enter the Student's password :            | ");
-                    String password=String.valueOf(password1);
+                    String password = String.valueOf(password1);
                     System.out.println("+-------------------------------------------+");
 
                     ((StudentRecordsMgr) studentRecordsMgr).addStudent(studentName, networkName, matriculationNumber, emailID, gender, nationality, school, studyYear, password);
@@ -169,11 +170,6 @@ public class AdminFunctionsInterface {
                     courseCode = sc.next();
                     ((CourseMgr) courseMgr).printStudentListByCourse(courseCode);
                     break;
-case 8:
-                    System.out.print("Enter the course code : ");
-                    courseCode = sc.next();
-                    ((CourseMgr) courseMgr).printStudentListByCourse(courseCode);
-                    break;
                 case 9:
                     System.out.println("+----------------List of students------------------+"); //HERE
                     studentRecordsMgr.printObjects();
@@ -188,7 +184,7 @@ case 8:
                     if (courseMgr instanceof CourseMgr)
                         ((CourseMgr) courseMgr).printIndexes(courseCode);
                     else
-                        System.out.println(RED+"System error"+RESET);
+                        System.out.println(RED + "System error" + RESET);
                     break;
                 case 12:
                     System.out.println("Enter the course code : ");
@@ -198,7 +194,7 @@ case 8:
                     ((CourseMgr) courseMgr).printLessons(courseCode, indexNumber);
                     break;
                 default:
-                    System.out.println(RED+"Invalid option"+RESET);
+                    System.out.println(RED + "Invalid option" + RESET);
                     break;
             }
         } while (choice != 0);
