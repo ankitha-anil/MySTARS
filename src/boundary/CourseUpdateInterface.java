@@ -10,6 +10,8 @@ import entity.Index;
 import java.util.Scanner;
 
 public class CourseUpdateInterface {
+    public static final String RESET = "\u001B[0m";
+    public static final String RED = "\033[1;31m";
 
     public static void main(String[] arg, Actor actor) {
         CourseMgr courseMgr = new CourseMgr();
@@ -19,22 +21,31 @@ public class CourseUpdateInterface {
 
         do {
             String courseCode = "";
-            System.out.println("Enter the course code (Enter 0 to go back)");
             courseCode = sc.next();
+            System.out.println("+---------------------------------------------------------+");
+            System.out.println("|                    Update Course Menu                   |");
+            System.out.println("+---------------------------------------------------------+");
+            System.out.println("| Enter the Course code to update (Enter 0 to go back):   |  ");
+            courseCode = sc.next();
+            System.out.println("+---------------------------------------------------------+");
             if (courseCode.equals("0"))
                 return;
             boolean isCoursePresent = courseMgr.checkObjectExists(courseCode);
             if (!isCoursePresent) {
-                System.out.println("The course doesn't exists in the system");
+                System.out.println(RED+"The course doesn't exists in the system"+RESET);
                 break;
             } else {
-                System.out.println("Enter the field to update");
-                System.out.println("1: Course code");
-                System.out.println("2: Course Name");
-                System.out.println("3: School");
-                System.out.println("4: Add a new index");
-                System.out.println("5: Update an index");
-                System.out.println("Press 0 to go back");
+                System.out.println("+-------------------------------------------+");
+                System.out.println("|         Enter the field to update         |");
+                System.out.println("+-------------------------------------------+");
+                System.out.println("| 1: Course code                            |");
+                System.out.println("| 2: Course Name                            |");
+                System.out.println("| 3: School                                 |");
+                System.out.println("| 4: Add a new index                        |");
+                System.out.println("| 5: Update an index                        |");
+                System.out.println("|-------------------------------------------|");
+                System.out.println("|            Press 0 to go back             |");
+                System.out.println("+-------------------------------------------+");
                 try {
                     choice = sc.nextInt();
                 } catch (Exception e) {
@@ -54,27 +65,27 @@ public class CourseUpdateInterface {
                     case 0:
                         break;
                     case 1:
-                        System.out.println("Enter the new course code");
+                        System.out.print("Enter the new course code : ");
                         newCourseCode = sc.next();
                         updateManager.updateCourseCode(courseCode, newCourseCode);
                         goBack = true;
                         break;
                     case 2:
-                        System.out.println("Enter the new course name");
+                        System.out.print("Enter the new course name : ");
                         courseName = sc.next();
                         courseMgr.updateCourseName(courseCode, courseName);
                         goBack = true;
                         break;
                     case 3:
-                        System.out.println("Enter the new school of the course");
+                        System.out.print("Enter the new school of the course : ");
                         school = sc.next();
                         courseMgr.updateCourseSchool(courseCode, school);
                         goBack = true;
                         break;
                     case 4:
-                        System.out.println("Enter the index number");
+                        System.out.print("Enter the index number : ");
                         indexNumber = sc.next();
-                        System.out.println("Enter the vacancy");
+                        System.out.print("Enter the vacancy : ");
                         vacancy = sc.nextInt();
                         courseMgr.addIndex(courseCode, indexNumber, vacancy);
                         goBack = true;
@@ -86,7 +97,7 @@ public class CourseUpdateInterface {
                         break;
 
                     default:
-                        System.out.println("Invalid option");
+                        System.out.println(RED+"Invalid option"+RESET);
                         break;
 
                 }

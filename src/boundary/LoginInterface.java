@@ -8,16 +8,21 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class LoginInterface {
+    public static final String RESET = "\u001B[0m";
+    public static final String RED = "\033[1;31m";
     public static void main(String args[]) throws IOException {
         Scanner sc = new Scanner(System.in);
         int choice = 0;
         String domain = "";
         do {
 
-            System.out.println("Select your domain\n");
-            System.out.println("1: Admin ");
-            System.out.println("2: Student ");
-            System.out.println("0: Exit");
+            System.out.println("+----------------------------+");
+            System.out.println("|  Select your domain        |");
+            System.out.println("|----------------------------|");
+            System.out.println("|  1: Admin                  |");
+            System.out.println("|  2: Student                | ");
+            System.out.println("|  0: Exit                   |");
+            System.out.println("+----------------------------+");
             try {
                 choice = sc.nextInt();
             } catch (InputMismatchException e) {
@@ -38,7 +43,7 @@ public class LoginInterface {
                     login(domain);
                     break;
                 default:
-                    System.out.println("Invalid choice");
+                    System.out.println(RED+"Invalid Choice"+RESET);
 
             }
         } while (choice != 0);
@@ -49,13 +54,17 @@ public class LoginInterface {
         Scanner sc = new Scanner(System.in);
         SystemMgr systemMgr = new SystemMgr();
         String userName, password;
-        System.out.println("Enter your user name");
+        System.out.println("  +-------------------------+");
+        System.out.print("  |  Enter your user name : |  ");
         userName = sc.next();
-        System.out.println("Enter your password");
+        System.out.println("  +-------------------------+");
+
+        System.out.print("  |  Enter your password :  |  ");
         password = sc.next();
+        System.out.println("  +-------------------------+");
 
         if (!LoginMgr.loginCheck(userName, password, domain)) {
-            System.out.println("The username or password is incorrect");
+            System.out.println(RED+"The username or password is incorrect"+RESET);
         } else {
             Actor actor = new Actor(userName);
             if (actor != null) {
@@ -65,13 +74,13 @@ public class LoginInterface {
                     if (systemMgr.isAccessible())
                         BoundaryController.callStudentFunctionInterface(actor);
                     else {
-                        System.out.println("You are not allowed to register for course now");
+                        System.out.println(RED+"You are not allowed to register for course now"+RESET);
                     }
                 } else {
-                    System.out.println("Invalid Domain");
+                    System.out.println(RED+"Invalid Domain"+RESET);
                 }
             } else {
-                System.out.println("System Error... Sorry for any inconvenience");
+                System.out.println(RED+"System Error: Sorry for any inconvenience"+RESET);
             }
         }
     }

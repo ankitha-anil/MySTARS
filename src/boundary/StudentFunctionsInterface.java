@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class StudentFunctionsInterface {
+    public static final String RESET = "\u001B[0m";
+    public static final String RED = "\033[1;31m";
     public static void main(String[] args, Actor actor) throws IOException {
         RegistrationManager registrationManager = new RegistrationManager(new StudentRecordsMgr(), new CourseMgr());
         ObjectEntityController courseMgr = new CourseMgr();
@@ -14,18 +16,22 @@ public class StudentFunctionsInterface {
         int choice = 0;
         Scanner sc = new Scanner(System.in);
         do {
-            System.out.println("Select your task: \n");
-            System.out.println("1. Add a Course");
-            System.out.println("2. Drop a Course");
-            System.out.println("3. Print courses registered");
-            System.out.println("4. Check vacancies available");
-            System.out.println("5. Change index number of a course");
-            System.out.println("6. Swap index numbers with another student");
-            System.out.println("7. Print Time Table");
-            System.out.println("8. View Course list");
-            System.out.println("9. View Index list of a course");
-            System.out.println("10. Request for Overloading");
-            System.out.println("Press 0 to go back");
+            System.out.println("+--------------------------------------------+");
+            System.out.println("|              Select your task              |");
+            System.out.println("|--------------------------------------------|");
+            System.out.println("| 1. Add a Course                            |");
+            System.out.println("| 2. Drop a Course                           |");
+            System.out.println("| 3. Print courses registered                |");
+            System.out.println("| 4. Check vacancies available               |");
+            System.out.println("| 5. Change index number of a course         |");
+            System.out.println("| 6. Swap index numbers with another student |");
+            System.out.println("| 7. Print Time Table                        |");
+            System.out.println("| 8. View Course list                        |");
+            System.out.println("| 9. View Index list of a course             |");
+            System.out.println("| 10. Request for Overloading                |");
+            System.out.println("|--------------------------------------------|");
+            System.out.println("|             Press 0 to go back             |");
+            System.out.println("+--------------------------------------------+");
             try {
                 choice = sc.nextInt();
             } catch (Exception e) {
@@ -44,17 +50,17 @@ public class StudentFunctionsInterface {
                 case 0:
                     break;
                 case 1:
-                    System.out.println("Enter the course code of the course to add");
+                    System.out.print("Enter the course code of the course to add: ");
                     courseCode = sc.next();
-                    System.out.println("Enter the index number of the course to add");
+                    System.out.print("Enter the index number of the course to add: ");
                     indexNumber = sc.next();
                     registrationManager.registerCourse(actor.getUserName(), courseCode, indexNumber);
                     break;
                 case 2:
                     ((StudentRecordsMgr)studentMgr).printCoursesRegistered(actor.getUserName());
-                    System.out.println("Enter the course code to remove");
+                    System.out.print("Enter the course code to remove: ");
                     courseCode = sc.next();
-                    System.out.println("Enter the index to remove");
+                    System.out.print("Enter the index to remove: ");
                     indexNumber = sc.next();
                     registrationManager.dropCourse(actor.getUserName(), courseCode, indexNumber, false);
                     break;
@@ -62,31 +68,31 @@ public class StudentFunctionsInterface {
                     ((StudentRecordsMgr)studentMgr).printCoursesRegistered(actor.getUserName());
                     break;
                 case 4:
-                    System.out.println("Enter the course code");
+                    System.out.print("Enter the course code: ");
                     courseCode = sc.next();
-                    System.out.println("Enter the index number");
+                    System.out.print("Enter the index number: ");
                     indexNumber = sc.next();
                     ((CourseMgr) courseMgr).checkAvailabilityIndex(courseCode, indexNumber);
                     break;
                 case 5:
-                    System.out.println("Enter the course code");
+                    System.out.print("Enter the course code: ");
                     courseCode = sc.next();
-                    System.out.println("Enter the current index number of that course");
+                    System.out.print("Enter the current index number of that course: ");
                     indexNumber = sc.next();
-                    System.out.println("Enter the new index number of that course");
+                    System.out.print("Enter the new index number of that course: ");
                     newIndexNumber = sc.next();
                     registrationManager.changeIndex(actor.getUserName(), courseCode, indexNumber, newIndexNumber);
                     break;
                 case 6:
-                    System.out.println("Enter the course code");
+                    System.out.print("Enter the course code: ");
                     courseCode = sc.next();
-                    System.out.println("Enter the current index");
+                    System.out.print("Enter the current index: ");
                     indexNumber = sc.next();
-                    System.out.println("Enter the other student's user name");
+                    System.out.print("Enter the other student's user name: ");
                     friendName = sc.next();
-                    System.out.println("Enter the other student's password");
+                    System.out.print("Enter the other student's password: ");
                     friendPassWord = sc.next();
-                    System.out.println("Enter the other student's index number");
+                    System.out.print("Enter the other student's index number: ");
                     newIndexNumber = sc.next();
                     registrationManager.swapIndex(actor.getUserName(), friendName, friendPassWord, courseCode, indexNumber, newIndexNumber);
                     break;
@@ -95,13 +101,13 @@ public class StudentFunctionsInterface {
                     ((StudentRecordsMgr)studentMgr).printTimeTable(actor.getUserName());
                     break;
                 case 8:
-                    System.out.println("Below are the list of all courses");
+                    System.out.println("List of courses"); //HERE
                     courseMgr.printObjects();
                     break;
                 case 9:
-                    System.out.println("Enter the course code");
+                    System.out.print("Enter the course code: ");
                     courseCode = sc.next();
-                    System.out.println("Below are the index numbers with their vacancy anc number of registered students");
+                    System.out.println("Index numbers with their vacancy and number of registered students"); //HERE
                     ((CourseMgr) courseMgr).printIndexes(courseCode);
                     break;
 
@@ -109,7 +115,7 @@ public class StudentFunctionsInterface {
                     BoundaryController.callEmailAdminInterface(actor);
                     break;
                 default:
-                    System.out.println("Invalid choice");
+                    System.out.println(RED+"Invalid choice"+RESET);
                     break;
             }
 

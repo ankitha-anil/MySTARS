@@ -333,10 +333,6 @@ public class CourseMgr extends ObjectEntityController {
     }
 
     public void saveCourseObjectList() {
-        for (Object obj : courses
-        ) {
-            System.out.println("Saving " + obj);
-        }
         fileMgr.saveObjects(courses, courseFile);
     }
 
