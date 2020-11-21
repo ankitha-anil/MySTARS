@@ -216,7 +216,7 @@ public class IndexMgr extends ObjectEntityController {
                 System.out.println("+--------------------------------------+");
                 System.out.println("| Index number: |   " + indexNumber + "              |");
                 System.out.println("|--------------------------------------|");
-                System.out.println("| Vacancy:      |    " + ((Index) existingIndex).getVacancy() / (((Index) existingIndex).getStudentsRegistered().size() + ((Index) existingIndex).getVacancy()) + "                |");
+                System.out.println("| Vacancy:      |    " + ((Index) existingIndex).getVacancy() + "/" + (((Index) existingIndex).getStudentsRegistered().size() + ((Index) existingIndex).getVacancy()) + "                |");
                 System.out.println("+--------------------------------------+");
 
             } else {

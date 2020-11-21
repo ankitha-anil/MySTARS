@@ -4,9 +4,6 @@ import entity.Course;
 import entity.Index;
 import entity.Student;
 
-
-// Most important class
-
 public class UpdateManager {
 
     public static final String RESET = "\u001B[0m";
@@ -196,7 +193,8 @@ public class UpdateManager {
             ) {
                 for (Student student : ((Index) index).getStudentsRegistered()
                 ) {
-                    for (Index indexReg : student.getIndexRegistered()
+                    Student existingStudent = (Student) studentRecordsMgr.getObjectFromList(student.getNetworkName());
+                    for (Index indexReg : existingStudent.getIndexRegistered()
                     ) {
                         if (indexReg.equals(index))
                             indexReg.setCourseCode(newCourseCode);
@@ -205,7 +203,8 @@ public class UpdateManager {
                 }
                 for (Student student : ((Index) index).getWaitingList()
                 ) {
-                    for (Index indexWait : student.getIndexOnWaitList()
+                    Student existingStudent = (Student) studentRecordsMgr.getObjectFromList(student.getNetworkName());
+                    for (Index indexWait : existingStudent.getIndexOnWaitList()
                     ) {
                         if (indexWait.equals(index))
                             indexWait.setCourseCode(newCourseCode);
@@ -217,7 +216,6 @@ public class UpdateManager {
             ((Course) existingCourse).setCourseCode(newCourseCode);
             System.out.println(GREEN + "Successfully updated course" + RESET);
             ((Course) existingCourse).print();
-
             ((StudentRecordsMgr) studentRecordsMgr).saveStudentObjectList();
             ((CourseMgr) courseMgr).saveCourseObjectList();
         }
@@ -244,7 +242,7 @@ public class UpdateManager {
             return;
         }
 
-        Object newExistingIndex = ((IndexMgr) indexMgr).getObjectFromList(newIndexNumber);
+        Object newExistingIndex = indexMgr.getObjectFromList(newIndexNumber);
         if (newExistingIndex != null) {
             System.out.println(RED + "An index with this index number already exists" + RESET);
             return;
@@ -253,15 +251,10 @@ public class UpdateManager {
         for (Student student : indexToUpdate.getStudentsRegistered()
         ) {
             Student existingStudent = (Student) studentRecordsMgr.getObjectFromList(student.getNetworkName());
-            System.out.println(existingStudent.getNetworkName());
             for (Index indexReg : existingStudent.getIndexRegistered()
             ) {
-
-                // Something wrong here
-                System.out.println(indexReg.getIndexNumber());
                 if (indexReg.equals(indexToUpdate))
                     indexReg.setIndexNumber(newIndexNum);
-                System.out.println(indexReg.getIndexNumber());
             }
 
         }

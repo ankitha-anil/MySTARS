@@ -1,5 +1,6 @@
 package controller;
 
+import entity.Student;
 import entity.User;
 
 import java.io.*;
@@ -12,8 +13,8 @@ import java.util.StringTokenizer;
 
 public class LoginMgr {
 
-    public static final String RESET = "\u001B[0m";
-    public static final String RED = "\033[1;31m";
+    private static final String RESET = "\u001B[0m";
+    private static final String RED = "\033[1;31m";
 
     private static final String SEPARATOR = "|";
     private static final String studentFile = "student_details.txt";
@@ -24,6 +25,7 @@ public class LoginMgr {
     static {
         try {
             studentLoginDetails = (ArrayList<String>) readCredentials(studentFile);
+            System.out.println(studentLoginDetails.size());
         } catch (IOException e) {
             System.out.println(RED + "Could not retrieve data" + RESET);
         }
@@ -34,6 +36,7 @@ public class LoginMgr {
     static {
         try {
             adminLoginDetails = (ArrayList<String>) readCredentials(adminFile);
+            System.out.println(studentLoginDetails.size());
         } catch (IOException e) {
             System.out.println(RED + "Could not retrieve data" + RESET);
         }
@@ -55,7 +58,6 @@ public class LoginMgr {
             String record = loginDetails.get(i);
             // get individual 'fields' of the string separated by SEPARATOR
             StringTokenizer star = new StringTokenizer(record, SEPARATOR);    // pass in the string to the string tokenizer using delimiter ","
-
             String userNameFile = star.nextToken().trim();    // first token
             String passwordFile = star.nextToken().trim();    // second token
             String saltedPassword = SALT + password;
@@ -104,6 +106,8 @@ public class LoginMgr {
             for (int i = 0; i < loginDetails.size(); i++) {
                 printWriter.println(loginDetails.get(i));
             }
+        } catch (NullPointerException e) {
+            System.out.println(RED + "Records are empty" + RESET);
         } finally {
             printWriter.close();
         }
@@ -115,9 +119,11 @@ public class LoginMgr {
         ArrayList<String> loginDetails;
         String fileName;
         if (userType.equals("student")) {
+            studentLoginDetails = (ArrayList<String>) readCredentials(studentFile);
             loginDetails = studentLoginDetails;
             fileName = studentFile;
         } else if (userType.equals("admin")) {
+            adminLoginDetails = (ArrayList<String>) readCredentials(adminFile);
             loginDetails = adminLoginDetails;
             fileName = adminFile;
         } else {
@@ -140,7 +146,7 @@ public class LoginMgr {
         }
         if (toWrite)
             printWriter.print(newRecord);
-        else System.out.println(RED + "Student already exists" + RESET);
+        else System.out.println(RED + "User " + networkName + " already exists" + RESET);
         printWriter.close();
     }
 

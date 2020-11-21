@@ -331,10 +331,6 @@ public class CourseMgr extends ObjectEntityController {
 
     public void loadCourseObjectList() {
         courses = fileMgr.loadObjects(courseFile);
-        for (Object o : courses
-        ) {
-            System.out.println(o);
-        }
     }
 
     public void saveCourseObjectList() {
