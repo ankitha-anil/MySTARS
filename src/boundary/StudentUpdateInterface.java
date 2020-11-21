@@ -62,7 +62,8 @@ public class StudentUpdateInterface {
                         break;
                     case 1:
                         System.out.print("Enter the new name of the student: ");
-                        name = sc.next();
+                        sc.nextLine();
+                        name = sc.nextLine().trim();
                         updateManager.updateStudentName(userName, name);
                         goBack = true;
                         break;

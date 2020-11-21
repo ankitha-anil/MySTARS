@@ -105,7 +105,8 @@ public class AdminFunctionsInterface {
                 case 2:
                     System.out.println("+-------------------------------------------+");
                     System.out.print("| Enter the Student's name :                | ");
-                    studentName = sc.next();
+                    sc.nextLine();
+                    studentName = sc.nextLine();
                     System.out.println("|-------------------------------------------|");
                     System.out.print("| Enter the Student's username :            | ");
                     networkName = sc.next();
@@ -146,7 +147,8 @@ public class AdminFunctionsInterface {
                     System.out.print("Enter the course code : ");
                     courseCode = sc.next();
                     System.out.print("Enter the course name : ");
-                    courseName = sc.next().trim();
+                    sc.nextLine();
+                    courseName = sc.nextLine().trim();
                     System.out.print("Enter the academic units for this course : ");
                     academicUnits = sc.nextInt();
                     System.out.print("Enter the school offering this course : ");

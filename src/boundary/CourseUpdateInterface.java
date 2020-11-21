@@ -70,7 +70,8 @@ public class CourseUpdateInterface {
                         break;
                     case 2:
                         System.out.print("Enter the new course name : ");
-                        courseName = sc.next();
+                        sc.nextLine();
+                        courseName = sc.nextLine().trim();
                         courseMgr.updateCourseName(courseCode, courseName);
                         goBack = true;
                         break;
