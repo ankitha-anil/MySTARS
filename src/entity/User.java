@@ -3,6 +3,8 @@ package entity;
 import java.io.Serializable;
 
 /**
+ * Abstract Class User that contains general details of a person
+ *
  * @author Anon
  */
 public abstract class User implements Serializable {
@@ -137,7 +139,9 @@ public abstract class User implements Serializable {
         this.nationality = nationality;
     }
 
-    // Not sure if javadoc is needed
+    /**
+     * Abstract method that needs to be implemented by the sub-classes
+     */
     public abstract void print();
 
 }

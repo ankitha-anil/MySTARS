@@ -5,6 +5,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 /**
+ * Entity Class Lesson that stores details about a lesson's timings
+ *
  * @author Anon
  */
 public class Lesson implements Serializable {

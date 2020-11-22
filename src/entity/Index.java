@@ -10,6 +10,8 @@ import static boundary.MyStarsInterface.*;
 
 
 /**
+ * Entity Class Index that stores details of an index number
+ *
  * @author Anon
  */
 public class Index implements Serializable {

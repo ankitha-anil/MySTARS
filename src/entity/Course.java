@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
+ * Entity Class Course that stores course details
+ *
  * @author Anon
  */
 public class Course implements Serializable {
