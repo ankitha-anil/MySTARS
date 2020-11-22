@@ -11,11 +11,10 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static boundary.MyStarsInterface.*;
+
+
 public class StudentRecordsMgr extends ObjectEntityController {
-    public static final String RESET = "\u001B[0m";
-    public static final String RED = "\033[1;31m";
-    public static final String CYAN = "\033[0;36m";    // CYAN
-    public static final String CYAN_UNDERLINED = "\033[4;36m"; //CYAN Underlined
 
     private static ArrayList<Object> students;
     private static final String studentFile = "student.dat";

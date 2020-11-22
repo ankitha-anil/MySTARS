@@ -17,10 +17,16 @@ import java.util.Scanner;
  */
 
 public class MyStarsInterface {
-    public static final String RESET = "\u001B[0m";
-    public static final String CYAN_BACKGROUND = "\033[4;36m";
-    public static final String CYAN = "\033[0;36m";
+    /**
+     * Different colours to enhance user friendliness of program
+     */
     public static final String RED = "\033[1;31m";
+    public static final String GREEN = "\033[1;32m";
+    public static final String YELLOW = "\033[1;33m";
+    public static final String CYAN = "\033[0;36m";
+    public static final String CYAN_UNDERLINED = "\033[4;36m";
+    public static final String RESET = "\u001B[0m";
+
 
     /**
      * Main function that facilitates the interface and calls Login Interface
@@ -29,7 +35,7 @@ public class MyStarsInterface {
      */
 
     public static void main(String[] args) throws IOException {
-        System.out.println(CYAN_BACKGROUND + "                                                                                               " + RESET);
+        System.out.println(CYAN_UNDERLINED + "                                                                                               " + RESET);
         System.out.println(CYAN + "|" + RESET + "   ___  ___         _____  _                     ______  _                                   " + CYAN + "|" + RESET + "\n" +
                 CYAN + "|" + RESET + "   |  \\/  |        /  ___|| |                    | ___ \\| |                                  " + CYAN + "|" + RESET + "\n" +
                 CYAN + "|" + RESET + "   | .  . | _   _  \\ `--. | |_  __ _  _ __  ___  | |_/ /| |  __ _  _ __   _ __    ___  _ __  " + CYAN + "|" + RESET + "\n" +
@@ -38,10 +44,10 @@ public class MyStarsInterface {
                 CYAN + "|" + RESET + "   \\_|  |_/ \\__, | \\____/  \\__|\\__,_||_|   |___/ \\_|    |_| \\__,_||_| |_||_| |_| \\___||_|    " + CYAN + "|" + RESET + "\n" +
                 CYAN + "|" + RESET + "             __/ |                                                                           " + CYAN + "|" + RESET + "\n" +
                 CYAN + "|" + RESET + "            |___/                                                                            " + CYAN + "|" + RESET);
-        System.out.println(CYAN + "|" + RESET + CYAN_BACKGROUND + "                                                                                             " + RESET + CYAN + "|" + RESET);
+        System.out.println(CYAN + "|" + RESET + CYAN_UNDERLINED + "                                                                                             " + RESET + CYAN + "|" + RESET);
         System.out.println(CYAN + "|" + "                                                                                             " + CYAN + "|" + RESET);
         System.out.println(CYAN + "|" + RESET + "                      Welcome to NTU's Course Registration Application                       " + RESET + CYAN + "|" + RESET);
-        System.out.println(CYAN + "|" + RESET + CYAN_BACKGROUND + "                                                                                             " + RESET + CYAN + "|" + RESET + "\n");
+        System.out.println(CYAN + "|" + RESET + CYAN_UNDERLINED + "                                                                                             " + RESET + CYAN + "|" + RESET + "\n");
 
         /*//For course CZ2002
         ArrayList<Lesson> lesson_list_2002_1 = new ArrayList<Lesson>();

@@ -10,10 +10,9 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class IndexMgr extends ObjectEntityController {
+import static boundary.MyStarsInterface.*;
 
-    public static final String RESET = "\u001B[0m";
-    public static final String RED = "\033[1;31m";
+public class IndexMgr extends ObjectEntityController {
 
     private ArrayList<Object> indexes;
 

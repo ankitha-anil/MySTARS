@@ -7,17 +7,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static boundary.MyStarsInterface.*;
+
+
 /**
  * @author Anon
  */
 
 public class RegistrationManager {
-    public static final String RESET = "\u001B[0m";
-    public static final String RED = "\033[1;31m";
-    public static final String GREEN = "\033[1;32m";
-    public static final String YELLOW = "\033[1;33m"; // YELLOW
-
-
     /**
      * controller for list of students
      * controller for list of all available courses

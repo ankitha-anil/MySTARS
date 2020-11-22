@@ -6,12 +6,14 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import static boundary.MyStarsInterface.*;
+
+
 /**
  * @author Anon
  */
 public class Index implements Serializable {
-    public static final String RESET = "\u001B[0m";
-    public static final String RED = "\033[1;31m";
+
     /**
      * Index number of the index
      * Vacancy of the index

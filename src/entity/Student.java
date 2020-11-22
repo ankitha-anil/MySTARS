@@ -5,13 +5,14 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+import static boundary.MyStarsInterface.*;
+
+
 /**
  * @author Anon
  */
 public class Student extends User implements Serializable {
-    public static final String RESET = "\u001B[0m";
-    public static final String RED = "\033[1;31m";
-    public static final String YELLOW = "\033[1;33m"; // YELLOW
+
 
     /**
      * Start Time for student access into the system
@@ -247,7 +248,7 @@ public class Student extends User implements Serializable {
      * @param index the index to add to the registered list
      */
     public void addIndexRegistered(Index index) {
-        System.out.println(YELLOW + "Registering " + networkName + " to  " + index.getIndexNumber() + RESET);
+        System.out.println(YELLOW + "Registering " + networkName + " to " + index.getIndexNumber() + RESET);
         this.indexRegistered.add(index);
         this.updateRegisteredAU(index.getAcademicUnits());
         index.addStudent(this);

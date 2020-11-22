@@ -11,10 +11,9 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-public class LoginMgr {
+import static boundary.MyStarsInterface.*;
 
-    private static final String RESET = "\u001B[0m";
-    private static final String RED = "\033[1;31m";
+public class LoginMgr {
 
     private static final String SEPARATOR = "|";
     private static final String studentFile = "student_details.txt";

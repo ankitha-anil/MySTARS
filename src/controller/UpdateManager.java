@@ -4,12 +4,9 @@ import entity.Course;
 import entity.Index;
 import entity.Student;
 
+import static boundary.MyStarsInterface.*;
+
 public class UpdateManager {
-
-    public static final String RESET = "\u001B[0m";
-    public static final String RED = "\033[1;31m";
-    public static final String GREEN = "\033[1;32m";
-
     private ObjectEntityController studentRecordsMgr;
     private ObjectEntityController courseMgr;
     private ObjectEntityController indexMgr;

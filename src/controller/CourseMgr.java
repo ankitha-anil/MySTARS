@@ -7,11 +7,11 @@ import entity.Student;
 
 import java.util.ArrayList;
 
+import static boundary.MyStarsInterface.*;
+
+
 public class CourseMgr extends ObjectEntityController {
-    public static final String RESET = "\u001B[0m";
-    public static final String RED = "\033[1;31m";
-    public static final String GREEN = "\033[1;32m";
-    public static final String YELLOW = "\033[1;33m"; // YELLOW
+
 
     private static ArrayList<Object> courses;
     private static final String courseFile = "course.dat";

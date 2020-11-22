@@ -4,10 +4,9 @@ import java.io.*;
 import java.lang.String;
 import java.util.ArrayList;
 
-public class FileMgr {
-    public static final String RESET = "\u001B[0m";
-    public static final String RED = "\033[1;31m";
+import static boundary.MyStarsInterface.*;
 
+public class FileMgr {
     public ArrayList<Object> loadObjects(String fileName) {
         ArrayList<Object> objects = new ArrayList<>();
         FileInputStream fileInputStream;

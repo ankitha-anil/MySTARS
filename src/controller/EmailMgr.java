@@ -12,11 +12,10 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class EmailMgr implements Notifier {
+import static boundary.MyStarsInterface.*;
 
-    public static final String RESET = "\u001B[0m";
-    public static final String RED = "\033[1;31m";
-    public static final String GREEN = "\033[1;32m";
+
+public class EmailMgr implements Notifier {
 
     private static final String systemEmail = "starsplanner@gmail.com";
     private static final String password = "$tarsplanner21";

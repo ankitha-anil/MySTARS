@@ -1,10 +1,10 @@
 package controller;
 
 import entity.User;
+import static boundary.MyStarsInterface.*;
 
 public class CommunicationController {
-    public static final String RESET = "\u001B[0m";
-    public static final String RED = "\033[1;31m";
+
 
     ObjectEntityController objectEntityController;
 
