@@ -6,7 +6,17 @@ import java.util.ArrayList;
 
 import static boundary.MyStarsInterface.*;
 
+/**
+ * @author Anon
+ * Class that is responsible for saving lists of objects in a file
+ */
+
 public class FileMgr {
+    /**
+     * Loads a list of objects from a particular file
+     * @param fileName name of the required file
+     * @return list of objects
+     */
     public ArrayList<Object> loadObjects(String fileName) {
         ArrayList<Object> objects = new ArrayList<>();
         FileInputStream fileInputStream;
@@ -30,6 +40,11 @@ public class FileMgr {
         return objects;
     }
 
+    /**
+     * Saves a list of objects to a particular file
+     * @param objects list of objects that need to be saved
+     * @param fileName name of the required file
+     */
     public void saveObjects(ArrayList<Object> objects, String fileName) {
         FileOutputStream fileOutputStream;
         ObjectOutputStream objectOutputStream;

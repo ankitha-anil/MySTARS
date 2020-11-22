@@ -5,12 +5,24 @@ import java.util.ArrayList;
 
 import entity.*;
 
+/**
+ * @author Anon
+ * Class that manages the timetable of a student
+ */
+
 public class TimeTableMgr {
 
     // Two overloaded functions
     // First one does normal checking
     // Second one additional parameter that skips the index
 
+    /**
+     * Checks if timings of the lessons of the existing indices in a timetable clash with the timings of the lessons of another index
+     * If the two lessons being compared are labs, then the function checks if the weeks for them are alternate ones. No clash in this case
+     * @param studentIndex array of indices in the student's timetable
+     * @param index additional index for which clash is being checked
+     * @return
+     */
     public boolean checkClash(ArrayList<Index> studentIndex, Index index) {
         for (Lesson lesson : index.getLessons()
         ) {
@@ -49,6 +61,16 @@ public class TimeTableMgr {
 
     // Check clash between an index and a List of Indexes
     // This method can be used to check clash with registered courses as well as courses on waitList
+
+    /**
+     * Checks if timings of the lessons of the existing indices in a timetable clash with the timings of the lessons of another index
+     * If the two lessons being compared are labs, then the function checks if the weeks for them are alternate ones. No clash in this case
+     * This overloaded function is required while changing the index or swapping it with another student as the old index should not be considered while checking for clash
+     * @param studentIndex array of indices in the student's timetable
+     * @param index additional index for which clash is being checked
+     * @param skipIndex index present in the timetable that should be considered while checking for clash. It is the old index of the student in the event of changing or swapping
+     * @return
+     */
     public boolean checkClash(ArrayList<Index> studentIndex, Index index, Index skipIndex) {
         for (Lesson lesson : index.getLessons()
         ) {
@@ -88,6 +110,13 @@ public class TimeTableMgr {
 
 
     // Check if student has already enrolled in this course or the student has put it on waitList
+
+    /**
+     * Checks if student has already enrolled in this course or the student has put it on waitList
+     * @param studentIndex list of indices that the student has been registered for
+     * @param index index that needs to be checked
+     * @return
+     */
     public boolean checkExistingCourse(ArrayList<Index> studentIndex, Index index) {
         for (Index registeredIndex : studentIndex
         ) {
@@ -98,6 +127,12 @@ public class TimeTableMgr {
     }
 
     // This function has not been used anywhere
+
+    /**
+     * Checks if index has vacancies
+     * @param index index object whose vacancies need to be known
+     * @return boolean value indicating if the index has vacancies or not
+     */
     public boolean checkVacancy(Index index) {
         return index.getVacancy() == 0;
     }

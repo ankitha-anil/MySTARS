@@ -12,10 +12,21 @@ import java.util.Scanner;
 
 import static boundary.MyStarsInterface.*;
 
+/**
+ * Class that manages the list of indices for a particular course
+ * @Author Anon
+ */
 public class IndexMgr extends ObjectEntityController {
 
+    /**
+     * list of indices of a particular course
+     */
     private ArrayList<Object> indexes;
 
+    /**
+     * constructor of IndexMgr
+     * @param parentCourse course object whose indices have to be stored in the arraylist
+     */
     public IndexMgr(Course parentCourse) {
         super();
         if (parentCourse == null) {
@@ -28,13 +39,22 @@ public class IndexMgr extends ObjectEntityController {
     }
 
     // Just in case Constructor
-    IndexMgr() {
+
+    /**
+     * constructor of IndexMgr
+     */
+    public IndexMgr() {
         super();
         indexes = new ArrayList<>();
         System.out.println(RED + "Indexes must be present inside a course" + RESET);
         System.out.println();
     }
 
+    /**
+     * Checks if an index with a particular index number exists in the list of indices
+     * @param indexNumber index number that needs to be verified
+     * @return boolean value to indicate if the required index exists or not
+     */
     public boolean checkObjectExists(String indexNumber) {
         int indexNum = getIntegerValueOfIndex(indexNumber);
         if (indexNum < 0) {
@@ -47,6 +67,15 @@ public class IndexMgr extends ObjectEntityController {
     }
 
 
+    /**
+     * Adds an index to the index list of a course
+     * Checks if a non-negative integer has been entered as the index number
+     * Also checks if the entered index number does not already exist
+     * @param indexNumber index number of the index to be added
+     * @param vacancy number of vacancies of the index to be added
+     * @param courseCode course code of the course to which new index needs to be added
+     * @param academicUnits academic units of the course to which the index belongs to
+     */
     public void addIndex(String indexNumber, int vacancy, String courseCode, int academicUnits) {
         int indexNum = getIntegerValueOfIndex(indexNumber);
         if (indexNum < 0) {
@@ -124,6 +153,12 @@ public class IndexMgr extends ObjectEntityController {
      */
 
 
+    /**
+     * Adds a lesson to a given index
+     * The type of class, weeks and timings of each lesson are entered by the user
+     * If no lessons are added for the index, the index is removed
+     * @param index object of type index to which new lesson needs to be added
+     */
     public void addLesson(Index index) {
         Scanner sc = new Scanner(System.in);
         int choice;
@@ -202,6 +237,11 @@ public class IndexMgr extends ObjectEntityController {
         }
     }
 
+    /**
+     * Prints the number of vacancies left for a given index
+     * Checks if the index exists before printing
+     * @param indexNumber index number of the required index
+     */
     public void checkAvailabilityIndex(String indexNumber) {
         int indexNum = getIntegerValueOfIndex(indexNumber);
         if (indexNum < 0) {
@@ -227,6 +267,11 @@ public class IndexMgr extends ObjectEntityController {
         System.out.println();
     }
 
+    /**
+     * Prints the list of registered students for a given index
+     * Checks if the index exists before printing
+     * @param indexNumber index number of the required index
+     */
     public void printStudentListByIndex(String indexNumber) {
         Object existingIndex = getObjectFromList(indexNumber);
         if (existingIndex != null) {
@@ -243,6 +288,9 @@ public class IndexMgr extends ObjectEntityController {
         }
     }
 
+    /**
+     * Prints the details for each index in the list of indices
+     */
     public void printObjects() {
         for (Object index : indexes
         ) {
@@ -252,6 +300,11 @@ public class IndexMgr extends ObjectEntityController {
         }
     }
 
+    /**
+     * Gets an index of a particular index number from the list of indices
+     * @param indexNumber index number of the required index
+     * @return required index object
+     */
     public Object getObjectFromList(String indexNumber) {
         int indexNum = getIntegerValueOfIndex(indexNumber);
         if (indexNum < 0) {
@@ -262,6 +315,11 @@ public class IndexMgr extends ObjectEntityController {
         return existingIndex;
     }
 
+    /**
+     * Extracts the index number as an integer from the corresponding string entered by the user
+     * @param indexNumber index number which is of type string
+     * @return index number which is of type int
+     */
     public int getIntegerValueOfIndex(String indexNumber) {
         try {
             int indexNum = Integer.parseInt(indexNumber);

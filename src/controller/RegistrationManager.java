@@ -11,6 +11,7 @@ import static boundary.MyStarsInterface.*;
 
 
 /**
+ * Class that is responsible for letting a student register for a course, drop a course, change as well as swap an index
  * @author Anon
  */
 
@@ -31,7 +32,6 @@ public class RegistrationManager {
 
     /**
      * Constructor for RegistrationManager class
-     *
      * @param studentRecordsMgr controller for records of the student
      * @param courseMgr         controller for courses
      */
@@ -53,8 +53,13 @@ public class RegistrationManager {
     }
 
     /**
-     * To register a student for a particular index of the course
-     *
+     * Registers a student for a particular index of the course
+     * First checks if the course and index exists
+     * Then checks if the student is either already registered/ on waiting list for the index of the course
+     * Then checks if the index has vacancies left.If not, then the student is added to waitlist
+     * If vacancies exist, student is registered for the course
+     * Before adding student to wait list or registered list, it is checked if their existing timetable does not clash with the lessons of the index the student wants to register for
+     * Once added to wait list/ registered list, email is sent to the student
      * @param userName    username of the student who wants to register
      * @param courseCode  course code of the course to be added
      * @param indexNumber index number of the index to be added
@@ -143,8 +148,11 @@ public class RegistrationManager {
     }
 
     /**
-     * To drop an index of a course that a student has been registered for or is on waiting list for
-     *
+     * Drops an index of a course that a student has been registered for or is on waiting list for
+     * Firstly,checks if the course and index exist
+     * Then checks if the student is on wait list for the course or is registered for it
+     * If a student who has registered for an index drops it, the first student in the wait list is registered for the index
+     * Finally, emails are sent for the same
      * @param userName       username of the student who wants to drop an index
      * @param courseCode     course code of the index to be dropped
      * @param indexToDrop    index number of the index to be dropped
@@ -214,8 +222,12 @@ public class RegistrationManager {
     }
 
     /**
-     * To change the index of a course that a student is already registered to
-     *
+     * Changes the index of a course that a student is already registered to
+     * Firstly checks if the new index is not the same as the current index
+     * Then checks if the course, current index and new index exist
+     * Further checks if the new index has vacancies
+     * Then checks if the new index does not clash with the existing timetable of the student (excluding the current index)
+     * Lastly sends email to the student after index has been changed
      * @param userName     user name of the student who wants to change index
      * @param courseCode   course code of the index to be changed
      * @param currentIndex index number of the currently registered index
@@ -259,7 +271,7 @@ public class RegistrationManager {
         }
         if (student instanceof Student && originalIndex instanceof Index && changeToIndex instanceof Index) {
             for (Index index : ((Student) student).getIndexRegistered()) {
-                if (index.equals(((Index) originalIndex).getIndexNumber()) && index.getCourseCode().equals(courseCode)) {
+                if (index.equals(((Index) originalIndex)) && index.getCourseCode().equals(courseCode)) {
                     // need to skip iteration of checking with currentIndex
                     if (timeTableMgr.checkClash(((Student) student).getIndexOnWaitList(), (Index) changeToIndex, (Index) originalIndex) || timeTableMgr.checkClash(((Student) student).getIndexOnWaitList(), (Index) changeToIndex, (Index) originalIndex)) {
                         System.out.println(RED + "New index clashes with waiting index or registered indices of student" + RESET);
@@ -284,8 +296,11 @@ public class RegistrationManager {
     }
 
     /**
-     * To swap the indices of 2 students registered for a particular course
-     *
+     * Swaps the indices of 2 students registered for a particular course
+     * Firstly, checks if the username and password of the second student are valid
+     * Then checks if the course and indices of the two students exist
+     * Further checks if the students are registered for the corresponding indices
+     * Lastly, after swapping the indices, emails are sent to both the students
      * @param userName          user name of the student who is currently logged in
      * @param friendUserName    user name of the other student with whom swap is to be done
      * @param password          password of the student with whom swap is to be done
