@@ -12,18 +12,29 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import static boundary.MyStarsInterface.*;
-
+/**
+ * Controller class that holds objects of the Student class and performs certains operations on them 
+ * @author Anon
+ */
 
 public class StudentRecordsMgr extends ObjectEntityController {
 
+    /**
+     * List that holds all the student objects
+     * String that sepcifies the file name where student objects are stored 
+     */
     private static ArrayList<Object> students;
     private static final String studentFile = "student.dat";
-
+/**
+ * This is a constructor for Class StudentRecordsMgr. It calls the constructor of its super class- ObjectEntityController and loads the student details' file into an array list of type 'object'.
+ */
     public StudentRecordsMgr() {
         super();
         students = fileMgr.loadObjects(studentFile);
     }
-
+/**
+ * This function takes a key as a parameter and returns boolean true if any student exists in the database with that key. 
+ */
     public boolean checkObjectExists(String key) {
         loadStudentObjectList();
         Student student = (Student) getObjectFromList(key);
@@ -31,7 +42,13 @@ public class StudentRecordsMgr extends ObjectEntityController {
             return true;
         else return false;
     }
-
+/**
+ * This function modifies the access period of the students
+ * @param startTime updated start time for access period
+ * @param endTime updated end time for access period
+ * @param startDay updated start day for access period
+ * @param endDate updated end date for access period
+ */
     public void editAccessPeriod(LocalTime startTime, LocalTime endTime, LocalDate startDay, LocalDate endDate) {
         loadStudentObjectList();
         if (!systemMgr.checkTimeSanity(startTime, endTime)) {
@@ -45,7 +62,19 @@ public class StudentRecordsMgr extends ObjectEntityController {
             saveStudentObjectList();
         }
     }
-
+/**
+ * This function adds a new student to the database. 
+ * @param name Name of the student added
+ * @param networkName unique identification name of the student added
+ * @param matriculationNumber matriculation number of the student added
+ * @param emailID email Id of the student added
+ * @param gender gender of the student added
+ * @param nationality nationality of the studnet added
+ * @param school school of the student added
+ * @param studyYear study year of teh student added
+ * @param password password of the student added
+ * @throws IOException
+ */
     public void addStudent(String name, String networkName, String matriculationNumber, String emailID, String gender, String nationality,
                            String school, int studyYear, String password) throws IOException {
         loadStudentObjectList();
@@ -61,7 +90,10 @@ public class StudentRecordsMgr extends ObjectEntityController {
         System.out.println();
 
     }
-
+/**
+ * This function recieves a username as a parameter and checks if the object having that username is an instance of Student. If true, then all the courses in which the student is registered are printed. 
+ * @param userName username of the student
+ */
     public void printCoursesRegistered(String userName) {
         Student student = (Student) getObjectFromList(userName);
         if (student instanceof Student) {
@@ -73,7 +105,10 @@ public class StudentRecordsMgr extends ObjectEntityController {
             }
         }
     }
-
+/**
+ * This function prints the time-table of the student object.
+ * @param userName username of the student
+ */
     public void printTimeTable(String userName) {
         System.out.println(CYAN_UNDERLINED + "+--------------------------------------+" + RESET);
         System.out.println(CYAN + "|" + RESET + "              TIMETABLE               " + CYAN + "|" + RESET);
@@ -211,22 +246,31 @@ public class StudentRecordsMgr extends ObjectEntityController {
     }
 
      */
-
+/**
+ * prints the student object
+ */
     public void printObjects() {
         for (Object student : students
         ) {
             ((Student) student).print();
         }
     }
-
+/**
+ * loads the student object list from the student file
+ */
     public void loadStudentObjectList() {
         students = fileMgr.loadObjects(studentFile);
     }
-
+/**
+ * This function saves the updated student object list back in the file
+ */
     public void saveStudentObjectList() {
         fileMgr.saveObjects(students, studentFile);
     }
-
+/**
+ * This function recieves a key as a parameter and returns the existing student (if any) having that key. 
+ * @param key key of the student
+ */
     public Object getObjectFromList(String key) {
         Object student = new Student(key);
         Object existingStudent = systemMgr.findObject(students, student);
