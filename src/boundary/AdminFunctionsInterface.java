@@ -2,6 +2,7 @@ package boundary;
 
 import controller.*;
 import actor.Actor;
+import entity.Student;
 
 import javax.mail.Session;
 import java.io.IOException;
@@ -18,7 +19,6 @@ import static boundary.MyStarsInterface.RESET;
 
 /**
  * Boundary class that executes Admin user functionalities
- *
  * @author anon
  */
 public class AdminFunctionsInterface {
@@ -26,8 +26,7 @@ public class AdminFunctionsInterface {
     /**
      * Main function that displays menu of admin functions and input details or view details based on chosen function.
      * The operations available are: Editing Access Period, Adding and update student,Add and update course, Check vacancy, Printing student list, courses, index and lesson.
-     *
-     * @param args  null argument can be used to call the AdminFunction interface
+     * @param args null argument can be used to call the AdminFunction interface
      * @param actor Actor object which passes username details from LoginInterface
      * @throws IOException throws IOException
      */
@@ -87,6 +86,8 @@ public class AdminFunctionsInterface {
                     break;
                 case 1:
                     try {
+                        System.out.printf("Current start date and time: %s  %s\n", Student.getStartDate(),Student.getStartTime());
+                        System.out.printf("Current end date and time: %s  %s\n", Student.getEndDate(),Student.getEndTime());
                         LocalTime starTime = null;
                         LocalTime endTime = null;
                         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm");
@@ -131,7 +132,7 @@ public class AdminFunctionsInterface {
                     emailID = sc.next().toLowerCase();
                     System.out.println("|-------------------------------------------|");
                     System.out.print("| Enter the Student's gender :              | ");
-                    gender = sc.next().toUpperCase();
+                    gender = sc.next().toLowerCase();
                     System.out.println("|-------------------------------------------|");
                     System.out.print("| Enter the Student's nationality :         | ");
                     nationality = sc.next().toUpperCase();
@@ -140,14 +141,9 @@ public class AdminFunctionsInterface {
                     school = sc.next();
                     System.out.println("|-------------------------------------------|");
                     System.out.print("| Enter the Student's study year :          | ");
-                    try {
-                        studyYear = sc.nextInt();
-                    } catch (NumberFormatException e) {
-                        System.out.println(RED + " Study Year must be an integer from 1 to 4");
-                        continue;
-                    }
-                    if (studyYear < 1 || studyYear > 4) {
-                        System.out.println(RED + "Study year can be between 1 - 4" + RESET);
+                    studyYear = sc.nextInt();
+                    if(studyYear<1 || studyYear>4){
+                        System.out.println(RED+"Study year only between 1-4"+RESET);
                         continue;
                     }
                     System.out.println("|-------------------------------------------|");
@@ -173,6 +169,14 @@ public class AdminFunctionsInterface {
                     courseName = sc.nextLine().trim();
                     System.out.print("Enter the academic units for this course : ");
                     academicUnits = sc.nextInt();
+                    if(academicUnits<1){
+                    System.out.println(RED + "Credits cannot be less than 1" + RESET);
+                    continue;
+                    }
+                    else if (academicUnits > 4) {
+                    System.out.println(RED + "Credits are too high! Credits must be between 1 and 4"+RESET);
+                    continue;
+                }
                     System.out.print("Enter the school offering this course : ");
                     school = sc.nextLine();
                     ((CourseMgr) courseMgr).addCourse(courseCode, courseName, academicUnits, school);
@@ -200,19 +204,10 @@ public class AdminFunctionsInterface {
                     ((CourseMgr) courseMgr).printStudentListByCourse(courseCode);
                     break;
                 case 9:
-                    System.out.println("+------------------------------------------------------------------------------------------+");
-                    System.out.println("|        Name         |           Username         |     Gender    |     Nationality       |");
-                    System.out.println("+------------------------------------------------------------------------------------------+");
-                    studentRecordsMgr.printObjects();
-                    System.out.println("+------------------------------------------------------------------------------------------+");
-
+                   studentRecordsMgr.printObjects();
                     break;
                 case 10:
-                    System.out.println("+---------------------------------------------------------------------------------------+");
-                    System.out.println("| Course Code   |                  Course Name               |     AU    |    School    |");
-                    System.out.println("+---------------------------------------------------------------------------------------+");
                     courseMgr.printObjects();
-                    System.out.println("+---------------------------------------------------------------------------------------+");
 
                     break;
                 case 11:

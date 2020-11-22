@@ -123,22 +123,13 @@ public class StudentFunctionsInterface {
                     ((StudentRecordsMgr) studentMgr).printTimeTable(actor.getUserName());
                     break;
                 case 8:
-                    System.out.println("+---------------------------------------------------------------------------------------+");
-                    System.out.println("| Course Code   |                  Course Name               |     AU    |    School    |");
-                    System.out.println("+---------------------------------------------------------------------------------------+");
                     courseMgr.printObjects();
-                    System.out.println("+---------------------------------------------------------------------------------------+");
 
                     break;
                 case 9:
                     System.out.print("Enter the course code: ");
                     courseCode = sc.next();
-                    System.out.println("+------------------------------------------------------------------------------------------------+");
-                    System.out.println("|     Index Number      |      Vacancy    |   Students registered  |  Students on waiting list   |");
-                    System.out.println("+------------------------------------------------------------------------------------------------+");
                     ((CourseMgr) courseMgr).printIndexes(courseCode);
-                    System.out.println("+------------------------------------------------------------------------------------------------+");
-
                     break;
 
                 case 10:

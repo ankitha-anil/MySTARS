@@ -258,11 +258,11 @@ public class IndexMgr extends ObjectEntityController {
         Object existingIndex = systemMgr.findObject(indexes, index);
         if (existingIndex != null) {
             if (existingIndex instanceof Index) {
-                System.out.println("+--------------------------------------+");
-                System.out.println("| Index number: |   " + indexNumber + "              |");
-                System.out.println("|--------------------------------------|");
-                System.out.println("| Vacancy:      |    " + ((Index) existingIndex).getVacancy() + "/" + (((Index) existingIndex).getStudentsRegistered().size() + ((Index) existingIndex).getVacancy()) + "                |");
-                System.out.println("+--------------------------------------+");
+                System.out.println("+----------------------------------------+");
+                System.out.println("|    Index number    |       Vacancy     |");
+                System.out.println("+----------------------------------------+");
+                System.out.printf("| %10d %9c %8d/%d %7c \n",indexNumber,'|',((Index) existingIndex).getVacancy(),(((Index) existingIndex).getStudentsRegistered().size() + ((Index) existingIndex).getVacancy()),'|');
+                System.out.println("+----------------------------------------+");
 
             } else {
                 System.out.println(RED + "System Error" + RESET);

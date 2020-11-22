@@ -110,11 +110,11 @@ public class StudentRecordsMgr extends ObjectEntityController {
  * @param userName username of the student
  */
     public void printTimeTable(String userName) {
-        System.out.println("+--------------------------------------------------------------------------------------+");
-        System.out.println("|                                     TIMETABLE                                        |" );
-        System.out.println("|--------------------------------------------------------------------------------------|");
-        System.out.println("|  Course Code  |       Type       |    Venue    |      Weeks      |       Time        |");
-        System.out.println("|--------------------------------------------------------------------------------------|");
+        System.out.println(CYAN+"+--------------------------------------------------------------------------------------+"+RESET);
+        System.out.println(CYAN+"|"+RESET+"                                     TIMETABLE                                        "+CYAN+"|"+RESET );
+        System.out.println(CYAN+"+--------------------------------------------------------------------------------------+"+RESET);
+        System.out.println(CYAN+"|"+RESET+"  Course Code  "+CYAN+"|"+RESET+"       Type       "+CYAN+"|"+RESET+"    Venue    "+CYAN+"|"+RESET+"      Weeks      "+CYAN+"|"+RESET+"       Time        "+CYAN+"|"+RESET);
+        System.out.println(CYAN+"+--------------------------------------------------------------------------------------+"+RESET);
 
         Student student = (Student) getObjectFromList(userName);
         if (student == null)
@@ -145,11 +145,11 @@ public class StudentRecordsMgr extends ObjectEntityController {
         dayMap.put(6, "Sunday");
         for (int i = 0; i < weeklyLessons.length; i++) {
             System.out.printf("| %44s %41c\n",dayMap.get(i),'|');
-            System.out.println("|--------------------------------------------------------------------------------------|");
+            System.out.println(CYAN+"+--------------------------------------------------------------------------------------+"+RESET);
             for (int j = 0; j < weeklyLessons[i].size(); j++) {
-                System.out.printf("| %10s",weeklyCourses[i].get(j));
+                System.out.printf(CYAN+"| %10s"+RESET,weeklyCourses[i].get(j));
                 weeklyLessons[i].get(j).print();
-                System.out.println("+--------------------------------------------------------------------------------------+");
+                System.out.println(CYAN+"+--------------------------------------------------------------------------------------+"+RESET);
             }
         }
     }

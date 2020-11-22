@@ -72,6 +72,7 @@ public class UpdateManager {
             System.out.println(GREEN + "Successfully updated details" + RESET);
             ((CourseMgr) courseMgr).saveCourseObjectList();
             ((StudentRecordsMgr) studentRecordsMgr).saveStudentObjectList();
+            System.out.println("+------------------------------------------------------------------------------------------+"); //HERE
             ((Student) existingStudent).print();
         } else {
             System.out.println(RED + "Student doesn't exist in the database... Cannot update student details" + RESET);

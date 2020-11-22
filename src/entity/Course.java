@@ -201,6 +201,9 @@ public class Course implements Serializable {
      */
     public void print() {
 
+        System.out.println("+---------------------------------------------------------------------------------------+");
+        System.out.println("| Course Code   |                  Course Name               |     AU    |    School    |");
+        System.out.println("+---------------------------------------------------------------------------------------+");
         System.out.printf("| %5s %8c %28s %15c %5s %5c %8s %5c\n",courseCode,'|', courseName,'|', academicUnits,'|', schoolName,'|');
         System.out.println("+---------------------------------------------------------------------------------------+");
 

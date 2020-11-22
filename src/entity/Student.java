@@ -24,8 +24,8 @@ public class Student extends User implements Serializable {
      */
     private static LocalTime startTime = LocalTime.of(0, 0);
     private static LocalTime endTime = LocalTime.of(23, 59);
-    private static LocalDate startDate = LocalDate.of(2020, 1, 1);
-    private static LocalDate endDate = LocalDate.of(2020, 12, 31);
+    private static LocalDate startDate = LocalDate.of(2020, 6, 1);
+    private static LocalDate endDate = LocalDate.of(2020, 6, 30);
 
     /**
      * Matriculation Number of the student
@@ -312,8 +312,12 @@ public class Student extends User implements Serializable {
      * Function to print the student details in a user friendly manner
      */
     public void print() {
+        System.out.println("+------------------------------------------------------------------------------------------+");
+        System.out.println("|        Name         |           Username         |     Gender    |     Nationality       |");
+        System.out.println("+------------------------------------------------------------------------------------------+");
         System.out.printf("| %10s %10c %14s %13c %7s %7c %8s %14c\n",getName(),'|', getNetworkName(),'|', getGender(),'|', getNationality(),'|');
-        System.out.println("+------------------------------------------------------------------------------------------+"); //HERE
+        System.out.println("+------------------------------------------------------------------------------------------+");
+
 
     }
 
