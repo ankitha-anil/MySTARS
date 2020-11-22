@@ -17,7 +17,7 @@ import static boundary.MyStarsInterface.RED;
 import static boundary.MyStarsInterface.RESET;
 
 /**
- * Class that executes Admin user functionalities
+ * Boundary class that executes Admin user functionalities
  * @author anon
  */
 public class AdminFunctionsInterface {
