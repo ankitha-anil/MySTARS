@@ -6,16 +6,41 @@ import entity.Student;
 
 import static boundary.MyStarsInterface.*;
 
+/**
+ * This class contains methods that update associations and compositions
+ * When the Course code or Index number details are updated, the List of indexes present in the student object should also be updated
+ *
+ * @author Anon
+ */
 public class UpdateManager {
+    /**
+     * Student Records Controller. Reference name is the Parent Class
+     */
     private ObjectEntityController studentRecordsMgr;
+    /**
+     * Course Records Controller. Reference name is the Parent Class
+     */
     private ObjectEntityController courseMgr;
+    /**
+     * Index Records Controller. Reference name is the Parent Class
+     */
     private ObjectEntityController indexMgr;
 
+
+    /**
+     * Constructor for UpdateManager Class
+     */
     public UpdateManager() {
         studentRecordsMgr = new StudentRecordsMgr();
         courseMgr = new CourseMgr();
     }
 
+    /**
+     * Method that checks if the student exists in the database and updates the student name. Updates the names of students and reflects the changes in the waiting list and registered list of all indexes
+     *
+     * @param userName user name of the student to update
+     * @param name     new name of the student to be set
+     */
     public void updateStudentName(String userName, String name) {
         ((StudentRecordsMgr) studentRecordsMgr).loadStudentObjectList();
         Object existingStudent = studentRecordsMgr.getObjectFromList(userName);
@@ -54,6 +79,12 @@ public class UpdateManager {
         System.out.println();
     }
 
+    /**
+     * Method that checks if the student exists in the database and updates the nationality of the student. Updates the nationality of student and reflects the changes in the waiting list and registered list of all indexes
+     *
+     * @param userName    user name of the student to update
+     * @param nationality new nationality of the student to be set
+     */
     public void updateStudentNationality(String userName, String nationality) {
         ((StudentRecordsMgr) studentRecordsMgr).loadStudentObjectList();
         Object existingStudent = studentRecordsMgr.getObjectFromList(userName);
@@ -92,6 +123,13 @@ public class UpdateManager {
         System.out.println();
     }
 
+    /**
+     * Method that checks if the student exists in the database and updates the maximum allowable aacademic units.
+     * Updates the student details in the waiting list and registered list of all indexes
+     *
+     * @param userName user name of the student to update
+     * @param maxAU    maximum allowable academic credits to be set
+     */
     public void updateStudentMaxAU(String userName, int maxAU) {
         ((StudentRecordsMgr) studentRecordsMgr).loadStudentObjectList();
         Object existingStudent = studentRecordsMgr.getObjectFromList(userName);
@@ -130,6 +168,14 @@ public class UpdateManager {
         System.out.println();
     }
 
+
+    /**
+     * Method that checks if a student exists in the database and updates the school of the student
+     * Updates the student details in the waiting list and registered list of all indexes
+     *
+     * @param userName user name of the student to be updated
+     * @param school   school of the student to be set
+     */
     public void updateStudentSchool(String userName, String school) {
         ((StudentRecordsMgr) studentRecordsMgr).loadStudentObjectList();
         ((CourseMgr) courseMgr).loadCourseObjectList();
@@ -169,6 +215,13 @@ public class UpdateManager {
         System.out.println();
     }
 
+    /**
+     * Method to check if the course exists in the database and updates the course code of a course object
+     * Updates the course code of the index objects which are part of the course and updates the details of indexes in the registered list and waiting list of the student objects
+     *
+     * @param courseCode
+     * @param newCourseCode
+     */
     public void updateCourseCode(String courseCode, String newCourseCode) {
         ((CourseMgr) courseMgr).loadCourseObjectList();
         ((StudentRecordsMgr) studentRecordsMgr).loadStudentObjectList();
@@ -218,6 +271,15 @@ public class UpdateManager {
         }
 
     }
+
+    /**
+     * Method that checks if the course exists in the database and if the index is part of this course and updates the index number of the index
+     * Updates the index number of the index objects in the waiting list and registered list of the student object
+     *
+     * @param courseCode     course code to be updated
+     * @param indexNumber    index number of the index to be updated
+     * @param newIndexNumber new index number of the index to be set
+     */
 
     public void updateIndexNumber(String courseCode, String indexNumber, String newIndexNumber) {
         ((CourseMgr) courseMgr).loadCourseObjectList();
@@ -272,6 +334,16 @@ public class UpdateManager {
     }
 
 
+    /**
+     * Method that checks if the course exists in the database and if the index is part of this course and updates the vacancy of the index
+     * Updates the vacancy of the index objects in the waiting list and registered list of the student object
+     * If the vacancy has increased and the waiting list is not empty then the students on waiting list are removed from the wait list and are registered for the course until the vacancy is 0 or the waiting list is empty
+     *
+     * @param courseCode  course code of the course to update
+     * @param indexNumber index number of the index to update
+     * @param vacancy     new vacancy of the index number to be set
+     */
+
     public void updateIndexVacancy(String courseCode, String indexNumber, int vacancy) {
         ((CourseMgr) courseMgr).loadCourseObjectList();
         Course existingCourse = (Course) courseMgr.getObjectFromList(courseCode);
@@ -313,10 +385,19 @@ public class UpdateManager {
 
         }
 
+        indexToUpdate.setVacancy(vacancy);
+
+        if (((Index) indexToUpdate).getWaitingList().size() > 0) {
+            while (((Index) indexToUpdate).getWaitingList().size() > 0 && indexToUpdate.getVacancy() > 0) {
+                Student student = indexToUpdate.getWaitingList().poll();
+                Student existingStudent = (Student) studentRecordsMgr.getObjectFromList(student.getNetworkName());
+                existingStudent.removeIndexFromWaitList(indexToUpdate);
+                existingStudent.addIndexRegistered(indexToUpdate);
+                indexToUpdate.removeFromWaitingList(existingStudent);
+            }
+        }
+
         ((CourseMgr) courseMgr).saveCourseObjectList();
         ((StudentRecordsMgr) studentRecordsMgr).saveStudentObjectList();
-
-        indexToUpdate.setVacancy(vacancy);
     }
-
 }
