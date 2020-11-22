@@ -204,7 +204,16 @@ public class IndexMgr extends ObjectEntityController {
                     }
                 }
                 System.out.print("Enter the day (1 to 7) for Monday to Sunday : ");
-                int day = sc.nextInt();
+                int day = 1;
+                try {
+                    day = sc.nextInt();
+                    if (day < 1 || day > 7) {
+                        System.out.println(RED + "Day can only take values from 1 to 7" + RESET);
+                        continue;
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println(RED + "Day can only take values from 1 to 7" + RESET);
+                }
                 if (choice < 1 || choice > 7) {
                     System.out.println(RED + "Invalid day" + RESET);
                     continue;
@@ -261,7 +270,7 @@ public class IndexMgr extends ObjectEntityController {
                 System.out.println("+----------------------------------------+");
                 System.out.println("|    Index number    |       Vacancy     |");
                 System.out.println("+----------------------------------------+");
-                System.out.printf("| %10d %9c %8d/%d %7c \n",indexNumber,'|',((Index) existingIndex).getVacancy(),(((Index) existingIndex).getStudentsRegistered().size() + ((Index) existingIndex).getVacancy()),'|');
+                System.out.printf("| %10d %9c %8d/%d %7c \n", indexNumber, '|', ((Index) existingIndex).getVacancy(), (((Index) existingIndex).getStudentsRegistered().size() + ((Index) existingIndex).getVacancy()), '|');
                 System.out.println("+----------------------------------------+");
 
             } else {
