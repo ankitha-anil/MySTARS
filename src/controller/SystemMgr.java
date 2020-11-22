@@ -48,7 +48,7 @@ public class SystemMgr {
      *
      * @param startDate starting date of the registeration period
      * @param endDate   ending date of the registeration period
-     * @return boolean Trur or False
+     * @return boolean True or False
      */
     public boolean checkDateSanity(LocalDate startDate, LocalDate endDate) {
         return startDate.isBefore(endDate);
