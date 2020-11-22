@@ -312,12 +312,9 @@ public class Student extends User implements Serializable {
      * Function to print the student details in a user friendly manner
      */
     public void print() {
-        System.out.println("+--------------------------------------------------+");
-        System.out.println(" Name: " + getName());
-        System.out.println(" Username :" + getNetworkName());
-        System.out.println(" Sex: " + getGender());
-        System.out.println(" Nationality: " + getNationality());
-        System.out.println("+--------------------------------------------------+");
+        System.out.printf("| %10s %10c %14s %13c %7s %7c %8s %14c\n",getName(),'|', getNetworkName(),'|', getGender(),'|', getNationality(),'|');
+        System.out.println("+------------------------------------------------------------------------------------------+"); //HERE
+
     }
 
     /**

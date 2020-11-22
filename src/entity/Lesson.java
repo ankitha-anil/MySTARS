@@ -174,8 +174,6 @@ public class Lesson implements Serializable {
      */
     public void print() {
         String lesson = lessonType.toUpperCase().charAt(0) + lessonType.toLowerCase().substring(1);
-        System.out.println(lesson);
-        System.out.println("Venue: " + venue);
         String weeks = "1-13";
         if (lessonType.equals("lecture"))
             weeks = "1-13";
@@ -189,8 +187,7 @@ public class Lesson implements Serializable {
             else if (labWeek.equals("even"))
                 weeks = "2-4-6-8-10-12";
         }
-        System.out.println("Weeks: " + weeks);
-        System.out.println(startTime + " to " + endTime);
+        System.out.printf(" %4c %10s %7c %9s %3c %14s %2c %16s %2c\n",'|', lesson,'|', venue,'|', weeks,'|',startTime + " to " + endTime,'|');
         System.out.println();
     }
 

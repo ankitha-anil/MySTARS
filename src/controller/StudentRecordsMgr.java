@@ -110,9 +110,12 @@ public class StudentRecordsMgr extends ObjectEntityController {
  * @param userName username of the student
  */
     public void printTimeTable(String userName) {
-        System.out.println(CYAN_UNDERLINED + "+--------------------------------------+" + RESET);
-        System.out.println(CYAN + "|" + RESET + "              TIMETABLE               " + CYAN + "|" + RESET);
-        System.out.println(CYAN_UNDERLINED + "|--------------------------------------|" + RESET);
+        System.out.println("+--------------------------------------------------------------------------------------+");
+        System.out.println("|                                     TIMETABLE                                        |" );
+        System.out.println("|--------------------------------------------------------------------------------------|");
+        System.out.println("|  Course Code  |       Type       |    Venue    |      Weeks      |       Time        |");
+        System.out.println("|--------------------------------------------------------------------------------------|");
+
         Student student = (Student) getObjectFromList(userName);
         if (student == null)
             return;
@@ -141,34 +144,12 @@ public class StudentRecordsMgr extends ObjectEntityController {
         dayMap.put(5, "Saturday");
         dayMap.put(6, "Sunday");
         for (int i = 0; i < weeklyLessons.length; i++) {
-            switch (i) {
-                case 0:
-                    System.out.println(CYAN + "|" + RESET + "                " + dayMap.get(0) + "                " + CYAN + "|" + RESET);
-                    break;
-                case 1:
-                    System.out.println(CYAN + "|" + RESET + "               " + dayMap.get(1) + "                " + CYAN + "|" + RESET);
-                    break;
-                case 2:
-                    System.out.println(CYAN + "|" + RESET + "               " + dayMap.get(2) + "              " + CYAN + "|" + RESET);
-                    break;
-                case 3:
-                    System.out.println(CYAN + "|" + RESET + "               " + dayMap.get(3) + "               " + CYAN + "|" + RESET);
-                    break;
-                case 4:
-                    System.out.println(CYAN + "|" + RESET + "                " + dayMap.get(4) + "                " + CYAN + "|" + RESET);
-                    break;
-                case 5:
-                    System.out.println(CYAN + "|" + RESET + "               " + dayMap.get(5) + "               " + CYAN + "|" + RESET);
-                    break;
-                case 6:
-                    System.out.println(CYAN + "|" + RESET + "                " + dayMap.get(6) + "                " + CYAN + "|" + RESET);
-                    break;
-            }
-            System.out.println(CYAN + "|--------------------------------------|" + RESET);
+            System.out.printf("| %44s %41c\n",dayMap.get(i),'|');
+            System.out.println("|--------------------------------------------------------------------------------------|");
             for (int j = 0; j < weeklyLessons[i].size(); j++) {
-                System.out.println(weeklyCourses[i].get(j));
+                System.out.printf("| %10s",weeklyCourses[i].get(j));
                 weeklyLessons[i].get(j).print();
-                System.out.println(CYAN_UNDERLINED + "|--------------------------------------|" + RESET);
+                System.out.println("+--------------------------------------------------------------------------------------+");
             }
         }
     }

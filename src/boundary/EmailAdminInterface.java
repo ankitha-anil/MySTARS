@@ -28,8 +28,11 @@ public class EmailAdminInterface {
         AdminMgr adminMgr = new AdminMgr();
         String adminUsername;
         Scanner sc = new Scanner(System.in);
+        System.out.println("+---------------------------------------------------------------------------------------+");
+        System.out.println("|        Name         |           Username         |                 Email              |");
+        System.out.println("+---------------------------------------------------------------------------------------+");
         adminMgr.printObjects();
-        System.out.println();
+        System.out.println("+---------------------------------------------------------------------------------------+");
         System.out.println("+------------------------------------------------------------------------------------+");
         System.out.println("| Enter the admin username to send the email to (Press 0 to go back)  :        |  ");
         adminUsername = sc.next();

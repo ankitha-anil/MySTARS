@@ -354,12 +354,9 @@ public class Index implements Serializable {
      * Prints the details of the index number
      */
     public void print() {
-        System.out.println("+------------------------------------------------+");
-        System.out.println(" Index number: " + this.getIndexNumber());
-        System.out.println(" Vacancy: " + this.getVacancy());
-        System.out.println(" Students Registered: " + studentsRegistered.size());
-        System.out.println(" Students on Waiting list: " + waitingList.size());
-        System.out.println("+------------------------------------------------+");
+        System.out.printf("| %10s %12c %9s %7c %13s %10c %14s %14c\n",this.getIndexNumber(),'|', this.getVacancy(),'|', studentsRegistered.size(),'|', waitingList.size(),'|');
+        System.out.println("+------------------------------------------------------------------------------------------------+");
+
 
         for (Lesson lesson : lessons) {
             lesson.print();

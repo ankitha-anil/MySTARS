@@ -189,12 +189,20 @@ public class AdminFunctionsInterface {
                     ((CourseMgr) courseMgr).printStudentListByCourse(courseCode);
                     break;
                 case 9:
-                    System.out.println("+----------------List of students------------------+"); //HERE
+                    System.out.println("+------------------------------------------------------------------------------------------+");
+                    System.out.println("|        Name         |           Username         |     Gender    |     Nationality       |");
+                    System.out.println("+------------------------------------------------------------------------------------------+");
                     studentRecordsMgr.printObjects();
+                    System.out.println("+------------------------------------------------------------------------------------------+");
+
                     break;
                 case 10:
-                    System.out.println("+----------------List of courses------------------+"); //HERE
+                    System.out.println("+---------------------------------------------------------------------------------------+");
+                    System.out.println("| Course Code   |                  Course Name               |     AU    |    School    |");
+                    System.out.println("+---------------------------------------------------------------------------------------+");
                     courseMgr.printObjects();
+                    System.out.println("+---------------------------------------------------------------------------------------+");
+
                     break;
                 case 11:
                     System.out.print("Enter the course code : ");
