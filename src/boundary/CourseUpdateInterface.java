@@ -12,7 +12,7 @@ import static boundary.MyStarsInterface.RED;
 import static boundary.MyStarsInterface.RESET;
 
 /**
- * Class that admin uses to update course details
+ * Boundary class that admin uses to update course details
  * @author anon
  */
 
