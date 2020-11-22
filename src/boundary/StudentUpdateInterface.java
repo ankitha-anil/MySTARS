@@ -10,7 +10,7 @@ import static boundary.MyStarsInterface.RED;
 import static boundary.MyStarsInterface.RESET;
 
 /**
- * Class that executes interface for updating student details
+ * Boundary class that executes interface for updating student details
  * @author anon
  */
 public class StudentUpdateInterface {
