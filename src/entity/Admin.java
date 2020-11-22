@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
+ * Admin Class that holds details of the admin. Admin objects are stored in the system as students can email the admin to request for additional credits
+ *
  * @author Anon
  */
 public class Admin extends User implements Serializable {

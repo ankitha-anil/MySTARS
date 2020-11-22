@@ -11,15 +11,17 @@ import static boundary.MyStarsInterface.RESET;
 
 /**
  * Boundary class that executes interface for updating student details
+ *
  * @author anon
  */
 public class StudentUpdateInterface {
-
     /**
      * Main function where student can update details based on chosen attribute (Name, Nationality, Maximum AU, School)
-     * @param args null argument can be used to call the StudentUpdate interface
+     *
+     * @param args  null argument can be used to call the StudentUpdate interface
      * @param actor Actor object which passes username details from StudentFunctionInterface
-     * @throws IOException throws IOException
+     * @param args
+     * @param actor
      */
 
     public static void main(String args[], Actor actor) {

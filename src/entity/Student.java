@@ -9,6 +9,8 @@ import static boundary.MyStarsInterface.*;
 
 
 /**
+ * Entity Class Student that stores the details of the students
+ *
  * @author Anon
  */
 public class Student extends User implements Serializable {
