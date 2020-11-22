@@ -7,9 +7,22 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.io.Console;
 
+import static boundary.MyStarsInterface.RED;
+import static boundary.MyStarsInterface.RESET;
+
+/**
+ * Class that executes Student user functionalities
+ * @author anon
+ */
+
 public class StudentFunctionsInterface {
-    public static final String RESET = "\u001B[0m";
-    public static final String RED = "\033[1;31m";
+
+    /**
+     * Main function that displays menu of student functions and input details or view details based on chosen function.
+     * @param args null argument can be used to call the StudentFunction interface
+     * @param actor Actor object which passes username details from LoginInterface
+     * @throws IOException throws IOException
+     */
 
     public static void main(String[] args, Actor actor) throws IOException {
         RegistrationManager registrationManager = new RegistrationManager(new StudentRecordsMgr(), new CourseMgr());

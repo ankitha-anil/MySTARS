@@ -13,10 +13,21 @@ import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.io.Console;
 
+import static boundary.MyStarsInterface.RED;
+import static boundary.MyStarsInterface.RESET;
 
+/**
+ * Class that executes Admin user functionalities
+ * @author anon
+ */
 public class AdminFunctionsInterface {
-    public static final String RESET = "\u001B[0m";
-    public static final String RED = "\033[1;31m";
+
+    /**
+     * Main function that displays menu of admin functions and input details or view details based on chosen function.
+     * @param args null argument can be used to call the AdminFunction interface
+     * @param actor Actor object which passes username details from LoginInterface
+     * @throws IOException throws IOException
+     */
 
     public static void main(String[] args, Actor actor) throws IOException {
         ObjectEntityController studentRecordsMgr = new StudentRecordsMgr();
@@ -94,7 +105,6 @@ public class AdminFunctionsInterface {
                         System.out.print("Enter the ending date in dd/MM/yyyy : ");
                         dateTimeLine = sc.next();
                         endDate = LocalDate.parse(dateTimeLine, dateTimeFormatter);
-
 
                         ((StudentRecordsMgr) studentRecordsMgr).editAccessPeriod(starTime, endTime, startDate, endDate);
                     } catch (DateTimeParseException e) {

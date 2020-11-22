@@ -6,9 +6,21 @@ import controller.UpdateManager;
 
 import java.util.Scanner;
 
+import static boundary.MyStarsInterface.RED;
+import static boundary.MyStarsInterface.RESET;
+
+/**
+ * Class that executes interface for updating student details
+ * @author anon
+ */
 public class StudentUpdateInterface {
-    public static final String RESET = "\u001B[0m";
-    public static final String RED = "\033[1;31m";
+
+    /**
+     * Main function where student can update details based on chosen attribute (Name, Nationality, Maximum AU, School)
+     * @param args null argument can be used to call the StudentUpdate interface
+     * @param actor Actor object which passes username details from StudentFunctionInterface
+     * @throws IOException throws IOException
+     */
 
     public static void main(String args[], Actor actor) {
         StudentRecordsMgr studentUpdateManager = new StudentRecordsMgr();

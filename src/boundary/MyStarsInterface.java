@@ -11,10 +11,22 @@ import java.util.Arrays;
 import java.util.ConcurrentModificationException;
 import java.util.Scanner;
 
+/**
+ * Main interface at the start of the program
+ * @author anon
+ */
+
 public class MyStarsInterface {
     public static final String RESET = "\u001B[0m";
     public static final String CYAN_BACKGROUND = "\033[4;36m";
-    public static final String CYAN = "\033[0;36m";    // CYAN
+    public static final String CYAN = "\033[0;36m";
+    public static final String RED = "\033[1;31m";
+
+    /**
+     * Main function that facilitates the interface and calls Login Interface
+     * @param args null argument can be used to call the MyStars interface
+     * @throws IOException Throws IOException
+     */
 
     public static void main(String[] args) throws IOException {
         System.out.println(CYAN_BACKGROUND + "                                                                                               " + RESET);

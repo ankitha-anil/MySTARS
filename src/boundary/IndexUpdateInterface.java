@@ -6,9 +6,17 @@ import controller.UpdateManager;
 
 import java.util.Scanner;
 
+import static boundary.MyStarsInterface.RED;
+import static boundary.MyStarsInterface.RESET;
+
 public class IndexUpdateInterface {
-    public static final String RESET = "\u001B[0m";
-    public static final String RED = "\033[1;31m";
+
+    /**
+     * Main function where admin can update index details based on chosen attribute (Index number, Vacancy)
+     * @param args null argument can be used to call the IndexUpdate interface
+     * @param actor Actor object which passes username details from CourseUpdateInterface
+     * @param courseCode String specifies the course of which index needs to be updated
+     */
 
     public static void main(String[] args, Actor actor, String courseCode) {
         CourseMgr courseMgr = new CourseMgr();

@@ -6,11 +6,23 @@ import controller.EmailMgr;
 import controller.Notifier;
 import actor.Actor;
 
+import static boundary.MyStarsInterface.RED;
+import static boundary.MyStarsInterface.RESET;
+
 import java.util.Scanner;
 
+/**
+ * Class that executes the function to send an Email to admin
+ * @author anon
+ */
+
 public class EmailAdminInterface {
-    public static final String RESET = "\u001B[0m";
-    public static final String RED = "\033[1;31m";
+
+    /**
+     * Main function where student can send email to admin requesting for overloading
+     * @param args null argument can be used to call the EmailAdmin interface
+     * @param actor Actor object which passes username details from StudentFunctionInterface
+     */
 
     public static void main(String[] args, Actor actor) {
         AdminMgr adminMgr = new AdminMgr();

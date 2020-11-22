@@ -8,9 +8,21 @@ import controller.UpdateManager;
 
 import java.util.Scanner;
 
+import static boundary.MyStarsInterface.RED;
+import static boundary.MyStarsInterface.RESET;
+
+/**
+ * Class that admin uses to update course details
+ * @author anon
+ */
+
 public class CourseUpdateInterface {
-    public static final String RESET = "\u001B[0m";
-    public static final String RED = "\033[1;31m";
+
+    /**
+     * Main function where admin can update course details based on chosen attribute (Course code, course name, school, add index, update index)
+     * @param args null argument can be used to call the CourseUpdate interface
+     * @param actor Actor object which passes username details from AdminFunctionInterface
+     */
 
     public static void main(String[] arg, Actor actor) {
         CourseMgr courseMgr = new CourseMgr();

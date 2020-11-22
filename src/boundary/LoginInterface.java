@@ -8,9 +8,21 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.io.Console;
 
+import static boundary.MyStarsInterface.RED;
+import static boundary.MyStarsInterface.RESET;
+
+/**
+ * Class that facilitates the login function
+ * @author anon
+ */
+
 public class LoginInterface {
-    public static final String RESET = "\u001B[0m";
-    public static final String RED = "\033[1;31m";
+
+    /**
+     * Main function that executes login interface. User inputs the domain (admin or student)
+     * @param args null argument can be used to call the login interface
+     * @throws IOException throws IOException
+     */
 
     public static void main(String args[]) throws IOException {
         Scanner sc = new Scanner(System.in);
@@ -51,6 +63,12 @@ public class LoginInterface {
         } while (choice != 0);
 
     }
+
+    /**
+     * Function that retrieves login details and passes it to the domain type interface
+     * @param domain String used to check type of user
+     * @throws IOException
+     */
 
     private static void login(String domain) throws IOException {
         Scanner sc = new Scanner(System.in);
