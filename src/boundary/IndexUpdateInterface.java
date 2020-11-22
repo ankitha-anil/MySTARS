@@ -9,6 +9,11 @@ import java.util.Scanner;
 import static boundary.MyStarsInterface.RED;
 import static boundary.MyStarsInterface.RESET;
 
+/**
+ * Boundary class that implements Index Update interface
+ * @author anon
+ */
+
 public class IndexUpdateInterface {
 
     /**

@@ -12,7 +12,7 @@ import static boundary.MyStarsInterface.RESET;
 import java.util.Scanner;
 
 /**
- * Class that executes the function to send an Email to admin
+ * Boundary class that executes the function to send an Email to admin
  * @author anon
  */
 

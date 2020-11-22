@@ -17,13 +17,14 @@ import static boundary.MyStarsInterface.RED;
 import static boundary.MyStarsInterface.RESET;
 
 /**
- * Class that executes Admin user functionalities
+ * Boundary class that executes Admin user functionalities
  * @author anon
  */
 public class AdminFunctionsInterface {
 
     /**
      * Main function that displays menu of admin functions and input details or view details based on chosen function.
+     * The operations available are: Editing Access Period, Adding and update student,Add and update course, Check vacancy, Printing student list, courses, index and lesson.
      * @param args null argument can be used to call the AdminFunction interface
      * @param actor Actor object which passes username details from LoginInterface
      * @throws IOException throws IOException

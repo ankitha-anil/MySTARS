@@ -12,7 +12,7 @@ import static boundary.MyStarsInterface.RED;
 import static boundary.MyStarsInterface.RESET;
 
 /**
- * Class that facilitates the login function
+ * Boundary class that facilitates the login function
  * @author anon
  */
 
