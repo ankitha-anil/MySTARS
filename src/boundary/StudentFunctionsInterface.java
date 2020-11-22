@@ -11,7 +11,7 @@ import static boundary.MyStarsInterface.RED;
 import static boundary.MyStarsInterface.RESET;
 
 /**
- * Class that executes Student user functionalities
+ * Boundary class that executes Student user functionalities
  * @author anon
  */
 
@@ -19,6 +19,7 @@ public class StudentFunctionsInterface {
 
     /**
      * Main function that displays menu of student functions and input details or view details based on chosen function.
+     * The operations are: Add, drop and print course, Check vacancies, Change and swap index numbers, Printing time table, course list, index list and request for overloading.
      * @param args null argument can be used to call the StudentFunction interface
      * @param actor Actor object which passes username details from LoginInterface
      * @throws IOException throws IOException
