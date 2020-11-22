@@ -18,6 +18,7 @@ import static boundary.MyStarsInterface.RESET;
 
 /**
  * Boundary class that executes Admin user functionalities
+ *
  * @author anon
  */
 public class AdminFunctionsInterface {
@@ -25,7 +26,8 @@ public class AdminFunctionsInterface {
     /**
      * Main function that displays menu of admin functions and input details or view details based on chosen function.
      * The operations available are: Editing Access Period, Adding and update student,Add and update course, Check vacancy, Printing student list, courses, index and lesson.
-     * @param args null argument can be used to call the AdminFunction interface
+     *
+     * @param args  null argument can be used to call the AdminFunction interface
      * @param actor Actor object which passes username details from LoginInterface
      * @throws IOException throws IOException
      */
@@ -129,7 +131,7 @@ public class AdminFunctionsInterface {
                     emailID = sc.next().toLowerCase();
                     System.out.println("|-------------------------------------------|");
                     System.out.print("| Enter the Student's gender :              | ");
-                    gender = sc.next().toLowerCase();
+                    gender = sc.next().toUpperCase();
                     System.out.println("|-------------------------------------------|");
                     System.out.print("| Enter the Student's nationality :         | ");
                     nationality = sc.next().toUpperCase();
@@ -138,7 +140,16 @@ public class AdminFunctionsInterface {
                     school = sc.next();
                     System.out.println("|-------------------------------------------|");
                     System.out.print("| Enter the Student's study year :          | ");
-                    studyYear = sc.nextInt();
+                    try {
+                        studyYear = sc.nextInt();
+                    } catch (NumberFormatException e) {
+                        System.out.println(RED + " Study Year must be an integer from 1 to 4");
+                        continue;
+                    }
+                    if (studyYear < 1 || studyYear > 4) {
+                        System.out.println(RED + "Study year can be between 1 - 4" + RESET);
+                        continue;
+                    }
                     System.out.println("|-------------------------------------------|");
                     try {
                         password = String.valueOf(console.readPassword("  |  Enter your password :  |  "));

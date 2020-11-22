@@ -13,6 +13,7 @@ import static boundary.MyStarsInterface.RESET;
 
 /**
  * Boundary class that admin uses to update course details
+ *
  * @author anon
  */
 
@@ -20,11 +21,12 @@ public class CourseUpdateInterface {
 
     /**
      * Main function where admin can update course details based on chosen attribute (Course code, course name, school, add index, update index)
-     * @param args null argument can be used to call the CourseUpdate interface
+     *
+     * @param args  null argument can be used to call the CourseUpdate interface
      * @param actor Actor object which passes username details from AdminFunctionInterface
      */
 
-    public static void main(String[] arg, Actor actor) {
+    public static void main(String[] args, Actor actor) {
         CourseMgr courseMgr = new CourseMgr();
         UpdateManager updateManager = new UpdateManager();
         int choice = 0;
@@ -38,12 +40,12 @@ public class CourseUpdateInterface {
             System.out.println("+---------------------------------------------------------+");
             System.out.println("| Enter the Course code to update (Enter 0 to go back):   |  ");
             courseCode = sc.next();
-            System.out.println("+---------------------------------------------------------+");
             if (courseCode.equals("0"))
                 return;
             boolean isCoursePresent = courseMgr.checkObjectExists(courseCode);
             if (!isCoursePresent) {
                 System.out.println(RED + "The course doesn't exists in the system" + RESET);
+                System.out.println("+---------------------------------------------------------+");
                 break;
             } else {
                 System.out.println("+-------------------------------------------+");
@@ -84,6 +86,7 @@ public class CourseUpdateInterface {
                         System.out.print("Enter the new course name : ");
                         sc.nextLine();
                         courseName = sc.nextLine().trim();
+                        System.out.println("Course name : " + courseName);
                         courseMgr.updateCourseName(courseCode, courseName);
                         goBack = true;
                         break;

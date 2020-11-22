@@ -12,7 +12,7 @@ public abstract class User implements Serializable {
      * name is the name of the user
      * networkName is th unique identification name of the user
      * emailId is the user's email Id
-     * gender is the gender of bteh user
+     * gender is the gender of the user
      * nationality od the nationality of the user
      */
     protected String name;

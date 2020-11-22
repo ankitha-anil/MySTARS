@@ -1,8 +1,5 @@
 package controller;
 
-import entity.Student;
-import entity.User;
-
 import java.io.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -15,7 +12,8 @@ import static boundary.MyStarsInterface.*;
 
 /**
  * Class that handles the functionality for logging in
- * @Author Anon
+ *
+ * @author Anon
  */
 public class LoginMgr {
 
@@ -36,7 +34,6 @@ public class LoginMgr {
     static {
         try {
             studentLoginDetails = (ArrayList<String>) readCredentials(studentFile);
-            System.out.println(studentLoginDetails.size());
         } catch (IOException e) {
             System.out.println(RED + "Could not retrieve data" + RESET);
         }
@@ -47,7 +44,6 @@ public class LoginMgr {
     static {
         try {
             adminLoginDetails = (ArrayList<String>) readCredentials(adminFile);
-            System.out.println(studentLoginDetails.size());
         } catch (IOException e) {
             System.out.println(RED + "Could not retrieve data" + RESET);
         }
@@ -55,6 +51,7 @@ public class LoginMgr {
 
     /**
      * Checks if the correct username and password have been entered for login
+     *
      * @param userName username of the student/admin attempting to login
      * @param password password entered by the student/admin
      * @param userType type of user ( student/admin)
@@ -63,11 +60,13 @@ public class LoginMgr {
      */
     public static boolean loginCheck(String userName, String password, String userType) throws IOException {
         ArrayList<String> loginDetails;
-        if (userType.toLowerCase().equals("student"))
+        if (userType.toLowerCase().equals("student")) {
+            studentLoginDetails = (ArrayList<String>) readCredentials(studentFile);
             loginDetails = studentLoginDetails;
-        else if (userType.toLowerCase().equals("admin"))
+        } else if (userType.toLowerCase().equals("admin")) {
+            adminLoginDetails = (ArrayList<String>) readCredentials(adminFile);
             loginDetails = adminLoginDetails;
-        else {
+        } else {
             return false;
         }
         if (loginDetails.size() == 0) {
@@ -92,6 +91,7 @@ public class LoginMgr {
 
     /**
      * Reads the contents of the given file.
+     *
      * @param fileName name of the file to be read
      */
     public static List readCredentials(String fileName) throws IOException {
@@ -111,6 +111,7 @@ public class LoginMgr {
 
     /**
      * Saves the list of users to a file
+     *
      * @param fileName name of the file in which the list of the users need to be saved
      * @throws IOException
      */
@@ -140,9 +141,10 @@ public class LoginMgr {
     /**
      * Stores a new username and password pair in the corresponding file.
      * Checks if the username does not already exist before appending it to the file
+     *
      * @param networkName username of the new user being created
-     * @param password password of the new user being created
-     * @param userType type of the user (student/admin)
+     * @param password    password of the new user being created
+     * @param userType    type of the user (student/admin)
      * @throws IOException
      */
     public static void createUser(String networkName, String password, String userType) throws IOException {
@@ -182,6 +184,7 @@ public class LoginMgr {
 
     /**
      * Removes a username and its associated password from the corresponding file
+     *
      * @param userName username that needs to be removed
      * @param userType type of the user (student/admin)
      * @throws IOException
@@ -219,6 +222,7 @@ public class LoginMgr {
 
     /**
      * Generates the hash of the password
+     *
      * @param input the password that needs to be hashed
      * @return
      */
