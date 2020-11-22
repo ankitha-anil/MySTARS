@@ -4,8 +4,6 @@ package controller;
 import entity.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 import static boundary.MyStarsInterface.*;
 

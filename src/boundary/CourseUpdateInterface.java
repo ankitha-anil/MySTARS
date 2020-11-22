@@ -1,10 +1,8 @@
 package boundary;
 
-import controller.BoundaryController;
-import controller.CourseMgr;
+import controller.*;
 import actor.Actor;
-import controller.IndexMgr;
-import controller.UpdateManager;
+import entity.Course;
 
 import java.util.Scanner;
 
@@ -27,14 +25,13 @@ public class CourseUpdateInterface {
      */
 
     public static void main(String[] args, Actor actor) {
-        CourseMgr courseMgr = new CourseMgr();
+        ObjectEntityController courseMgr = new CourseMgr();
         UpdateManager updateManager = new UpdateManager();
         int choice = 0;
         Scanner sc = new Scanner(System.in);
 
         do {
             String courseCode;
-            courseCode = sc.next();
             System.out.println("+---------------------------------------------------------+");
             System.out.println("|                    Update Course Menu                   |");
             System.out.println("+---------------------------------------------------------+");
@@ -71,7 +68,7 @@ public class CourseUpdateInterface {
                 String courseName = "";
                 String school = "";
                 String indexNumber;
-                int vacancy;
+                int vacancy = 10; //default for error update
                 boolean goBack = false;
                 switch (choice) {
                     case 0:
@@ -87,25 +84,41 @@ public class CourseUpdateInterface {
                         sc.nextLine();
                         courseName = sc.nextLine().trim();
                         System.out.println("Course name : " + courseName);
-                        courseMgr.updateCourseName(courseCode, courseName);
+                        if (courseMgr instanceof CourseMgr)
+                            ((CourseMgr) courseMgr).updateCourseName(courseCode, courseName);
+                        else
+                            System.out.println(RED + "Invalid controller class... Cannot perform this operation" + RESET);
                         goBack = true;
                         break;
                     case 3:
                         System.out.print("Enter the new school of the course : ");
                         school = sc.next();
-                        courseMgr.updateCourseSchool(courseCode, school);
+                        if (courseMgr instanceof CourseMgr)
+                            ((CourseMgr) courseMgr).updateCourseSchool(courseCode, school);
+                        else
+                            System.out.println(RED + "Invalid controller class... Cannot perform this operation" + RESET);
                         goBack = true;
                         break;
                     case 4:
                         System.out.print("Enter the index number : ");
                         indexNumber = sc.next();
                         System.out.print("Enter the vacancy : ");
-                        vacancy = sc.nextInt();
-                        courseMgr.addIndex(courseCode, indexNumber, vacancy);
+                        try {
+                            vacancy = sc.nextInt();
+                            if (vacancy < 0) {
+                                System.out.println(RED + "Vacancy must be a positive integer" + RESET);
+                                continue;
+                            }
+                        } catch (NumberFormatException e) {
+                            System.out.println(RED + "Vacancy must be a positive integer" + RESET);
+                        }
+                        if (courseMgr instanceof CourseMgr)
+                            ((CourseMgr) courseMgr).addIndex(courseCode, indexNumber, vacancy);
+                        else
+                            System.out.println(RED + "Invalid controller class... Cannot perform this operation" + RESET);
                         goBack = true;
                         break;
                     case 5:
-                        // Set up index update interface
                         BoundaryController.callIndexUpdateInterface(actor, courseCode);
                         goBack = true;
                         break;

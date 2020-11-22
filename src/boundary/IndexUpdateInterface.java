@@ -2,6 +2,7 @@ package boundary;
 
 import controller.CourseMgr;
 import actor.Actor;
+import controller.ObjectEntityController;
 import controller.UpdateManager;
 
 import java.util.Scanner;
@@ -11,6 +12,7 @@ import static boundary.MyStarsInterface.RESET;
 
 /**
  * Boundary class that implements Index Update interface
+ *
  * @author anon
  */
 
@@ -18,13 +20,14 @@ public class IndexUpdateInterface {
 
     /**
      * Main function where admin can update index details based on chosen attribute (Index number, Vacancy)
-     * @param args null argument can be used to call the IndexUpdate interface
-     * @param actor Actor object which passes username details from CourseUpdateInterface
+     *
+     * @param args       null argument can be used to call the IndexUpdate interface
+     * @param actor      Actor object which passes username details from CourseUpdateInterface
      * @param courseCode String specifies the course of which index needs to be updated
      */
 
     public static void main(String[] args, Actor actor, String courseCode) {
-        CourseMgr courseMgr = new CourseMgr();
+        ObjectEntityController courseMgr = new CourseMgr();
         UpdateManager updateManager = new UpdateManager();
         int choice = 0;
         Scanner sc = new Scanner(System.in);
@@ -38,12 +41,12 @@ public class IndexUpdateInterface {
             System.out.println("+--------------------------------------------------------+");
             if (indexNumber.equals("0"))
                 break;
-            if (!courseMgr.checkIndex(courseCode, indexNumber)) {
+            if (courseMgr instanceof CourseMgr && !((CourseMgr) courseMgr).checkIndex(courseCode, indexNumber)) {
                 System.out.println(RED + "This index number doesn't exist" + RESET);
                 break;
             } else {
                 String newIndexNumber;
-                int vacancy;
+                int vacancy = 10;
                 System.out.println("+----------------------------------------+");
                 System.out.println("|     Choose the attribute to update     |");
                 System.out.println("|----------------------------------------|");
@@ -71,7 +74,16 @@ public class IndexUpdateInterface {
                         break;
                     case 2:
                         System.out.print("Enter the new vacancy : ");
-                        vacancy = sc.nextInt();
+                        try {
+                            vacancy = sc.nextInt();
+                            if (vacancy < 0) {
+                                System.out.println(RED + "Vacancy must be a positive integer" + RESET);
+                                continue;
+                            }
+                        } catch (NumberFormatException e) {
+                            System.out.println(RED + "Vacancy must be a positive integer" + RESET);
+                        }
+
                         updateManager.updateIndexVacancy(courseCode, indexNumber, vacancy);
                         goBack = true;
                         break;

@@ -22,6 +22,7 @@ public abstract class ObjectEntityController {
 
     /**
      * Checks if an object with a given key exists in the list of objects of the same type
+     *
      * @param key value of the attribute that uniquely identifies each object in the list
      * @return boolean value indicating if the required object exists in the list
      */
@@ -34,6 +35,7 @@ public abstract class ObjectEntityController {
 
     /**
      * Retrieves an object with a given key in the list of objects of the same type
+     *
      * @param key value of the attribute that uniquely identifies each object in the list
      * @return required object from the corresponding list
      */

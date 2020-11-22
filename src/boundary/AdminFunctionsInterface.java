@@ -19,6 +19,7 @@ import static boundary.MyStarsInterface.RESET;
 
 /**
  * Boundary class that executes Admin user functionalities
+ *
  * @author anon
  */
 public class AdminFunctionsInterface {
@@ -26,7 +27,8 @@ public class AdminFunctionsInterface {
     /**
      * Main function that displays menu of admin functions and input details or view details based on chosen function.
      * The operations available are: Editing Access Period, Adding and update student,Add and update course, Check vacancy, Printing student list, courses, index and lesson.
-     * @param args null argument can be used to call the AdminFunction interface
+     *
+     * @param args  null argument can be used to call the AdminFunction interface
      * @param actor Actor object which passes username details from LoginInterface
      * @throws IOException throws IOException
      */
@@ -62,7 +64,6 @@ public class AdminFunctionsInterface {
                 choice = sc.nextInt();
             } catch (Exception e) {
                 System.out.println(RED + "Invalid choice" + RESET);
-                sc.nextLine();
                 choice = -1;
             }
 
@@ -86,8 +87,8 @@ public class AdminFunctionsInterface {
                     break;
                 case 1:
                     try {
-                        System.out.printf("Current start date and time: %s  %s\n", Student.getStartDate(),Student.getStartTime());
-                        System.out.printf("Current end date and time: %s  %s\n", Student.getEndDate(),Student.getEndTime());
+                        System.out.printf("Current start date and time: %s  %s\n", Student.getStartDate(), Student.getStartTime());
+                        System.out.printf("Current end date and time: %s  %s\n", Student.getEndDate(), Student.getEndTime());
                         LocalTime starTime = null;
                         LocalTime endTime = null;
                         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm");
@@ -114,13 +115,12 @@ public class AdminFunctionsInterface {
                     } catch (DateTimeParseException e) {
                         System.out.println(RED + "Error: Enter the date in the specified format" + RESET);
                     }
-
                     break;
                 case 2:
                     System.out.println("+-------------------------------------------+");
                     System.out.print("| Enter the Student's name :                | ");
                     sc.nextLine();
-                    studentName = sc.nextLine();
+                    studentName = sc.nextLine().trim();
                     System.out.println("|-------------------------------------------|");
                     System.out.print("| Enter the Student's username :            | ");
                     networkName = sc.next();
@@ -132,7 +132,7 @@ public class AdminFunctionsInterface {
                     emailID = sc.next().toLowerCase();
                     System.out.println("|-------------------------------------------|");
                     System.out.print("| Enter the Student's gender :              | ");
-                    gender = sc.next().toLowerCase();
+                    gender = sc.next().toUpperCase();
                     System.out.println("|-------------------------------------------|");
                     System.out.print("| Enter the Student's nationality :         | ");
                     nationality = sc.next().toUpperCase();
@@ -141,22 +141,31 @@ public class AdminFunctionsInterface {
                     school = sc.next();
                     System.out.println("|-------------------------------------------|");
                     System.out.print("| Enter the Student's study year :          | ");
-                    studyYear = sc.nextInt();
-                    if(studyYear<1 || studyYear>4){
-                        System.out.println(RED+"Study year only between 1-4"+RESET);
+                    try {
+                        studyYear = sc.nextInt();
+                    } catch (NumberFormatException e) {
+                        System.out.println(RED + "Study year can only integer values from 1-4");
+                        choice = -1;
+                        continue;
+                    }
+
+                    if (studyYear < 1 || studyYear > 4) {
+                        System.out.println(RED + "Study year only between 1-4" + RESET);
                         continue;
                     }
                     System.out.println("|-------------------------------------------|");
                     try {
                         password = String.valueOf(console.readPassword("  |  Enter your password :  |  "));
                     } catch (NullPointerException e) {
-                        System.out.println(RED + "Cannot mask password" + RESET);
+                        System.out.println(RED + "Could not find console. Cannot mask password" + RESET);
                         System.out.print("  |  Enter your password :  |  ");
                         password = sc.next();
                     }
                     System.out.println("+-------------------------------------------+");
 
-                    ((StudentRecordsMgr) studentRecordsMgr).addStudent(studentName, networkName, matriculationNumber, emailID, gender, nationality, school, studyYear, password);
+                    if (studentRecordsMgr instanceof StudentRecordsMgr)
+                        ((StudentRecordsMgr) studentRecordsMgr).addStudent(studentName, networkName, matriculationNumber, emailID, gender, nationality, school, studyYear, password);
+                    else System.out.println(RED + "Invalid controller class... Cannot perform this operation" + RESET);
                     break;
                 case 3:
                     BoundaryController.callStudentUpdateInterface(actor);
@@ -169,17 +178,18 @@ public class AdminFunctionsInterface {
                     courseName = sc.nextLine().trim();
                     System.out.print("Enter the academic units for this course : ");
                     academicUnits = sc.nextInt();
-                    if(academicUnits<1){
-                    System.out.println(RED + "Credits cannot be less than 1" + RESET);
-                    continue;
+                    if (academicUnits < 1) {
+                        System.out.println(RED + "Credits cannot be less than 1" + RESET);
+                        continue;
+                    } else if (academicUnits > 4) {
+                        System.out.println(RED + "Credits are too high! Credits must be between 1 and 4" + RESET);
+                        continue;
                     }
-                    else if (academicUnits > 4) {
-                    System.out.println(RED + "Credits are too high! Credits must be between 1 and 4"+RESET);
-                    continue;
-                }
                     System.out.print("Enter the school offering this course : ");
                     school = sc.nextLine();
-                    ((CourseMgr) courseMgr).addCourse(courseCode, courseName, academicUnits, school);
+                    if (courseMgr instanceof CourseMgr)
+                        ((CourseMgr) courseMgr).addCourse(courseCode, courseName, academicUnits, school);
+                    else System.out.println(RED + "Invalid controller class... Cannot perform this operation" + RESET);
                     break;
                 case 5:
                     BoundaryController.callCourseUpdateInterface(actor);
@@ -189,26 +199,31 @@ public class AdminFunctionsInterface {
                     courseCode = sc.next();
                     System.out.print("Enter the index number : ");
                     indexNumber = sc.next();
-                    ((CourseMgr) courseMgr).checkAvailabilityIndex(courseCode, indexNumber);
+                    if (courseMgr instanceof CourseMgr)
+                        ((CourseMgr) courseMgr).checkAvailabilityIndex(courseCode, indexNumber);
+                    else System.out.println(RED + "Invalid controller class... Cannot perform this operation" + RESET);
                     break;
                 case 7:
                     System.out.print("Enter the course code : ");
                     courseCode = sc.next();
                     System.out.print("Enter the index number : ");
                     indexNumber = sc.next();
-                    ((CourseMgr) courseMgr).printStudentListByIndex(courseCode, indexNumber);
+                    if (courseMgr instanceof CourseMgr)
+                        ((CourseMgr) courseMgr).printStudentListByIndex(courseCode, indexNumber);
+                    else System.out.println(RED + "Invalid controller class... Cannot perform this operation" + RESET);
                     break;
                 case 8:
                     System.out.print("Enter the course code : ");
                     courseCode = sc.next();
-                    ((CourseMgr) courseMgr).printStudentListByCourse(courseCode);
+                    if (courseMgr instanceof CourseMgr)
+                        ((CourseMgr) courseMgr).printStudentListByCourse(courseCode);
+                    else System.out.println(RED + "Invalid controller class... Cannot perform this operation" + RESET);
                     break;
                 case 9:
-                   studentRecordsMgr.printObjects();
+                    studentRecordsMgr.printObjects();
                     break;
                 case 10:
                     courseMgr.printObjects();
-
                     break;
                 case 11:
                     System.out.print("Enter the course code : ");
@@ -223,7 +238,9 @@ public class AdminFunctionsInterface {
                     courseCode = sc.next();
                     System.out.print("Enter the index number : ");
                     indexNumber = sc.next();
-                    ((CourseMgr) courseMgr).printLessons(courseCode, indexNumber);
+                    if (courseMgr instanceof CourseMgr)
+                        ((CourseMgr) courseMgr).printLessons(courseCode, indexNumber);
+                    else System.out.println(RED + "Invalid controller class... Cannot perform this operation" + RESET);
                     break;
                 default:
                     System.out.println(RED + "Invalid option" + RESET);

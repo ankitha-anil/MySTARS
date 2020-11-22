@@ -2,6 +2,7 @@ package boundary;
 
 import controller.*;
 import actor.Actor;
+import entity.Course;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -12,6 +13,7 @@ import static boundary.MyStarsInterface.RESET;
 
 /**
  * Boundary class that executes Student user functionalities
+ *
  * @author anon
  */
 
@@ -20,7 +22,8 @@ public class StudentFunctionsInterface {
     /**
      * Main function that displays menu of student functions and input details or view details based on chosen function.
      * The operations are: Add, drop and print course, Check vacancies, Change and swap index numbers, Printing time table, course list, index list and request for overloading.
-     * @param args null argument can be used to call the StudentFunction interface
+     *
+     * @param args  null argument can be used to call the StudentFunction interface
      * @param actor Actor object which passes username details from LoginInterface
      * @throws IOException throws IOException
      */
@@ -89,7 +92,9 @@ public class StudentFunctionsInterface {
                     courseCode = sc.next();
                     System.out.print("Enter the index number: ");
                     indexNumber = sc.next();
-                    ((CourseMgr) courseMgr).checkAvailabilityIndex(courseCode, indexNumber);
+                    if (courseMgr instanceof CourseMgr)
+                        ((CourseMgr) courseMgr).checkAvailabilityIndex(courseCode, indexNumber);
+                    else System.out.println(RED + "Invalid controller class... Cannot perform this operation" + RESET);
                     break;
                 case 5:
                     System.out.print("Enter the course code: ");
@@ -120,7 +125,9 @@ public class StudentFunctionsInterface {
                     break;
 
                 case 7:
-                    ((StudentRecordsMgr) studentMgr).printTimeTable(actor.getUserName());
+                    if (studentMgr instanceof StudentRecordsMgr)
+                        ((StudentRecordsMgr) studentMgr).printTimeTable(actor.getUserName());
+                    else System.out.println(RED + "Invalid controller class... Cannot perform this operation" + RESET);
                     break;
                 case 8:
                     courseMgr.printObjects();
@@ -129,7 +136,9 @@ public class StudentFunctionsInterface {
                 case 9:
                     System.out.print("Enter the course code: ");
                     courseCode = sc.next();
-                    ((CourseMgr) courseMgr).printIndexes(courseCode);
+                    if (courseMgr instanceof CourseMgr)
+                        ((CourseMgr) courseMgr).printIndexes(courseCode);
+                    else System.out.println(RED + "Invalid controller class... Cannot perform this operation" + RESET);
                     break;
 
                 case 10:

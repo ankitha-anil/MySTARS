@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 /**
  * Class that manages the list of existing admins
+ *
  * @author Anon
  */
 public class AdminMgr extends ObjectEntityController {
@@ -41,13 +42,13 @@ public class AdminMgr extends ObjectEntityController {
 
     /**
      * Checks if an admin with a particular username exists
+     *
      * @param userName username that needs to be verified
      * @return boolean value corresponding to whether admin exists or not
      */
     public boolean checkObjectExists(String userName) {
         loadAdminObjects();
         Object dummyAdmin = new Admin(userName);
-        SystemMgr systemMgr = new SystemMgr();
         return systemMgr.findObject(admins, dummyAdmin) != null;
     }
 
@@ -60,15 +61,15 @@ public class AdminMgr extends ObjectEntityController {
 
     /**
      * Retrieve the admin object having a particular username
+     *
      * @param userName username of the admin object that needs to be retrieved
      * @return required admin object
      */
     public Object getObjectFromList(String userName) {
         Object admin = new Admin(userName);
-        SystemMgr systemMgr = new SystemMgr();
         admin = systemMgr.findObject(admins, admin);
         if (admin instanceof Admin)
-            return (Admin) admin;
+            return admin;
         return null;
     }
 }

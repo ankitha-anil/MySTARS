@@ -12,7 +12,6 @@ import java.util.ArrayList;
 public class SystemMgr {
 
 
-
     /**
      * This function checks if a given objects exists in a list of objects. Dynamic Binding is taking place because the entity classes have overriden the equals method of the Object class. Therefore, this function can be used for all entity classes
      *
@@ -56,8 +55,9 @@ public class SystemMgr {
 
     /**
      * This functions returns True if both the start time and start date are before end time and end date respectively else it returns false
+     *
      * @return boolean True or False
-     */ 
+     */
     public boolean isAccessible() {
         LocalTime currentTime = LocalTime.now();
         LocalDate currentDate = LocalDate.now();

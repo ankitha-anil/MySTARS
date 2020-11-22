@@ -11,6 +11,7 @@ import static boundary.MyStarsInterface.*;
 
 /**
  * Class that manages the list of all existing courses
+ *
  * @author Anon
  */
 
@@ -34,6 +35,7 @@ public class CourseMgr extends ObjectEntityController {
 
     /**
      * Checks if course with a particular course code exists
+     *
      * @param courseCode course code to be verified
      * @return boolean value to indicate whether the required course exists
      */
@@ -49,7 +51,8 @@ public class CourseMgr extends ObjectEntityController {
 
     /**
      * Checks if index with a particular index number exists
-     * @param courseCode course code of the index that needs to be verified
+     *
+     * @param courseCode  course code of the index that needs to be verified
      * @param indexNumber index number of the index that needs to be verified
      * @return boolean value that indicates if the required index exists or not
      */
@@ -69,10 +72,11 @@ public class CourseMgr extends ObjectEntityController {
     /**
      * Adds a new course to the list of existing courses
      * Checks if the new course being added does not already exist before adding
-     * @param courseCode course code of the course to be added
-     * @param courseName name of the course to be added
+     *
+     * @param courseCode    course code of the course to be added
+     * @param courseName    name of the course to be added
      * @param academicUnits academic units of the course to be added
-     * @param schoolName name of the school the course is associated with
+     * @param schoolName    name of the school the course is associated with
      */
     public void addCourse(String courseCode, String courseName, int academicUnits, String schoolName) {
         loadCourseObjectList();
@@ -144,7 +148,8 @@ public class CourseMgr extends ObjectEntityController {
     /**
      * Updates the name of a course
      * Checks if the course to be updated exists before updating
-     * @param courseCode code of the course that needs to be updated
+     *
+     * @param courseCode    code of the course that needs to be updated
      * @param newCourseName the name the course needs to be updated to
      */
     public void updateCourseName(String courseCode, String newCourseName) {
@@ -179,7 +184,8 @@ public class CourseMgr extends ObjectEntityController {
     /**
      * Updates the school the course is associated with
      * Checks if the course exists before updating
-     * @param courseCode course code of the course that needs to be updated
+     *
+     * @param courseCode      course code of the course that needs to be updated
      * @param newCourseSchool the updated school name that the course should be associated with
      */
     public void updateCourseSchool(String courseCode, String newCourseSchool) {
@@ -198,9 +204,10 @@ public class CourseMgr extends ObjectEntityController {
     /**
      * Adds an index to a particular course
      * Checks if course exists before adding the index
-     * @param courseCode course code of the course to which the new index has to be added
+     *
+     * @param courseCode  course code of the course to which the new index has to be added
      * @param indexNumber the new index number to be added
-     * @param vacancy number of vacancies in the new index
+     * @param vacancy     number of vacancies in the new index
      */
     public void addIndex(String courseCode, String indexNumber, int vacancy) {
         loadCourseObjectList();
@@ -274,6 +281,7 @@ public class CourseMgr extends ObjectEntityController {
     /**
      * Prints the list of registered students for a given course
      * Checks if the course exists before printing
+     *
      * @param courseCode course code of the course whose list of students need to be printed
      */
     public void printStudentListByCourse(String courseCode) {
@@ -297,7 +305,8 @@ public class CourseMgr extends ObjectEntityController {
     /**
      * Prints the list of registered students for a given index in a given course
      * Checks if the course exists before printing
-     * @param courseCode course code of the required course
+     *
+     * @param courseCode  course code of the required course
      * @param indexNumber index number of the required index
      */
     public void printStudentListByIndex(String courseCode, String indexNumber) {
@@ -323,7 +332,8 @@ public class CourseMgr extends ObjectEntityController {
     /**
      * Prints the number of vacancies left for a given index in a given course
      * Checks if the course exists before printing
-     * @param courseCode course code of the required course
+     *
+     * @param courseCode  course code of the required course
      * @param indexNumber index number of the required index
      */
     public void checkAvailabilityIndex(String courseCode, String indexNumber) {
@@ -362,6 +372,7 @@ public class CourseMgr extends ObjectEntityController {
     /**
      * Prints the details of all indices in a given course
      * Checks if the course exists before printing
+     *
      * @param courseCode course code of the required course
      */
     public void printIndexes(String courseCode) {
@@ -386,7 +397,8 @@ public class CourseMgr extends ObjectEntityController {
     /**
      * Prints the details of each lesson of a given index of a given course
      * Checks if the course exists before printing
-     * @param courseCode course code of the required course
+     *
+     * @param courseCode  course code of the required course
      * @param indexNumber index number of the required index
      */
     public void printLessons(String courseCode, String indexNumber) {
@@ -426,6 +438,7 @@ public class CourseMgr extends ObjectEntityController {
 
     /**
      * Gets the required course object from the list of courses
+     *
      * @param courseCode course code of the required course
      * @return required course object
      */

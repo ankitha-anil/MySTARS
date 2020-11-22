@@ -1,9 +1,6 @@
 package boundary;
 
-import controller.AdminMgr;
-import controller.CommunicationController;
-import controller.EmailMgr;
-import controller.Notifier;
+import controller.*;
 import actor.Actor;
 
 import static boundary.MyStarsInterface.RED;
@@ -13,6 +10,7 @@ import java.util.Scanner;
 
 /**
  * Boundary class that executes the function to send an Email to admin
+ *
  * @author anon
  */
 
@@ -20,12 +18,13 @@ public class EmailAdminInterface {
 
     /**
      * Main function where student can send email to admin requesting for overloading
-     * @param args null argument can be used to call the EmailAdmin interface
+     *
+     * @param args  null argument can be used to call the EmailAdmin interface
      * @param actor Actor object which passes username details from StudentFunctionInterface
      */
 
     public static void main(String[] args, Actor actor) {
-        AdminMgr adminMgr = new AdminMgr();
+        ObjectEntityController adminMgr = new AdminMgr();
         String adminUsername;
         Scanner sc = new Scanner(System.in);
         System.out.println("+---------------------------------------------------------------------------------------+");

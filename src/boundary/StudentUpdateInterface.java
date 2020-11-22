@@ -67,7 +67,7 @@ public class StudentUpdateInterface {
                 String name = "";
                 String nationality = "";
                 String school = "";
-                int maxAU;
+                int maxAU = 22;
 
                 boolean goBack = false;
 
@@ -95,7 +95,12 @@ public class StudentUpdateInterface {
                         break;
                     case 4:
                         System.out.print("Enter the max allowable AUs: ");
-                        maxAU = sc.nextInt();
+                        try {
+                            maxAU = sc.nextInt();
+                        } catch (NumberFormatException e) {
+                            System.out.println(RED + "Academic Units can only be a positive integer");
+                            continue;
+                        }
                         updateManager.updateStudentMaxAU(userName, maxAU);
                         goBack = true;
                         break;
