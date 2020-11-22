@@ -18,7 +18,7 @@ public class SystemMgr {
      *
      * @param objects Array List of objects
      * @param object  an object
-     * @return
+     * @return objectItem if found else return null
      */
     public Object findObject(ArrayList<Object> objects, Object object) {
         if (objects == null)
@@ -37,7 +37,7 @@ public class SystemMgr {
      *
      * @param startTime the starting time of the registration period
      * @param endTime   the ending time of the registeration period
-     * @return
+     * @return boolean True or False
      */
     public boolean checkTimeSanity(LocalTime startTime, LocalTime endTime) {
         return startTime.isBefore(endTime);
@@ -48,7 +48,7 @@ public class SystemMgr {
      *
      * @param startDate starting date of the registeration period
      * @param endDate   ending date of the registeration period
-     * @return
+     * @return boolean Trur or False
      */
     public boolean checkDateSanity(LocalDate startDate, LocalDate endDate) {
         return startDate.isBefore(endDate);
@@ -56,7 +56,8 @@ public class SystemMgr {
 
     /**
      * This functions returns True if both the start time and start date are before end time and end date respectively else it returns false
-     */
+     * @return boolean True or False
+     */ 
     public boolean isAccessible() {
         LocalTime currentTime = LocalTime.now();
         LocalDate currentDate = LocalDate.now();
