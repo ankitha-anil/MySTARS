@@ -190,7 +190,7 @@ public class RegistrationManager {
                 }
                 for (Index index : ((Student) student).getIndexOnWaitList()) {
                     if (index.equals(indexDeregister) && index.getCourseCode().equals(courseCode)) {
-                        ((Student) student).removeIndexFromWaitList(indexDeregister);
+                        indexDeregister.removeFromWaitingList((Student) student);
                         System.out.println(GREEN + "Index Number " + index.getIndexNumber() + " is removed from waiting list" + RESET);
                         String subject = "Course Dropped";
                         String message = "You have dropped " + index.getCourseCode() + ", Index number: " + index.getCourseCode();
