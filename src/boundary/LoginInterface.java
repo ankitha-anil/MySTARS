@@ -13,6 +13,7 @@ import static boundary.MyStarsInterface.RESET;
 
 /**
  * Boundary class that facilitates the login function
+ *
  * @author anon
  */
 
@@ -20,6 +21,7 @@ public class LoginInterface {
 
     /**
      * Main function that executes login interface. User inputs the domain (admin or student)
+     *
      * @param args null argument can be used to call the login interface
      * @throws IOException throws IOException
      */
@@ -66,6 +68,7 @@ public class LoginInterface {
 
     /**
      * Function that retrieves login details and passes it to the domain type interface
+     *
      * @param domain String used to check type of user
      * @throws IOException
      */
@@ -101,6 +104,7 @@ public class LoginInterface {
                         BoundaryController.callStudentFunctionInterface(actor);
                     else {
                         System.out.println(RED + "You are not allowed to register for course now" + RESET);
+                        systemMgr.printSystemRegistrationTime();
                     }
                 } else {
                     System.out.println(RED + "Invalid Domain" + RESET);

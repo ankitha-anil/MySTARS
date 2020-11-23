@@ -87,8 +87,6 @@ public class AdminFunctionsInterface {
                     break;
                 case 1:
                     try {
-                        System.out.printf("Current start date and time: %s  %s\n", Student.getStartDate(), Student.getStartTime());
-                        System.out.printf("Current end date and time: %s  %s\n", Student.getEndDate(), Student.getEndTime());
                         LocalTime starTime = null;
                         LocalTime endTime = null;
                         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm");
@@ -186,6 +184,7 @@ public class AdminFunctionsInterface {
                         continue;
                     }
                     System.out.print("Enter the school offering this course : ");
+                    sc.nextLine();
                     school = sc.nextLine();
                     if (courseMgr instanceof CourseMgr)
                         ((CourseMgr) courseMgr).addCourse(courseCode, courseName, academicUnits, school);

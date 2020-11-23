@@ -78,7 +78,7 @@ public class TimeTableMgr {
         ) {
             for (Index indexRegistered : studentIndex
             ) {
-                if (studentIndex.equals(skipIndex))
+                if (indexRegistered.equals(skipIndex))
                     continue;
                 for (Lesson registeredLesson : indexRegistered.getLessons()
                 ) {
@@ -98,10 +98,11 @@ public class TimeTableMgr {
                     time3 = registeredLesson.getStartTime();
                     time4 = registeredLesson.getEndTime();
 
-                    if ((time1.isBefore(time3) && time2.isAfter(time3)) || time1.compareTo(time3) == 0)
+                    if ((time1.isBefore(time3) && time2.isAfter(time3)) || time1.compareTo(time3) == 0) {
                         return true;
-                    else if ((time1.isAfter(time3) && time1.isBefore(time4)))
+                    } else if ((time1.isAfter(time3) && time1.isBefore(time4))) {
                         return true;
+                    }
                 }
 
             }

@@ -286,6 +286,7 @@ public class CourseMgr extends ObjectEntityController {
      */
     public void printStudentListByCourse(String courseCode) {
         loadCourseObjectList();
+        int count = 0;
         Object existingCourse = getObjectFromList(courseCode);
         if (existingCourse == null) {
             System.out.println(RED + "This course doesn't exist" + RESET);
@@ -297,8 +298,12 @@ public class CourseMgr extends ObjectEntityController {
                 for (Student student : ((Index) index).getStudentsRegistered()
                 ) {
                     student.print();
+                    count += 1;
                 }
             }
+        }
+        if (count == 0) {
+            System.out.println(RED + "No students have registered for this course" + RESET);
         }
     }
 

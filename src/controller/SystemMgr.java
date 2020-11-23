@@ -67,4 +67,9 @@ public class SystemMgr {
         return false;
     }
 
+    public void printSystemRegistrationTime() {
+        System.out.printf("Current start date and time: %s  %s\n", Student.getStartDate(), Student.getStartTime());
+        System.out.printf("Current end date and time: %s  %s\n", Student.getEndDate(), Student.getEndTime());
+    }
+
 }

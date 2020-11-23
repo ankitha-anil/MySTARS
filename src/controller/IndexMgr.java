@@ -270,7 +270,7 @@ public class IndexMgr extends ObjectEntityController {
                 System.out.println("+----------------------------------------+");
                 System.out.println("|    Index number    |       Vacancy     |");
                 System.out.println("+----------------------------------------+");
-                System.out.printf("| %10d %9c %8d/%d %7c \n", indexNumber, '|', ((Index) existingIndex).getVacancy(), (((Index) existingIndex).getStudentsRegistered().size() + ((Index) existingIndex).getVacancy()), '|');
+                System.out.printf("| %10d %9c %8d/%d %7c \n", indexNum, '|', ((Index) existingIndex).getVacancy(), (((Index) existingIndex).getStudentsRegistered().size() + ((Index) existingIndex).getVacancy()), '|');
                 System.out.println("+----------------------------------------+");
 
             } else {
@@ -290,17 +290,22 @@ public class IndexMgr extends ObjectEntityController {
      */
     public void printStudentListByIndex(String indexNumber) {
         Object existingIndex = getObjectFromList(indexNumber);
+        int count = 0;
         if (existingIndex != null) {
             if (existingIndex instanceof Index) {
                 for (Student student : ((Index) existingIndex).getStudentsRegistered()
                 ) {
                     student.print();
+                    count += 1;
                 }
             } else {
                 System.out.println(RED + "System Error" + RESET);
             }
         } else {
             System.out.println(RED + "Index doesn't exists in the database" + RESET);
+        }
+        if (count == 0) {
+            System.out.println(RED + "No students have registered for this index" + RESET);
         }
     }
 

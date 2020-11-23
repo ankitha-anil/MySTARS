@@ -256,19 +256,32 @@ public class RegistrationManager {
         }
         if (student instanceof Student && originalIndex instanceof Index && changeToIndex instanceof Index) {
             for (Index index : ((Student) student).getIndexRegistered()) {
-                if (index.equals(((Index) originalIndex).getIndexNumber()) && index.getCourseCode().equals(courseCode)) {
+                if (index.equals(((Index) originalIndex)) && index.getCourseCode().equals(courseCode)) {
                     // need to skip iteration of checking with currentIndex
                     if (timeTableMgr.checkClash(((Student) student).getIndexOnWaitList(), (Index) changeToIndex, (Index) originalIndex) || timeTableMgr.checkClash(((Student) student).getIndexOnWaitList(), (Index) changeToIndex, (Index) originalIndex)) {
                         System.out.println(RED + "New index clashes with waiting index or registered indices of student" + RESET);
                         System.out.println();
                         return;
                     } else {
+                        String subject = "";
+                        String message = "";
                         ((Student) student).removeIndex((Index) originalIndex);
                         ((Student) student).addIndexRegistered((Index) changeToIndex);
+                        Student headOfWaitList = ((Index) originalIndex).getWaitingList().poll();
+                        if (headOfWaitList != null) {
+                            headOfWaitList = (Student) studentRecordsMgr.getObjectFromList(headOfWaitList.getNetworkName());
+                            headOfWaitList.addIndexRegistered(((Index) originalIndex));
+                            ((Index) originalIndex).removeFromWaitingList(headOfWaitList);
+                            ((CourseMgr) courseMgr).saveCourseObjectList();
+                            ((StudentRecordsMgr) studentRecordsMgr).saveStudentObjectList();
+                            subject = "Registered for " + ((Index) originalIndex).getCourseCode() + " " + ((Index) originalIndex).getIndexNumber();
+                            message = "You are removed from the waiting list and have been registered for " + ((Index) originalIndex).getCourseCode() + " " + ((Index) originalIndex).getIndexNumber();
+                            communicationController.communicateToStudent(((Student) student).getNetworkName(), subject, message, new EmailMgr());
+                        }
                         ((CourseMgr) courseMgr).saveCourseObjectList();
                         ((StudentRecordsMgr) studentRecordsMgr).saveStudentObjectList();
-                        String subject = "Changing of course index";
-                        String message = "You have changed the index of " + index.getCourseCode() + " from " + index.getCourseCode() + " to " + ((Index) changeToIndex).getIndexNumber();
+                        subject = "Changing of course index";
+                        message = "You have changed the index of " + index.getCourseCode() + " from " + index.getCourseCode() + " to " + ((Index) changeToIndex).getIndexNumber();
                         communicationController.communicateToStudent(student.getNetworkName(), subject, message, new EmailMgr());
                     }
                 } else {
@@ -351,6 +364,8 @@ public class RegistrationManager {
                 communicationController.communicateToStudent(((Student) friend).getNetworkName(), subject, message, new EmailMgr());
                 ((CourseMgr) courseMgr).saveCourseObjectList();
                 ((StudentRecordsMgr) studentRecordsMgr).saveStudentObjectList();
+            } else {
+                System.out.println(RED + "Clash in timetable... Cannot register" + RESET);
             }
         } else System.out.println(RED + "Only students can register for courses" + RESET);
 
