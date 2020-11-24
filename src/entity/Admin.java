@@ -61,10 +61,17 @@ public class Admin extends User implements Serializable {
      */
 
     public void print() {
-        System.out.printf("| %12s %8c %18s %9c %20s %12c \n",name,'|', networkName,'|', emailID,'|');
-
+        System.out.printf("| %12s %8c %18s %9c %20s %12c \n", name, '|', networkName, '|', emailID, '|');
 
     }
 
-
+    /**
+     * @param object Object to compare with
+     * @return returns a boolean value that determines if two objects have the same network name
+     */
+    public boolean equals(Object object) {
+        return (networkName.equals(((Admin) object).getNetworkName()));
+    }
 }
+
+

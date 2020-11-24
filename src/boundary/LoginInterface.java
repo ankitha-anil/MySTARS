@@ -8,8 +8,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.io.Console;
 
-import static boundary.MyStarsInterface.RED;
-import static boundary.MyStarsInterface.RESET;
+import static boundary.MyStarsInterface.*;
 
 /**
  * Boundary class that facilitates the login function
@@ -70,7 +69,7 @@ public class LoginInterface {
      * Function that retrieves login details and passes it to the domain type interface
      *
      * @param domain String used to check type of user
-     * @throws IOException
+     * @throws IOException throws IOException
      */
 
     private static void login(String domain) throws IOException {
@@ -98,11 +97,13 @@ public class LoginInterface {
             Actor actor = new Actor(userName);
             if (actor != null) {
                 if (domain.equals("admin")) {
+                    System.out.println(GREEN + "Successfully logged in to the system" + RESET);
                     BoundaryController.callAdminFunctionInterface(actor);
                 } else if (domain.equals("student")) {
-                    if (systemMgr.isAccessible())
+                    if (systemMgr.isAccessible()) {
+                        System.out.println(GREEN + "Successfully logged in to the system" + RESET);
                         BoundaryController.callStudentFunctionInterface(actor);
-                    else {
+                    } else {
                         System.out.println(RED + "You are not allowed to register for course now" + RESET);
                         systemMgr.printSystemRegistrationTime();
                     }

@@ -48,8 +48,10 @@ public class AdminMgr extends ObjectEntityController {
      */
     public boolean checkObjectExists(String userName) {
         loadAdminObjects();
-        Object dummyAdmin = new Admin(userName);
-        return systemMgr.findObject(admins, dummyAdmin) != null;
+        Object dummyAdmin = getObjectFromList(userName);
+        if (dummyAdmin != null)
+            return true;
+        else return false;
     }
 
     /**
@@ -68,8 +70,6 @@ public class AdminMgr extends ObjectEntityController {
     public Object getObjectFromList(String userName) {
         Object admin = new Admin(userName);
         admin = systemMgr.findObject(admins, admin);
-        if (admin instanceof Admin)
-            return admin;
-        return null;
+        return admin;
     }
 }

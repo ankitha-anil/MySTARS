@@ -16,6 +16,7 @@ import static boundary.MyStarsInterface.*;
 
 /**
  * Class that is responsible for sending emails to students and admins
+ *
  * @author Anon
  */
 public class EmailMgr implements Notifier {
@@ -29,9 +30,10 @@ public class EmailMgr implements Notifier {
 
     /**
      * Sends an email to a user
+     *
      * @param recipient recipient of the email
-     * @param subject subject of the email
-     * @param body body of the email
+     * @param subject   subject of the email
+     * @param body      body of the email
      */
     public void sendMessage(User recipient, String subject, String body) {
 

@@ -79,7 +79,7 @@ public class AdminFunctionsInterface {
             String courseCode = "";
             String courseName = "";
             String indexNumber;
-            int academicUnits = 0;
+            int academicUnits = 3;
             String password = "";
 
             switch (choice) {
@@ -175,7 +175,12 @@ public class AdminFunctionsInterface {
                     sc.nextLine();
                     courseName = sc.nextLine().trim();
                     System.out.print("Enter the academic units for this course : ");
-                    academicUnits = sc.nextInt();
+                    try {
+                        academicUnits = sc.nextInt();
+                    } catch (NumberFormatException e) {
+                        System.out.println("Academic Units must be an integer");
+                        continue;
+                    }
                     if (academicUnits < 1) {
                         System.out.println(RED + "Credits cannot be less than 1" + RESET);
                         continue;

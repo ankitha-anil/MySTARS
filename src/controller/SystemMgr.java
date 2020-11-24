@@ -13,7 +13,7 @@ public class SystemMgr {
 
 
     /**
-     * This function checks if a given objects exists in a list of objects. Dynamic Binding is taking place because the entity classes have overriden the equals method of the Object class. Therefore, this function can be used for all entity classes
+     * This method checks if a given objects exists in a list of objects. Dynamic Binding is taking place because the entity classes have overridden the equals method of the Object class. Therefore, this function can be used for all entity classes
      *
      * @param objects Array List of objects
      * @param object  an object
@@ -32,7 +32,7 @@ public class SystemMgr {
     }
 
     /**
-     * This function ensures that the start time is before end time
+     * This method ensures that the start time is before end time
      *
      * @param startTime the starting time of the registration period
      * @param endTime   the ending time of the registeration period
@@ -67,6 +67,9 @@ public class SystemMgr {
         return false;
     }
 
+    /**
+     * This method prints the registration period for the students
+     */
     public void printSystemRegistrationTime() {
         System.out.printf("Current start date and time: %s  %s\n", Student.getStartDate(), Student.getStartTime());
         System.out.printf("Current end date and time: %s  %s\n", Student.getEndDate(), Student.getEndTime());

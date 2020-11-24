@@ -227,9 +227,7 @@ public class IndexMgr extends ObjectEntityController {
                     starTime = LocalTime.parse(dateTimeLine, dateTimeFormatter);
                     System.out.print("Enter the ending time in HH:mm  : ");
                     dateTimeLine = sc.next();
-                    dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm");
                     endTime = LocalTime.parse(dateTimeLine, dateTimeFormatter);
-                    System.out.print("Enter the ending time (Separate the hour and minute by space) : ");
                 } catch (DateTimeParseException e) {
                     System.out.print(RED + "Date and time are not in the specified format" + RESET);
                     continue;

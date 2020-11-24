@@ -183,7 +183,7 @@ public class RegistrationManager {
                             ((StudentRecordsMgr) studentRecordsMgr).saveStudentObjectList();
                             head = "Registered for " + indexDeregister.getCourseCode() + " " + indexDeregister.getIndexNumber();
                             message = "You are removed from the waiting list and have been registered for " + indexDeregister.getCourseCode() + " " + indexDeregister.getIndexNumber();
-                            communicationController.communicateToStudent(((Student) student).getNetworkName(), head, message, new EmailMgr());
+                            communicationController.communicateToStudent(((Student) headOfWaitList).getNetworkName(), head, message, new EmailMgr());
                         }
                         return;
                     }
@@ -276,7 +276,7 @@ public class RegistrationManager {
                             ((StudentRecordsMgr) studentRecordsMgr).saveStudentObjectList();
                             subject = "Registered for " + ((Index) originalIndex).getCourseCode() + " " + ((Index) originalIndex).getIndexNumber();
                             message = "You are removed from the waiting list and have been registered for " + ((Index) originalIndex).getCourseCode() + " " + ((Index) originalIndex).getIndexNumber();
-                            communicationController.communicateToStudent(((Student) student).getNetworkName(), subject, message, new EmailMgr());
+                            communicationController.communicateToStudent(((Student) headOfWaitList).getNetworkName(), subject, message, new EmailMgr());
                         }
                         ((CourseMgr) courseMgr).saveCourseObjectList();
                         ((StudentRecordsMgr) studentRecordsMgr).saveStudentObjectList();

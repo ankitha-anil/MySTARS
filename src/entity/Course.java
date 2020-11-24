@@ -41,7 +41,7 @@ public class Course implements Serializable {
     /**
      * Dummy constructor of Course class. Initialises the unique attribute to identify the course
      *
-     * @param courseCode
+     * @param courseCode course code of the course
      */
 
     public Course(String courseCode) {
@@ -189,7 +189,7 @@ public class Course implements Serializable {
      * Checks if two courses have the same course code
      *
      * @param object Object to compare with
-     * @return
+     * @return returns a boolean value that determines if the two courses have the same course code
      */
 
     public boolean equals(Object object) {
@@ -204,7 +204,7 @@ public class Course implements Serializable {
         System.out.println("+---------------------------------------------------------------------------------------+");
         System.out.println("| Course Code   |                  Course Name               |     AU    |    School    |");
         System.out.println("+---------------------------------------------------------------------------------------+");
-        System.out.printf("| %5s %8c %28s %15c %5s %5c %8s %5c\n",courseCode,'|', courseName,'|', academicUnits,'|', schoolName,'|');
+        System.out.printf("| %5s %8c %28s %15c %5s %5c %8s %5c\n", courseCode, '|', courseName, '|', academicUnits, '|', schoolName, '|');
         System.out.println("+---------------------------------------------------------------------------------------+");
 
 

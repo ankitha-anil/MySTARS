@@ -20,8 +20,6 @@ public class StudentUpdateInterface {
      *
      * @param args  null argument can be used to call the StudentUpdate interface
      * @param actor Actor object which passes username details from StudentFunctionInterface
-     * @param args
-     * @param actor
      */
 
     public static void main(String args[], Actor actor) {

@@ -65,6 +65,8 @@ public class StudentRecordsMgr extends ObjectEntityController {
             return;
         } else {
             Student.setAccessPeriod(startTime, endTime, startDay, endDate);
+            System.out.println(GREEN + "Successfully updated registration period" + RESET);
+            System.out.println();
             saveStudentObjectList();
         }
     }
@@ -122,6 +124,7 @@ public class StudentRecordsMgr extends ObjectEntityController {
      * @param userName username of the student
      */
     public void printTimeTable(String userName) {
+        loadStudentObjectList();
         System.out.println(CYAN + "+--------------------------------------------------------------------------------------+" + RESET);
         System.out.println(CYAN + "|" + RESET + "                                     TIMETABLE                                        " + CYAN + "|" + RESET);
         System.out.println(CYAN + "+--------------------------------------------------------------------------------------+" + RESET);
@@ -140,6 +143,8 @@ public class StudentRecordsMgr extends ObjectEntityController {
         }
         for (Index index : student.getIndexRegistered()
         ) {
+            //System.out.println(student.getIndexRegistered().size());
+            System.out.println(index.getLessons().size());
             for (Lesson lesson : index.getLessons()
             ) {
                 weeklyLessons[lesson.getDay() - 1].add(lesson);

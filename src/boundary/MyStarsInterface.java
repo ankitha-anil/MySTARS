@@ -227,6 +227,7 @@ public class MyStarsInterface {
         student_list.add(new Student("Madhav", "Madhav0123", "U1923347C", "madhav001@e.ntu.edu.sg", "M", "Indian", "SCSE", 1));
         student_list.add(new Student("Atul", "Atul0123", "U1922187C", "atul001@e.ntu.edu.sg", "M", "Indian", "SCSE", 2));
         student_list.add(new Student("Parthan", "Parthan0123", "U18221347C", "parthan001@e.ntu.edu.sg", "M", "Indian", "SCSE", 2));
+        student_list.add(new Student("Ryan", "Ryan001", "U192835UC", "ryan001@e.ntu.edu.sg", "M", "SINGAPOREAN", "SCSE", 1));
 
         for (int i = 0; i < student_list.size() - 6; i++) {
             if (student_list.get(i) instanceof Student)
@@ -249,7 +250,6 @@ public class MyStarsInterface {
         fileMgr2.saveObjects(admin_list, "admin.dat");
 
          */
-
 
         LoginInterface.main(null);
     }

@@ -25,7 +25,7 @@ public class Student extends User implements Serializable {
     private static LocalTime startTime = LocalTime.of(0, 0);
     private static LocalTime endTime = LocalTime.of(23, 59);
     private static LocalDate startDate = LocalDate.of(2020, 6, 1);
-    private static LocalDate endDate = LocalDate.of(2020, 6, 30);
+    private static LocalDate endDate = LocalDate.of(2020, 11, 30);
 
     /**
      * Matriculation Number of the student
@@ -70,7 +70,7 @@ public class Student extends User implements Serializable {
      * Dummy Constructor that initialises the unique attribute of the student class
      * Used to check if two students have the same network name
      *
-     * @param networkName
+     * @param networkName network name of the student
      */
     public Student(String networkName) {
         super(networkName);
@@ -79,8 +79,8 @@ public class Student extends User implements Serializable {
     /**
      * Dummy Constructor that initialises the networkName and matriculationNumber of the student
      *
-     * @param networkName
-     * @param matriculationNumber
+     * @param networkName         network name of the student
+     * @param matriculationNumber matriculation number of the student
      */
     public Student(String networkName, String matriculationNumber) {
         super(networkName);
@@ -315,7 +315,7 @@ public class Student extends User implements Serializable {
         System.out.println("+------------------------------------------------------------------------------------------+");
         System.out.println("|        Name         |           Username         |     Gender    |     Nationality       |");
         System.out.println("+------------------------------------------------------------------------------------------+");
-        System.out.printf("| %10s %10c %14s %13c %7s %7c %8s %14c\n",getName(),'|', getNetworkName(),'|', getGender(),'|', getNationality(),'|');
+        System.out.printf("| %10s %10c %14s %13c %7s %7c %8s %14c\n", getName(), '|', getNetworkName(), '|', getGender(), '|', getNationality(), '|');
         System.out.println("+------------------------------------------------------------------------------------------+");
 
 
