@@ -23,7 +23,7 @@ public class StudentRecordsMgr extends ObjectEntityController {
 
     /**
      * List that holds all the student objects
-     * String that sepcifies the file name where student objects are stored
+     * String that specifies the file name where student objects are stored
      */
     private static ArrayList<Object> students;
     private static final String studentFile = "student.dat";
@@ -102,7 +102,7 @@ public class StudentRecordsMgr extends ObjectEntityController {
     }
 
     /**
-     * This function recieves a username as a parameter and checks if the object having that username is an instance of Student. If true, then all the courses in which the student is registered are printed.
+     * This function receives a username as a parameter and checks if the object having that username is an instance of Student. If true, then all the courses in which the student is registered are printed.
      *
      * @param userName username of the student
      */
