@@ -143,8 +143,6 @@ public class StudentRecordsMgr extends ObjectEntityController {
         }
         for (Index index : student.getIndexRegistered()
         ) {
-            //System.out.println(student.getIndexRegistered().size());
-            System.out.println(index.getLessons().size());
             for (Lesson lesson : index.getLessons()
             ) {
                 weeklyLessons[lesson.getDay() - 1].add(lesson);
@@ -270,7 +268,7 @@ public class StudentRecordsMgr extends ObjectEntityController {
     }
 
     /**
-     * This function recieves a key as a parameter and returns the existing student (if any) having that key.
+     * This function receives a key as a parameter and returns the existing student (if any) having that key.
      *
      * @param key key of the student
      */
